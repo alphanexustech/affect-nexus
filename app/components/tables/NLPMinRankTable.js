@@ -20,7 +20,7 @@ export default class NLPMinRankTable extends Component {
             <tr>
               <td style={{width: '80%'}}>
                 <div className="affect--display_name">
-                    {array[0].emotion}
+                    {array[0] ? array[0].emotion : 'Error'}
                 </div>
               </td>
               <td style={{width: '10%'}}>
@@ -30,14 +30,14 @@ export default class NLPMinRankTable extends Component {
               </td>
               <td style={{width: '10%'}}>
                 <div className="affect--display_scores">
-                    {array[0].normalized_r_score.toFixed(4)}
+                    {array[0] ? array[0].normalized_r_score.toFixed(4) : 'Error'}
                 </div>
               </td>
             </tr>
             <tr>
               <td>
                 <div className="affect--display_name">
-                    {array[1].emotion}
+                    {array[1] ? array[1].emotion : 'Error'}
                 </div>
               </td>
               <td>
@@ -47,14 +47,14 @@ export default class NLPMinRankTable extends Component {
               </td>
               <td>
                 <div className="affect--display_scores">
-                    {array[1].normalized_r_score.toFixed(4)}
+                    {array[1] ? array[1].normalized_r_score.toFixed(4) : 'Error'}
                 </div>
               </td>
             </tr>
             <tr>
               <td>
                 <div className="affect--display_name">
-                    {array[2].emotion}
+                    {array[2] ? array[2].emotion : 'Error'}
                 </div>
               </td>
               <td>
@@ -64,7 +64,7 @@ export default class NLPMinRankTable extends Component {
               </td>
               <td>
                 <div className="affect--display_scores">
-                    {array[2].normalized_r_score.toFixed(4)}
+                    {array[2] ? array[2].normalized_r_score.toFixed(4) : 'Error'}
                 </div>
               </td>
             </tr>

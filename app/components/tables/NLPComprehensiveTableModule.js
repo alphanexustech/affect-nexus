@@ -30,11 +30,11 @@ export default class NLPComprehensiveTableModule extends React.Component {
     let i = this.props.iterator;
 
     return (
-      <div key={array[i].emotion + '-group'} className="affect-display_emotion">
+      <div key={array[i] ? array[i].emotion : 'Error' + '-group'} className="affect-display_emotion">
         <div className='pull-left'>
           <div>
             <span key={i + '-r-affect'} className="affect--display_name">
-              {array[i].emotion}
+              {array[i] ? array[i].emotion : 'Error'}
             </span>
             <span className="affect--display_rank">
               {i + 1}
@@ -42,10 +42,10 @@ export default class NLPComprehensiveTableModule extends React.Component {
           </div>
           <div className="affect--display_scores">
             <span key={i + '-normal-scores'}>
-              {array[i].normalized_r_score.toFixed(4)}
+              {array[i] ? array[i].normalized_r_score.toFixed(4) : 'Error'}
             </span>
             <span style={{marginLeft: '2px', color: '#AAA'}}>
-              (<i>{array[i].r_affect_score.toFixed(4)}</i>)
+              (<i>{array[i] ? array[i].normalized_r_score.toFixed(4) : 'Error'}</i>)
             </span>
           </div>
           <div>
@@ -82,12 +82,13 @@ export default class NLPComprehensiveTableModule extends React.Component {
               <th>I-II-III Words</th>
             </tr>
           </thead>
+
           <tbody>
-            <AffectUnprocessedRowTableGroup data={array[i]} limitList={1}></AffectUnprocessedRowTableGroup>
-            <AffectStemmedRowTableGroup data={array[i]} limitList={1}></AffectStemmedRowTableGroup>
-            <AffectLemmatizedRowTableGroup data={array[i]} limitList={1}></AffectLemmatizedRowTableGroup>
-            <AffectCorpusLengthRowTableGroup data={array[i]}></AffectCorpusLengthRowTableGroup>
-            <AffectNormalizedScoreRowTableGroup data={array[i]}></AffectNormalizedScoreRowTableGroup>
+              <AffectUnprocessedRowTableGroup data={array[i]} limitList={1}></AffectUnprocessedRowTableGroup>
+              <AffectStemmedRowTableGroup data={array[i]} limitList={1}></AffectStemmedRowTableGroup>
+              <AffectLemmatizedRowTableGroup data={array[i]} limitList={1}></AffectLemmatizedRowTableGroup>
+              <AffectCorpusLengthRowTableGroup data={array[i]}></AffectCorpusLengthRowTableGroup>
+              <AffectNormalizedScoreRowTableGroup data={array[i]}></AffectNormalizedScoreRowTableGroup>
           </tbody>
         </Table>
       </div>

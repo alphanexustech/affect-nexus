@@ -16,7 +16,7 @@ export default class AffectSummaryLaggerRowTableGroup extends React.Component {
       <tr key={i + '-affect-row'}>
         <td>
           <div className="affect--display_name" key={i + '-r-affect'}>
-              {array[i].emotion}
+            {array[i] ? array[i].emotion : 'Error'}
           </div>
         </td>
         <td>
@@ -26,7 +26,7 @@ export default class AffectSummaryLaggerRowTableGroup extends React.Component {
         </td>
         <td>
           <div className="affect--display_scores" key={i + '-normal-scores'}>
-              {array[i].normalized_r_score.toFixed(4)}
+            {array[i] ? array[i].normalized_r_score.toFixed(4) : 'Error'}
           </div>
         </td>
       </tr>

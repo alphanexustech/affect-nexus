@@ -31,43 +31,51 @@ class NLPComprehensiveTable extends Component {
       let array = targetData.emotion_set.sort(function(a,b) {
                       return b.normalized_r_score - a.normalized_r_score;
                   });
-      switch (arrayName) {
-        case 'big_6':
-          primaryAlert = 'Paul Ekman\'s "Big Six" emotions are normalized and ranked';
-          secondaryAlert = null;
-          for (var i = 0; i < 6; i++) {
-            primaryArea.push(
-              <NLPComprehensiveTableModule key={i + '-affect-table'} array={array} iterator={i}></NLPComprehensiveTableModule>
-            )
-          }
-          break;
-        case 'dimensions':
-          primaryAlert = 'Dimensional emotions are normalized and ranked';
-          secondaryAlert = null;
-          for (var i = 0; i < 7; i++) {
-            primaryArea.push(
-              <NLPComprehensiveTableModule key={i + '-affect-table'} array={array} iterator={i}></NLPComprehensiveTableModule>
-            )
-          }
-          break;
-        default:
-          /*
-          handles 'all_emotions':
-          handles 'emotion_ml':
-          */
-          for (var i = 0; i < 10; i++) {
-            primaryArea.push(
-              <NLPComprehensiveTableModule key={i + '-affect-table'} array={array} iterator={i}></NLPComprehensiveTableModule>
-            )
-          }
-          for (var i = 10; i < array.length; i++) {
-            secondaryArea.push(
-              <NLPCondensedTableModule key={i + '-affect-table'} array={array} iterator={i}></NLPCondensedTableModule>
-            )
-          }
-          break;
+      if (array.length < 1) {
+        primaryAlert = null
+        secondaryAlert = null
+        primaryArea.push(
+          [<div key="error">There was an error. Sorry about that, try something else!</div>]
+        )
+      } else {
+        switch (arrayName) {
+          case 'big_6':
+            primaryAlert = 'Paul Ekman\'s "Big Six" emotions are normalized and ranked';
+            secondaryAlert = null;
+            for (var i = 0; i < 6; i++) {
+              primaryArea.push(
+                <NLPComprehensiveTableModule key={i + '-affect-table'} array={array} iterator={i}></NLPComprehensiveTableModule>
+              )
+            }
+            break;
+          case 'dimensions':
+            primaryAlert = 'Dimensional emotions are normalized and ranked';
+            secondaryAlert = null;
+            for (var i = 0; i < 7; i++) {
+              primaryArea.push(
+                <NLPComprehensiveTableModule key={i + '-affect-table'} array={array} iterator={i}></NLPComprehensiveTableModule>
+              )
+            }
+            break;
+          default:
+            /*
+            handles 'all_emotions':
+            handles 'emotion_ml':
+            */
+            for (var i = 0; i < 10; i++) {
+              primaryArea.push(
+                <NLPComprehensiveTableModule key={i + '-affect-table'} array={array} iterator={i}></NLPComprehensiveTableModule>
+              )
+            }
+            for (var i = 10; i < array.length; i++) {
+              secondaryArea.push(
+                <NLPCondensedTableModule key={i + '-affect-table'} array={array} iterator={i}></NLPCondensedTableModule>
+              )
+            }
+            break;
+        }
+        // End switch
       }
-      // End switch
     }
     return (
       <div>

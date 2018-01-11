@@ -108,7 +108,7 @@ class NLPListItem extends React.Component {
                      height: '128px'
                    }}>
                 <div>
-                  <div style={{fontWeight: "900"}}>Document</div>
+                  <div className="affect--display_general-purpose-label">Document</div>
                   <div>
                     {data.doc}
                   </div>

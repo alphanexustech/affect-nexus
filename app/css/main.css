@@ -199,11 +199,20 @@ i.fa {
 }
 
 .affect--display_corpus-set_name {
-  background: rgba(107,59,103, .3);
+  background: rgba(121,121,121, .3);
   padding: 4px;
   color: #CCC;
   vertical-align: middle;
   text-align: center;
+}
+
+.affect--display_general-purpose-label {
+  background: rgba(84,84,84, .3);
+  padding: 4px;
+  color: #CCC;
+  vertical-align: middle;
+  max-width: fit-content;
+  margin-bottom: 8px;
 }
 
 .affect--display_word-result {
