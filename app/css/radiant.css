@@ -1,0 +1,329 @@
+
+/*
+ * radiant Display Rank
+ */
+
+.radiant--display_rank {
+  font-family: 'Exo', sans-serif;
+  width: 100%;
+  line-height: 35px;
+  padding: 40px 0px 40px 0px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.radiant--display_rank-main_heading {
+  font-size: 100px;
+}
+
+.radiant--display_rank-sub_heading {
+  font-size: 20px;
+}
+
+
+/*
+ * radiant Display Scores
+ */
+
+.radiant--display_scores {
+  font-family: 'Exo', sans-serif;
+  width: 100%;
+  padding: 50px;
+  padding: 50px 0px 50px 0px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.radiant--display_scores-main_heading {
+  font-size: 40px;
+}
+
+.radiant--display_scores-sub_heading {
+  font-size: 20px;
+}
+
+/*
+ * radiant Table Display
+ */
+
+ .radiant--emotion_set-title {
+   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#131313+0,131313+100&0.8+0,0.2+100 */
+   background: -moz-linear-gradient(bottom,  rgba(19,19,19,.8) 0%, rgba(19,19,19,0.2) 100%); /* FF3.6-15 */
+   background: -webkit-linear-gradient(bottom,  rgba(19,19,19,.8) 0%,rgba(19,19,19,0.2) 100%); /* Chrome10-25,Safari5.1-6 */
+   background: linear-gradient(to top,  rgba(19,19,19,.8) 0%,rgba(19,19,19,0.2) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc131313', endColorstr='#33131313',GradientType=0 ); /* IE6-9 */
+   border-top: 1px solid white;
+   border: 0px 1px 1px 1px solid #333;
+   font-family: 'Exo', sans-serif;
+   padding: 18px;
+   height: 60px;
+ }
+
+ .radiant--emotion_set-title_table {
+   font-family: "'Open Sans'", "Helvetica Neue", Helvetica, Arial, sans-serif;
+   padding-right: 50px;
+ }
+
+ .radiant--display_main-area {
+   overflow-y: scroll;
+   max-height: 30vh;
+   padding: 10px;
+   padding-right: 30px;
+}
+
+.radiant--display_description-area {
+   overflow-y: scroll;
+   height: 30vh;
+   padding: 10px;
+   padding-right: 30px;
+}
+
+.radiant--emotion_set-footer {
+   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#131313+0,131313+100&0.8+0,0.2+100 */
+   background: -moz-linear-gradient(top,  rgba(19,19,19,.8) 0%, rgba(19,19,19,0.2) 100%); /* FF3.6-15 */
+   background: -webkit-linear-gradient(top,  rgba(19,19,19,.8) 0%,rgba(19,19,19,0.2) 100%); /* Chrome10-25,Safari5.1-6 */
+   background: linear-gradient(to bottom,  rgba(19,19,19,.8) 0%,rgba(19,19,19,0.2) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc131313', endColorstr='#33131313',GradientType=0 ); /* IE6-9 */
+   border-bottom: 1px solid white;
+   border: 0px 1px 1px 1px solid #333;
+   font-family: 'Exo', sans-serif;
+   padding: 18px;
+}
+
+.radiant--emotion_set-footer_table {
+   font-family: "'Open Sans'", "Helvetica Neue", Helvetica, Arial, sans-serif;
+   height: 100px;
+   padding-right: 50px;
+}
+
+.radiant--display_description {
+  font-size: 12px;
+  margin: 10px;
+}
+
+
+/*
+ * radiant Graphs
+ */
+
+.radiant--key-cell, .radiant--key-text {
+  display: inline-flex;
+  font-size: 10px;
+}
+
+.radiant--key-cell_heading {
+  display: inline-flex;
+  text-align: center;
+  font-size: 10px;
+}
+
+.radiant--key-cell_body-cell_list {
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 0;
+  padding: 0 35;
+  font-size: 10px;
+}
+
+.radiant--key-cell_body-cell_list-legend_list {
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 0;
+  padding: 0 0;
+  font-size: 10px;
+}
+
+.radiant--key-cell_heading-wrapper {
+  text-align: center;
+}
+
+.radiant--key-cell_color-swatch {
+  height: 14px;
+  width: 14px;
+  margin-right: 4px;
+  border: .5px solid white;
+}
+
+.radiant--key-cell_color-swatch.radiant--key-cell_color-swatch_prep {
+  background: #eae3db
+}
+.radiant--key-cell_color-swatch.radiant--key-cell_color-swatch_noun {
+  background: #c2f6ff
+}
+.radiant--key-cell_color-swatch.radiant--key-cell_color-swatch_adj {
+  background: #90a9dc
+}
+.radiant--key-cell_color-swatch.radiant--key-cell_color-swatch_verb {
+  background: #d5c5fc
+}
+.radiant--key-cell_color-swatch.radiant--key-cell_color-swatch_other {
+  background: #a3b2ca
+}
+
+.radiant--key-cell_color-swatch_text.radiant--key-cell_color-swatch_prep {
+  color: #eae3db
+}
+.radiant--key-cell_color-swatch_text.radiant--key-cell_color-swatch_noun {
+  color: #c2f6ff
+}
+.radiant--key-cell_color-swatch_text.radiant--key-cell_color-swatch_adj {
+  color: #90a9dc
+}
+.radiant--key-cell_color-swatch_text.radiant--key-cell_color-swatch_verb {
+  color: #d5c5fc
+}
+.radiant--key-cell_color-swatch_text.radiant--key-cell_color-swatch_other {
+  color: #a3b2ca
+}
+
+
+.radiant--graph-title {
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.radiant--graph-wrapper {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  max-width: 670px;
+}
+
+.radiant--graphic_background {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#131313+0,131313+100&0.8+0,0.2+100 */
+  background: -moz-linear-gradient(top,  rgba(19,19,19,0.4) 0%, rgba(256,256,256,0.1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(19,19,19,0.4) 0%,rgba(256,256,256,0.1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(19,19,19,0.4) 0%,rgba(256,256,256,0.1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc131313', endColorstr='#33131313',GradientType=0 ); /* IE6-9 */
+  border-bottom: 1px solid white;
+}
+
+.radiant--graphic_background.active {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#131313+0,131313+100&0.8+0,0.2+100 */
+  background: -moz-linear-gradient(top,  rgba(19,19,19,0.7) 0%, rgba(256,256,256,0.0) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(19,19,19,0.7) 0%,rgba(256,256,256,0.0) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(19,19,19,0.7) 0%,rgba(256,256,256,0.0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc131313', endColorstr='#33131313',GradientType=0 ); /* IE6-9 */
+  border-bottom: 1px solid white;
+}
+
+.radiant--axis_label {
+  fill: white;
+  font-size: 10px;
+}
+
+/*
+ * Toolfip
+ */
+
+.radiant--tooltip_text {
+  fill: white;
+  font-size: 10px;
+}
+
+/*
+ * POS Points
+ */
+
+rect.active {
+  fill: white;
+  opacity: 1
+}
+
+.IN-pos-point {
+  fill: #eae3db;
+}
+
+.IN-pos-point {
+  fill: #eae3db;
+}
+
+.RP-pos-point {
+  fill: #eae3db;
+}
+
+.PRP-pos-point {
+  fill: #c2f6ff;
+}
+.PRPS-pos-point {
+  fill: #c2f6ff;
+
+}
+.NN-pos-point {
+  fill: #c2f6ff;
+}
+
+.NNP-pos-point {
+  fill: #c2f6ff;
+}
+
+.NNS-pos-point {
+  fill: #c2f6ff;
+}
+
+.JJ-pos-point {
+  fill: #90a9dc;
+}
+
+.JJR-pos-point {
+  fill: #90a9dc;
+}
+
+.JJS-pos-point {
+  fill: #90a9dc;
+}
+
+.RB-pos-point {
+  fill: #90a9dc;
+}
+
+.RBR-pos-point {
+  fill: #90a9dc;
+}
+
+.RBS-pos-point {
+  fill: #90a9dc;
+}
+
+.MD-pos-point {
+  fill: #d5c5fc;
+}
+
+.VB-pos-point {
+  fill: #d5c5fc;
+}
+
+.VBD-pos-point {
+  fill: #d5c5fc;
+}
+
+.VBG-pos-point {
+  fill: #d5c5fc;
+}
+
+.VBN-pos-point {
+  fill: #d5c5fc;
+}
+
+.VBP-pos-point {
+  fill: #d5c5fc;
+}
+
+.VBZ-pos-point {
+  fill: #d5c5fc;
+}
+
+.CD-pos-point {
+  fill: #a3b2ca;
+}
+
+.FW-pos-point {
+  fill: #a3b2ca;
+}
+
+.DT-pos-point {
+  fill: #a3b2ca;
+}

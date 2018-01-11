@@ -11,7 +11,6 @@ function data(state = {
   items: [],
   metadata: {}
 }, action) {
-  console.log(state);
   switch (action.type) {
   case INVALIDATE_DATASET:
     return Object.assign({}, state, {
