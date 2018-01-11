@@ -32,3 +32,31 @@
 hr {
   border: .5px solid #888;
 }
+
+/*
+ * General
+ */
+
+.panel, .well, .alert, .form-control, .btn, .jumbotron,
+.container .jumbotron,.navbar-inverse {
+  border-radius: 0px
+}
+
+.form-control {
+  background: #565656;
+  color: #CCC;
+}
+
+.help-block {
+  text-align: right;
+  color: #ffd7d7;
+}
+
+.navbar-inverse {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#131313+0,131313+100&0.8+0,0.2+100 */
+  background: -moz-linear-gradient(top,  rgba(19,19,19,0.8) 0%, rgba(19,19,19,0.2) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(19,19,19,0.8) 0%,rgba(19,19,19,0.2) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(19,19,19,0.8) 0%,rgba(19,19,19,0.2) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc131313', endColorstr='#33131313',GradientType=0 ); /* IE6-9 */
+  border-bottom: 1px solid white;
+}
