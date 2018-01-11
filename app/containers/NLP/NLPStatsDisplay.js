@@ -25,7 +25,7 @@ class NLPStatsDisplay extends Component {
       <div>
         <a href="#/overview"><Button bsStyle="success" className="pull-right">Back</Button></a>
         <div style={{paddingBottom: '100px'}}>
-          <h1><i className="fa fa-language" aria-hidden="true"></i> Statistics of Corpora</h1>
+          <h3><i className="fa fa-language" aria-hidden="true"></i> Statistics of Corpora</h3>
           <Row>
             <Col lg={6} lgOffset={3}>
               <StatsChart></StatsChart>

@@ -71,7 +71,7 @@ class NLPOverviewList extends Component {
             <div style={{padding: "10px"}}>Loading...</div>
           }
           {!isFetching && data.length === 0 &&
-            <div style={{padding: "10px"}}>Your most recent processes are shown here. Right now you don't have any! Why not run one?</div>
+            <div style={{padding: "10px"}}>{nlplistitems}Your most recent processes are shown here. Right now you don't have any! Why not run one?</div>
           }
           {data.length > 0 &&
             <div>

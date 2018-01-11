@@ -53,7 +53,7 @@ class NLPStatsDisplay extends Component {
 
         <a href="#/nlp"><Button bsStyle="success" className="pull-right">Return to emotion set</Button></a>
         <div style={{paddingBottom: '100px'}}>
-          <h1><i className="fa fa-bolt" aria-hidden="true"></i> Radiant</h1>
+          <h3><i className="fa fa-bolt" aria-hidden="true"></i> Radiant</h3>
           <Row>
             <Col sm={12} md={12} lg={9}
                   style={{

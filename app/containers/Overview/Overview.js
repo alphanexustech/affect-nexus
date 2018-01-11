@@ -17,7 +17,7 @@ class Overview extends Component {
     const notImplemented = {textDecoration: "line-through", color: "gray"}
     return (
       <div>
-        <h1><i className="fa fa-globe" aria-hidden="true"></i> Overview</h1>
+        <h3><i className="fa fa-globe" aria-hidden="true"></i> Overview</h3>
         <p>View linguistic processes from prior analyses below:</p>
         <br></br>
         <Row>

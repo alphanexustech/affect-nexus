@@ -1,8 +1,12 @@
-function getCredentials(){
-  return localStorage.getItem('credentials');
-}
+import axios from 'axios'
+import { microservices } from '../config/microservices'
+
+const assistantURL = 'http://' + microservices.assistantServer + ':' + microservices.assistantPort;
 
 export const REQUEST_DATA = 'REQUEST_DATA';
+export const RECEIVE_DATA = 'RECEIVE_DATA';
+export const SUBMIT_REQUEST = 'SUBMIT_REQUEST';
+
 function requestData(dataset) {
   return {
     type: REQUEST_DATA,
@@ -10,7 +14,6 @@ function requestData(dataset) {
   };
 }
 
-export const RECEIVE_DATA = 'RECEIVE_DATA';
 function receiveData(dataset, json) {
 
   let data = [json] // makes this an array so that the mapstatetoprops is happy
@@ -20,6 +23,7 @@ function receiveData(dataset, json) {
   }
   else if (dataset == 'nlp-analyses') {
     data = json.data
+    console.log(data);
     metadata['totalAnalyses'] = json['total_analyses']
     metadata['countPerPage'] = json['count_per_page']
     metadata['totalPages'] = Math.ceil(json['total_analyses'] / json['count_per_page'])
@@ -40,7 +44,6 @@ function receiveData(dataset, json) {
   };
 }
 
-export const SUBMIT_REQUEST = 'SUBMIT_REQUEST';
 function submitRequest(values) {
   return {
     type: SUBMIT_REQUEST,
@@ -52,17 +55,7 @@ function submitRequest(values) {
 function fetchData(dataset, port, metadata) {
   return dispatch => {
     dispatch(requestData(dataset));
-    // return fetch(`http://www.user.com/r/${user}.json`)
-    // return fetch(`http://127.0.0.1:5000/${user}`)
-
-    let credentials = localStorage.getItem('credentials')
-
-    let options = {
-      credentials: credentials
-    }
-
-    let ip = window.location.hostname;
-    let portNum = port || 3000
+    let token = localStorage.getItem('token')
 
     if (dataset == 'nlp-stats') {
       console.log('UHOH - missing a call');
@@ -70,26 +63,29 @@ function fetchData(dataset, port, metadata) {
       //   .then(req => req.json())
       //   .then(json => dispatch(receiveData(dataset, json)));
     } else if (dataset == 'nlp-analyses') {
-      let url = `http://` + ip + `:` + `3000/retrieveAllRunAnalyses`
-      url += `?page=` + metadata.page
-      url += `&countPerPage=` + metadata.countPerPage
-      console.log('UHOH - missing a call');
-      // return fetch(url, {
-      //   // credentials: 'include', //pass cookies, for authentication
-      //   method: 'GET',
-      //   // mode: 'CORS', // This line didn't work in firefox
-      //   headers: {
-      //     'Accept': 'application/json',
-      //     'Content-Type': 'application/json'
-      //   }
-      // })
-      // .then(req => req.json())
-      // .then(json => dispatch(receiveData(dataset, json)));
+      let url = assistantURL + `/scorer/analyses/beta_records-07jan2018`
+          url += `/` + metadata.page
+          url += `/` + metadata.countPerPage
+      let config = {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          "Authorization": 'Bearer ' + token // Set authorization header
+        }
+      }
+      axios.get(url, config)
+      .then(function (response) {
+        let json = response.data.data
+        dispatch(receiveData(dataset, json))
+      })
+      .catch(function (error) {
+        // IDEA: Handle error
+        console.log(error);
+      });
     } else if (dataset == 'nlp-analyses-stats') {
       console.log('UHOH Missing a call');
       let url = `http://` + ip + `:` + `3000/retrieveRunAnalysesStats`
       // return fetch(url, {
-      //   // credentials: 'include', //pass cookies, for authentication
+      //   // token: 'include', //pass cookies, for authentication
       //   method: 'GET',
       //   // mode: 'CORS', // This line didn't work in firefox
       //   headers: {
@@ -101,7 +97,7 @@ function fetchData(dataset, port, metadata) {
       // .then(json => dispatch(receiveData(dataset, json)));
     } else {
       console.log('UHOH Missing a call')
-      // return fetch(`http://` + ip + `:` + portNum + `/${dataset}/?credentials=` + options.credentials)
+      // return fetch(`http://` + ip + `:` + portNum + `/${dataset}/?token=` + options.token)
       //   .then(req => req.json())
       //   .then(json => dispatch(receiveData(dataset, json)));
     }
@@ -135,15 +131,10 @@ export function fetchDataIfNeeded(dataset, port, metadata) {
 export function nlpSubmit(data) {
   return dispatch => {
     dispatch(submitRequest(data))
+    let token = localStorage.getItem('token')
 
-    let ip = window.location.hostname;
-
-    // let url = `http://` + ip + `:5000/helpers/analyze_emotion_set/` + data.emotion_set +`/`
-    let url = `http://` + ip + `:3000/analyzeEmotionSet/`
-
-    console.log('UHOH Missing a call');
     // fetch(url, {
-    //   // credentials: 'include', //pass cookies, for authentication
+    //   // token: 'include', //pass cookies, for authentication
     //   method: 'POST',
     //   // mode: 'CORS', // This line didn't work in firefox
     //   headers: {
@@ -155,6 +146,24 @@ export function nlpSubmit(data) {
     // .then(response => response.json())
     // .then(json => dispatch(receiveData('nlp', json.data)))
     // .catch(err => console.log(err));
+
+    let url = assistantURL + `/scorer/analyze_emotion_set`
+    let payload = data
+    let config = {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        "Authorization": 'Bearer ' + token // Set authorization header
+      }
+    }
+    axios.post(url, payload, config)
+    .then(function (response) {
+      let json = response.data.data
+      dispatch(receiveData('nlp', json))
+    })
+    .catch(function (error) {
+      // IDEA: Handle error
+      console.log(error);
+    });
 
   }
 }
@@ -169,7 +178,7 @@ export function loadNLPAnalysis(data) {
     url += `?analysis_id=` + data.analysis_id
     console.log('UHOH MIssing a call');
     // fetch(url, {
-    //   // credentials: 'include', //pass cookies, for authentication
+    //   // token: 'include', //pass cookies, for authentication
     //   method: 'GET',
     //   // mode: 'CORS', // This line didn't work in firefox
     //   headers: {

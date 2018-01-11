@@ -29,7 +29,7 @@ class NLPDisplay extends Component {
       <div>
         <a href="#/overview"><Button bsStyle="success" className="pull-right">Back</Button></a>
         <div style={{paddingBottom: '100px'}}>
-          <h1><i className="fa fa-tint" aria-hidden="true"></i>  Precise Processing</h1>
+          <h3><i className="fa fa-tint" aria-hidden="true"></i>  Precise Processing</h3>
 
           {/* These panels get fixed around the edge of the screen */}
           <div className="transparent--module transparent--module_alt-01 transparent--module_module-3">

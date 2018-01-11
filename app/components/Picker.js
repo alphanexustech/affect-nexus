@@ -14,9 +14,9 @@ export default class Picker extends Component {
       <Grid>
         <Row>
           <Col xs={12} sm={12} md={6}>
-            <h1 className='alert alert-success' style={{textAlign: 'center'}}>
+            <h3 className='alert alert-success' style={{textAlign: 'center'}}>
               {this.props.title}
-            </h1>
+            </h3>
           </Col>
         </Row>
         <Row>

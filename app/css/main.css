@@ -20,8 +20,8 @@ video {
  * Font overrides
  */
 
-.navbar-header, .nav, .navbar-nav, h1, h2 {
-  font-family: 'Orbitron', sans-serif;
+.navbar-header, .nav, .navbar-nav, h3, h2 {
+  font-family: 'Exo', sans-serif;
 }
 
 /*
@@ -107,7 +107,7 @@ i.fa {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc131313', endColorstr='#33131313',GradientType=0 ); /* IE6-9 */
   border-top: 1px solid white;
   border: 0px 1px 1px 1px solid #333;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Exo', sans-serif;
   padding: 18px;
 }
 
@@ -295,8 +295,8 @@ i.fa {
 .transparent--module_form--nlp:hover {
   -webkit-transition: height .5s, width .5s, opacity .5s;
   transition: height .5s, width .5s, opacity .5s;
-  height: 655px;
-  width: 350px;
+  height: 740px;
+  width: 570px;
 }
 
 .transparent--module_module-1:hover,
@@ -336,7 +336,7 @@ h6 {
    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc131313', endColorstr='#33131313',GradientType=0 ); /* IE6-9 */
    border-top: 1px solid white;
    border: 0px 1px 1px 1px solid #333;
-   font-family: 'Orbitron', sans-serif;
+   font-family: 'Exo', sans-serif;
    padding: 18px;
    height: 60px;
  }
@@ -349,7 +349,7 @@ h6 {
    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc131313', endColorstr='#33131313',GradientType=0 ); /* IE6-9 */
    border-bottom: 1px solid white;
    border: 0px 1px 1px 1px solid #333;
-   font-family: 'Orbitron', sans-serif;
+   font-family: 'Exo', sans-serif;
    padding: 18px;
  }
 
