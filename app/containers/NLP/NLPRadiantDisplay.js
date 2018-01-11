@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
+import { Link } from 'react-router-dom';
 import { Table, Button, Row, Col, Panel } from 'react-bootstrap';
 
 import WordFrequencyScatterPlot from '../../components/subcharts/WordFrequencyScatterPlot'
@@ -51,7 +52,9 @@ class NLPRadiantDisplay extends Component {
           </div>
         </div>
 
-        <a href="#/nlp"><Button bsStyle="success" className="pull-right">Return to emotion set</Button></a>
+        <Link className="pull-right btn btn-xs btn-primary" to="/nlp">
+          Return to Emotion Set
+        </Link>
         <div style={{paddingBottom: '100px'}}>
           <h3><i className="fa fa-bolt" aria-hidden="true"></i> Radiant</h3>
           <Row>
@@ -156,7 +159,7 @@ class NLPRadiantDisplay extends Component {
             {lastEmotionText.length > 0 &&
               <Col lg={6}>
                 <div className="radiant--emotion_set-title">
-                  Text used to generate this radiant
+                  Text used to generate this Radiant
                 </div>
                 <div className="radiant--display_description-area-wrapper">
                   <div className="radiant--display_description-area">

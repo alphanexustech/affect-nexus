@@ -211,30 +211,46 @@ class WordFrequencyPieChart extends Component {
           </div>
         </div>
         <div className="radiant--graph-wrapper">
-          <div className="radiant--key-cell">
-            <div className="radiant--key-cell_color-swatch here radiant--key-cell_color-swatch_prep"></div>
-            Preposition ({'~' + Math.round(pieData[0] / totalWords * 100) + '%'})
-          </div>
-          <div className="radiant--key-cell">
-            <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_noun"></div>
-            Noun ({'~' + Math.round(pieData[1] / totalWords * 100) + '%'})
-          </div>
-          <div className="radiant--key-cell">
-            <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_adj"></div>
-            Adjective ({'~' + Math.round(pieData[2] / totalWords * 100) + '%'})
-          </div>
-          <div className="radiant--key-cell">
-            <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_verb"></div>
-            Verb ({'~' + Math.round(pieData[3] / totalWords * 100) + '%'})
-          </div>
-          <div className="radiant--key-cell">
-            <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_other"></div>
-            Other ({'~' + Math.round(pieData[4] / totalWords * 100) + '%'})
-          </div>
+            <div className="radiant--key-cell">
+              <div className="radiant--key-cell_color-swatch here radiant--key-cell_color-swatch_prep"></div>
+              Preposition ({pieData[0] ?
+                          '~' + Math.round(pieData[0] / totalWords * 100) + '%' :
+                          (0)})
+
+            </div>
+            <div className="radiant--key-cell">
+              <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_noun"></div>
+              Noun ({pieData[1] ?
+                   '~' + Math.round(pieData[1] / totalWords * 100) + '%' :
+                   (0)})
+
+            </div>
+            <div className="radiant--key-cell">
+              <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_adj"></div>
+              Adjective ({pieData[2] ?
+                        '~' + Math.round(pieData[2] / totalWords * 100) + '%' :
+                        (0)})
+
+            </div>
+            <div className="radiant--key-cell">
+              <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_verb"></div>
+              Verb ({pieData[3] ?
+                   '~' + Math.round(pieData[3] / totalWords * 100) + '%' :
+                   (0)})
+
+            </div>
+            <div className="radiant--key-cell">
+              <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_other"></div>
+              Other ({pieData[4] ?
+                    '~' + Math.round(pieData[4] / totalWords * 100) + '%' :
+                    (0)})
+
+            </div>
+
         </div>
         <div className="radiant--key-text radiant--graph-wrapper">
         </div>
-      </div>
+        </div>
     );
   }
 }

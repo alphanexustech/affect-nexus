@@ -19,10 +19,7 @@ function receiveData(dataset, json) {
 
   let data = [json] // makes this an array so that the mapstatetoprops is happy
   let metadata = {}
-  if (dataset == 'nlp-stats') {
-    data = json.statistics
-  }
-  else if (dataset == 'nlp-analyses') {
+  if (dataset == 'nlp-analyses') {
     data = json.data
     metadata['totalAnalyses'] = json['total_analyses']
     metadata['countPerPage'] = json['count_per_page']
@@ -54,37 +51,25 @@ function fetchData(dataset, port, metadata) {
     dispatch(requestData(dataset));
     let token = localStorage.getItem('token')
 
-    if (dataset == 'nlp-stats') {
-      console.log('UHOH - missing a call');
-      // return fetch(`http://` + ip + `:` + port + `/helpers/stats/0/truncated/1`)
-      //   .then(req => req.json())
-      //   .then(json => dispatch(receiveData(dataset, json)));
-    } else if (dataset == 'nlp-analyses') {
-      let url = assistantURL + `/scorer/analyses`
-          url += `/` + collection
-          url += `/` + metadata.page
-          url += `/` + metadata.countPerPage
-      let config = {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          "Authorization": 'Bearer ' + token // Set authorization header
-        }
+    let url = assistantURL + `/scorer/analyses`
+        url += `/` + collection
+        url += `/` + metadata.page
+        url += `/` + metadata.countPerPage
+    let config = {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        "Authorization": 'Bearer ' + token // Set authorization header
       }
-      axios.get(url, config)
-      .then(function (response) {
-        let json = response.data.data
-        dispatch(receiveData(dataset, json))
-      })
-      .catch(function (error) {
-        // IDEA: Handle error
-        console.log(error);
-      });
-    } else {
-      console.log('UHOH Missing a call')
-      // return fetch(`http://` + ip + `:` + portNum + `/${dataset}/?token=` + options.token)
-      //   .then(req => req.json())
-      //   .then(json => dispatch(receiveData(dataset, json)));
     }
+    axios.get(url, config)
+    .then(function (response) {
+      let json = response.data.data
+      dispatch(receiveData(dataset, json))
+    })
+    .catch(function (error) {
+      // IDEA: Handle error
+      console.log(error);
+    });
   };
 }
 

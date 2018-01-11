@@ -9,7 +9,8 @@ import AffectLemmatizedRowTableGroup from '../groups/AffectLemmatizedRowTableGro
 import AffectCorpusLengthRowTableGroup from '../groups/AffectCorpusLengthRowTableGroup'
 import AffectNormalizedScoreRowTableGroup from '../groups/AffectNormalizedScoreRowTableGroup'
 
-import { Table, Alert, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Table, Alert } from 'react-bootstrap';
 
 export default class NLPComprehensiveTableModule extends React.Component {
   constructor (props) {
@@ -18,9 +19,8 @@ export default class NLPComprehensiveTableModule extends React.Component {
   }
 
   handleClick(d) {
-    let lastEmotionText = document.getElementById("analyze-form_text-area").innerHTML;
     localStorage.setItem('lastEmotion', JSON.stringify(d));
-    localStorage.setItem('lastEmotionText', lastEmotionText);
+    localStorage.setItem('lastEmotionText', this.props.doc);
     localStorage.setItem('lastEmotionCreationDate', new Date());
   }
 
@@ -49,18 +49,14 @@ export default class NLPComprehensiveTableModule extends React.Component {
             </span>
           </div>
           <div>
-            <a href="#/nlp-radiant">
-              <Button
-                style={{fontSize: '12px'}}
-                bsSize="xsmall"
-                bsStyle="info"
-                className=""
-                onClick={this.handleClick.bind(this, array[i])}
-                >
-                <i className="fa fa-bolt" aria-hidden="true"></i>
-                Radiant
-              </Button>
-            </a>
+            <Link
+              to="/nlp-radiant"
+              className="btn btn-xs btn-primary"
+              onClick={this.handleClick.bind(this, array[i])}
+              >
+              <i className="fa fa-bolt" aria-hidden="true"></i>
+              Radiant
+            </Link>
           </div>
         </div>
         <Table condensed key={i + '-table'} style={{

@@ -31,6 +31,7 @@ class NLPComprehensiveTable extends Component {
       let array = targetData.emotion_set.sort(function(a,b) {
                       return b.normalized_r_score - a.normalized_r_score;
                   });
+      let doc = targetData.doc
       if (array.length < 1) {
         primaryAlert = null
         secondaryAlert = null
@@ -44,7 +45,7 @@ class NLPComprehensiveTable extends Component {
             secondaryAlert = null;
             for (var i = 0; i < 6; i++) {
               primaryArea.push(
-                <NLPComprehensiveTableModule key={i + '-affect-table'} array={array} iterator={i}></NLPComprehensiveTableModule>
+                <NLPComprehensiveTableModule key={i + '-affect-table'} doc={doc} array={array} iterator={i}></NLPComprehensiveTableModule>
               )
             }
             break;
@@ -53,7 +54,7 @@ class NLPComprehensiveTable extends Component {
             secondaryAlert = null;
             for (var i = 0; i < 7; i++) {
               primaryArea.push(
-                <NLPComprehensiveTableModule key={i + '-affect-table'} array={array} iterator={i}></NLPComprehensiveTableModule>
+                <NLPComprehensiveTableModule key={i + '-affect-table'} doc={doc} array={array} iterator={i}></NLPComprehensiveTableModule>
               )
             }
             break;
@@ -64,12 +65,12 @@ class NLPComprehensiveTable extends Component {
             */
             for (var i = 0; i < 10; i++) {
               primaryArea.push(
-                <NLPComprehensiveTableModule key={i + '-affect-table'} array={array} iterator={i}></NLPComprehensiveTableModule>
+                <NLPComprehensiveTableModule key={i + '-affect-table'} doc={doc} array={array} iterator={i}></NLPComprehensiveTableModule>
               )
             }
             for (var i = 10; i < array.length; i++) {
               secondaryArea.push(
-                <NLPCondensedTableModule key={i + '-affect-table'} array={array} iterator={i}></NLPCondensedTableModule>
+                <NLPCondensedTableModule key={i + '-affect-table'} doc={doc} array={array} iterator={i}></NLPCondensedTableModule>
               )
             }
             break;
