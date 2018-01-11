@@ -239,30 +239,4 @@ class WordFrequencyPieChart extends Component {
   }
 }
 
-// StatsChart.propTypes = {
-//   data: PropTypes.array.isRequired,
-//   isFetching: PropTypes.bool.isRequired,
-//   lastUpdated: PropTypes.number,
-//   dispatch: PropTypes.func.isRequired
-// };
-//
-// function mapStateToProps(state) {
-//   const { dataByDataset } = state;
-//   const {
-//     isFetching,
-//     lastUpdated,
-//     items: data
-//   } = dataByDataset['nlp-stats'] || {
-//     isFetching: true,
-//     items: []
-//   };
-//
-//   return {
-//     data,
-//     isFetching,
-//     lastUpdated
-//   };
-// }
-
-// export default connect(mapStateToProps)(WordFrequencyPieChart);
 export default WordFrequencyPieChart;

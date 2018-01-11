@@ -28,9 +28,6 @@ function receiveData(dataset, json) {
     metadata['countPerPage'] = json['count_per_page']
     metadata['totalPages'] = Math.ceil(json['total_analyses'] / json['count_per_page'])
   }
-  else if (dataset == 'nlp-analyses-stats') {
-    data = json.data
-  }
   else if (dataset !== 'nlp') {
     data = json.all
   }
@@ -82,20 +79,6 @@ function fetchData(dataset, port, metadata) {
         // IDEA: Handle error
         console.log(error);
       });
-    } else if (dataset == 'nlp-analyses-stats') {
-      console.log('UHOH Missing a call');
-      let url = `http://` + ip + `:` + `3000/retrieveRunAnalysesStats`
-      // return fetch(url, {
-      //   // token: 'include', //pass cookies, for authentication
-      //   method: 'GET',
-      //   // mode: 'CORS', // This line didn't work in firefox
-      //   headers: {
-      //     'Accept': 'application/json',
-      //     'Content-Type': 'application/json'
-      //   }
-      // })
-      // .then(req => req.json())
-      // .then(json => dispatch(receiveData(dataset, json)));
     } else {
       console.log('UHOH Missing a call')
       // return fetch(`http://` + ip + `:` + portNum + `/${dataset}/?token=` + options.token)
@@ -177,18 +160,5 @@ export function loadNLPAnalysis(data) {
       // IDEA: Handle error
       console.log(error);
     });
-    // fetch(url, {
-    //   // token: 'include', //pass cookies, for authentication
-    //   method: 'GET',
-    //   // mode: 'CORS', // This line didn't work in firefox
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
-    // .then(response => response.json())
-    // .then(json => dispatch(receiveData('nlp', json.data)))
-    // .catch(err => console.log(err));
-
   }
 }

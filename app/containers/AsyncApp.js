@@ -6,7 +6,6 @@ import Signup from './Signup/Signup';
 import Login from './Login/Login';
 import Overview from './Overview/Overview';
 import NLPComprehensiveDisplay from './NLP/NLPComprehensiveDisplay';
-import NLPStatsDisplay from './NLP/NLPStatsDisplay';
 import NLPRadiantDisplay from './NLP/NLPRadiantDisplay';
 
 import { Link, NavLink, Route } from 'react-router-dom';
@@ -50,9 +49,6 @@ class AsyncApp extends Component {
         <div>
           <nav className="nav navbar-nav navbar-right">
             <li>
-              <NavLink to="/stats"><i className="fa fa-signal" aria-hidden="true"></i> Stats</NavLink>
-            </li>
-            <li>
               <NavLink to="/login" onClick={this.handleLogout}>Log Out</NavLink>
             </li>
           </nav>
@@ -95,7 +91,6 @@ class AsyncApp extends Component {
          <Route path="/login" component={Login}/>
          <Route path="/overview" component={Overview}/>
          <Route path="/nlp" component={NLPComprehensiveDisplay}/>
-         <Route path="/stats" component={NLPStatsDisplay}/>
          <Route path="/nlp-radiant" component={NLPRadiantDisplay}/>
        </div>
      </div>

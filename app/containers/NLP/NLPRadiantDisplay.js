@@ -18,7 +18,7 @@ import NLPDetailFreqDistTableModule from '../../components/tables/NLPDetailFreqD
 
 import NLPNLTKPOSTable from '../../components/tables/NLPNLTKPOSTable'
 
-class NLPStatsDisplay extends Component {
+class NLPRadiantDisplay extends Component {
   constructor(props) {
     super(props);
     this.handleRefreshClick = this.handleRefreshClick.bind(this);
@@ -212,7 +212,7 @@ class NLPStatsDisplay extends Component {
   }
 }
 
-NLPStatsDisplay.propTypes = {
+NLPRadiantDisplay.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
@@ -223,4 +223,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(NLPStatsDisplay);
+export default connect(mapStateToProps)(NLPRadiantDisplay);
