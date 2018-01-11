@@ -18,20 +18,23 @@ class NLPComprehensiveTable extends Component {
     var primaryArea = '',
         secondaryArea = '',
         primaryAlert = '',
-        secondaryAlert = '';
+        secondaryAlert = '',
+        arrayName = null;
 
     if (this.props.data.length > 0) {
       primaryArea = [];
       secondaryArea = [];
       primaryAlert = 'The top ten emotions from emotion set is below, sorted, based on the Normalized Score';
       secondaryAlert = 'The remaining emotion list is below, sorted, based on the Normalized Score';
-      let arrayName = this.props.data[0].name
-      let array = this.props.data[0].emotion_set.sort(function(a,b) {
+      let targetData = this.props.data[0].data
+      arrayName = targetData.name
+      let array = targetData.emotion_set.sort(function(a,b) {
                       return b.normalized_r_score - a.normalized_r_score;
                   });
       switch (arrayName) {
         case 'big_6':
           primaryAlert = 'Paul Ekman\'s "Big Six" emotions are normalized and ranked';
+          secondaryAlert = null;
           for (var i = 0; i < 6; i++) {
             primaryArea.push(
               <NLPComprehensiveTableModule key={i + '-affect-table'} array={array} iterator={i}></NLPComprehensiveTableModule>
@@ -40,6 +43,7 @@ class NLPComprehensiveTable extends Component {
           break;
         case 'dimensions':
           primaryAlert = 'Dimensional emotions are normalized and ranked';
+          secondaryAlert = null;
           for (var i = 0; i < 7; i++) {
             primaryArea.push(
               <NLPComprehensiveTableModule key={i + '-affect-table'} array={array} iterator={i}></NLPComprehensiveTableModule>
@@ -87,7 +91,7 @@ class NLPComprehensiveTable extends Component {
         {!isFetching && data.length === 0 &&
           <Alert bsStyle="success">No results.</Alert>
         }
-        {data.length > 0 && data[0].name != 'big_6' && data[0].name != 'dimensions' &&
+        {data.length > 0 && arrayName != 'big_6' && arrayName != 'dimensions' &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <div>
               <div className="affect--emotion_set-title">{primaryAlert}</div>
@@ -106,7 +110,7 @@ class NLPComprehensiveTable extends Component {
             </div>
           </div>
         }
-        {data.length > 0 && ( data[0].name == 'big_6' || data[0].name == 'dimensions') &&
+        {data.length > 0 && ( arrayName == 'big_6' || arrayName == 'dimensions') &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <div>
               <div className="affect--emotion_set-title">{primaryAlert}</div>

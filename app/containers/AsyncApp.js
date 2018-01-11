@@ -89,7 +89,7 @@ class AsyncApp extends Component {
          {navOptions}
          {loginButtons}
        </Navbar>
-       <div className="container" style={{marginTop: '5%', maxWidth: '1600px'}}>
+       <div className="container" style={{marginTop: '5vh', marginBottom: '5vh', maxWidth: '1600px'}}>
          <Route path="/" exact component={Home}/>
          <Route path="/signup" component={Signup}/>
          <Route path="/login" component={Login}/>

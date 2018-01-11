@@ -43,8 +43,6 @@ class NLPOverviewList extends Component {
     const { data, metadata, isFetching, lastUpdated } = this.props;
 
     let nlplistitems = [];
-    console.log(this.props.data);
-    console.log(this.props);
     if (this.props.data.length > 0) {
       let data = this.props.data;
       for (var i = 0; i < data.length; i++) {
@@ -136,7 +134,6 @@ NLPOverviewList.propTypes = {
 };
 
 function mapStateToProps(state) {
-  console.log(state);
   const { dataByDataset } = state;
   const {
     isFetching,

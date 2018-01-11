@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
+import { Link } from 'react-router-dom';
 import { Table, Button, Row, Col, Panel } from 'react-bootstrap';
 
 import StatsChart from '../../components/subcharts/StatsChart'
@@ -23,7 +24,9 @@ class NLPStatsDisplay extends Component {
 
     return (
       <div>
-        <a href="#/overview"><Button bsStyle="success" className="pull-right">Back</Button></a>
+        <Link className="pull-right btn btn-xs btn-primary" to="/overview">
+              Back
+        </Link>
         <div style={{paddingBottom: '100px'}}>
           <h3><i className="fa fa-language" aria-hidden="true"></i> Statistics of Corpora</h3>
           <Row>

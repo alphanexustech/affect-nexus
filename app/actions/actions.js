@@ -2,6 +2,7 @@ import axios from 'axios'
 import { microservices } from '../config/microservices'
 
 const assistantURL = 'http://' + microservices.assistantServer + ':' + microservices.assistantPort;
+const collection = microservices.mongoCollection
 
 export const REQUEST_DATA = 'REQUEST_DATA';
 export const RECEIVE_DATA = 'RECEIVE_DATA';
@@ -23,7 +24,6 @@ function receiveData(dataset, json) {
   }
   else if (dataset == 'nlp-analyses') {
     data = json.data
-    console.log(data);
     metadata['totalAnalyses'] = json['total_analyses']
     metadata['countPerPage'] = json['count_per_page']
     metadata['totalPages'] = Math.ceil(json['total_analyses'] / json['count_per_page'])
@@ -63,7 +63,8 @@ function fetchData(dataset, port, metadata) {
       //   .then(req => req.json())
       //   .then(json => dispatch(receiveData(dataset, json)));
     } else if (dataset == 'nlp-analyses') {
-      let url = assistantURL + `/scorer/analyses/beta_records-07jan2018`
+      let url = assistantURL + `/scorer/analyses`
+          url += `/` + collection
           url += `/` + metadata.page
           url += `/` + metadata.countPerPage
       let config = {
@@ -116,7 +117,6 @@ function shouldFetchData(state, dataset) {
 }
 
 export function fetchDataIfNeeded(dataset, port, metadata) {
-  console.log(metadata);
   return (dispatch, getState) => {
     let alwaysInvalidate = ['nlp-analyses']
     if (alwaysInvalidate.indexOf(dataset) >= 0) {
@@ -132,20 +132,6 @@ export function nlpSubmit(data) {
   return dispatch => {
     dispatch(submitRequest(data))
     let token = localStorage.getItem('token')
-
-    // fetch(url, {
-    //   // token: 'include', //pass cookies, for authentication
-    //   method: 'POST',
-    //   // mode: 'CORS', // This line didn't work in firefox
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(data)
-    // })
-    // .then(response => response.json())
-    // .then(json => dispatch(receiveData('nlp', json.data)))
-    // .catch(err => console.log(err));
 
     let url = assistantURL + `/scorer/analyze_emotion_set`
     let payload = data
@@ -171,12 +157,26 @@ export function nlpSubmit(data) {
 export function loadNLPAnalysis(data) {
   return dispatch => {
     dispatch(submitRequest(data))
+    let token = localStorage.getItem('token')
 
-    let ip = window.location.hostname;
-
-    let url = `http://` + ip + `:3000/retrieveRunAnalysis/`
-    url += `?analysis_id=` + data.analysis_id
-    console.log('UHOH MIssing a call');
+    let url = assistantURL + `/scorer/analyses`
+    url += `/` + collection
+    url += `/` + data.analysis_id
+    let config = {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        "Authorization": 'Bearer ' + token // Set authorization header
+      }
+    }
+    axios.get(url, config)
+    .then(function (response) {
+      let json = response.data.data
+      dispatch(receiveData('nlp', json))
+    })
+    .catch(function (error) {
+      // IDEA: Handle error
+      console.log(error);
+    });
     // fetch(url, {
     //   // token: 'include', //pass cookies, for authentication
     //   method: 'GET',

@@ -35,6 +35,8 @@ video {
 .list-group-item {
   border-radius: 0px;
   border: 0px solid #393939;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
   border-bottom: 1px solid #393939;
   background: transparent;
 }

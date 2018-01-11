@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
+import { Link } from 'react-router-dom';
 import { Table, Button, Row, Col, Panel, Accordion } from 'react-bootstrap';
 
 import NLPComprehensiveForm from '../../components/forms/NLPComprehensiveForm'
@@ -27,7 +28,9 @@ class NLPDisplay extends Component {
 
     return (
       <div>
-        <a href="#/overview"><Button bsStyle="success" className="pull-right">Back</Button></a>
+        <Link className="pull-right btn btn-xs btn-primary" to="/overview">
+              Back
+        </Link>
         <div style={{paddingBottom: '100px'}}>
           <h3><i className="fa fa-tint" aria-hidden="true"></i>  Precise Processing</h3>
 

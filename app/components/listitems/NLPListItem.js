@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Alert, Row, Col, ListGroupItem, Button, Well, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Alert, Row, Col, ListGroupItem, Well, Table } from 'react-bootstrap';
 
 import NLPMinRankTable from '../tables/NLPMinRankTable';
 
@@ -17,7 +18,6 @@ class NLPListItem extends React.Component {
 
   loadAnalysis(id) {
     const { dispatch } = this.props;
-    console.log(id);
     let data = {
       'analysis_id': id
     }
@@ -68,7 +68,7 @@ class NLPListItem extends React.Component {
               <div className="pull-left">
                 <div style={{display: "inline-flex"}}>
                   <div style={{margin: "4px 4px 4px 0px"}}>
-                    Emotion Set:d
+                    Emotion Set:
                   </div>
                   <div className="affect--display_corpus-set_name">
                     {titleCase(data.name)}
@@ -81,6 +81,17 @@ class NLPListItem extends React.Component {
                 <div>
                   Date: {data.date[0]}
                 </div>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12} lg={12}>
+              <div style={{textAlign: "right"}}>
+                <Link className="pull-right btn btn-xs btn-primary"
+                      to="/nlp" onClick={()=>{this.loadAnalysis(data._id.$oid)}}
+                      style={{marginBottom: '24px'}}>
+                  <i className="fa fa-leaf" aria-hidden="true"></i> See Results
+                </Link>
               </div>
             </Col>
           </Row>
@@ -105,15 +116,6 @@ class NLPListItem extends React.Component {
               </div>
             </Col>
           </Row>
-          <Row>
-            <Col md={12} lg={12}>
-              <div style={{textAlign: "right"}}>
-                <Button onClick={()=>{this.loadAnalysis(data._id.$oid)}} style={{width: '200px'}} bsSize="xsmall" href="#/nlp">
-                  <i className="fa fa-leaf" aria-hidden="true"></i> See results
-                </Button>
-              </div>
-            </Col>
-          </Row>
         </div>
       </ListGroupItem>
     );
@@ -130,7 +132,6 @@ NLPListItem.propTypes = {
 };
 
 function mapStateToProps(state) {
-  console.log(state);
   const { dataByDataset } = state;
   const {
     isFetching,

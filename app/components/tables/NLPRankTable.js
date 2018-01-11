@@ -18,14 +18,16 @@ class NLPRankTable extends Component {
 
     var primaryArea = '',
         secondaryArea = '',
-        primaryAlert = '';
+        primaryAlert = '',
+        arrayName = '';
 
     if (this.props.data.length > 0) {
       primaryArea = [];
       secondaryArea = [];
       primaryAlert = 'Ranking Summary of the Emotion Set\'s Top 10';
-      let arrayName = this.props.data[0].name
-      let array = this.props.data[0].emotion_set.sort(function(a,b) {
+      let targetData = this.props.data[0].data
+      arrayName = targetData.name
+      let array = targetData.emotion_set.sort(function(a,b) {
                       return b.normalized_r_score - a.normalized_r_score || alphaSortEmotion(a,b);
                   });
 

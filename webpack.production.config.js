@@ -15,6 +15,7 @@ module.exports = {
         './app/css/bootstrap.css',
         './app/css/bootstrap-overrides.css',
         './app/css/main.css',
+        './app/css/radiant.css',
         path.join(__dirname, 'app/index.js')
     ],
     // Where you want the output to go
