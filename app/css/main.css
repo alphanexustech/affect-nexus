@@ -1,7 +1,6 @@
 /*
  * Background
  */
-/*Free Stock videos by Videezy: http://www.videezy.com*/
 video {
   position: fixed;
   top: 50%;
@@ -9,11 +8,28 @@ video {
   min-width: 100%;
   min-height: 100%;
   width: auto;
-  height: auto;
+  height: 100%;
   z-index: -100;
   transform: translateX(-50%) translateY(-50%);
   background-size: cover;
-  opacity: .1;
+  opacity: .2;
+}
+
+.bkgd {
+  background:url(../assets/hex-static-bkgd.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  z-index: -1000;
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
+  opacity: .2;
 }
 
 /*
