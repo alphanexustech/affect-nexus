@@ -163,10 +163,10 @@ export default class NLPDetailFreqDistTableModule extends React.Component {
 
     return (
       <div>
-        <div className="radiant--graph-title">
+        <div className="insight--graph-title">
           Part-of-speech Word Distribution (count)
         </div>
-        <div className="radiant--graph-wrapper">
+        <div className="insight--graph-wrapper">
           <Table condensed key={'table'} style={{
               fontSize: '12px',
               textAlign: 'left',
@@ -176,33 +176,33 @@ export default class NLPDetailFreqDistTableModule extends React.Component {
             }}>
             <thead>
               <tr>
-                <th className="radiant--key-cell_heading-wrapper">
-                  <div className="radiant--key-cell_heading">
-                    <div className="radiant--key-cell_color-swatch here radiant--key-cell_color-swatch_prep"></div>
+                <th className="insight--key-cell_heading-wrapper">
+                  <div className="insight--key-cell_heading">
+                    <div className="insight--key-cell_color-swatch here insight--key-cell_color-swatch_prep"></div>
                     Preposition ({posData[0]})
                   </div>
                 </th>
-                <th className="radiant--key-cell_heading-wrapper">
-                  <div className="radiant--key-cell_heading">
-                    <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_noun"></div>
+                <th className="insight--key-cell_heading-wrapper">
+                  <div className="insight--key-cell_heading">
+                    <div className="insight--key-cell_color-swatch insight--key-cell_color-swatch_noun"></div>
                     Noun ({posData[1]})
                   </div>
                 </th>
-                <th className="radiant--key-cell_heading-wrapper">
-                  <div className="radiant--key-cell_heading">
-                    <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_adj"></div>
+                <th className="insight--key-cell_heading-wrapper">
+                  <div className="insight--key-cell_heading">
+                    <div className="insight--key-cell_color-swatch insight--key-cell_color-swatch_adj"></div>
                     Adjective ({posData[2]})
                   </div>
                 </th>
-                <th className="radiant--key-cell_heading-wrapper">
-                  <div className="radiant--key-cell_heading">
-                    <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_verb"></div>
+                <th className="insight--key-cell_heading-wrapper">
+                  <div className="insight--key-cell_heading">
+                    <div className="insight--key-cell_color-swatch insight--key-cell_color-swatch_verb"></div>
                     Verb ({posData[3]})
                   </div>
                 </th>
-                <th className="radiant--key-cell_heading-wrapper">
-                  <div className="radiant--key-cell_heading">
-                    <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_other"></div>
+                <th className="insight--key-cell_heading-wrapper">
+                  <div className="insight--key-cell_heading">
+                    <div className="insight--key-cell_color-swatch insight--key-cell_color-swatch_other"></div>
                     Other ({posData[4]})
                   </div>
                 </th>

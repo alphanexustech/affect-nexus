@@ -24,8 +24,8 @@ class NLPComprehensiveTable extends Component {
     if (this.props.data.length > 0) {
       primaryArea = [];
       secondaryArea = [];
-      primaryAlert = 'The top ten emotions from emotion set is below, sorted, based on the Normalized Score';
-      secondaryAlert = 'The remaining emotion list is below, sorted, based on the Normalized Score';
+      primaryAlert = 'The top ten emotions words from emotion set are sorted. The list is ordered based on the Normalized Score and is ranked';
+      secondaryAlert = 'The remaining emotion list is sorted. The list is ordered based on the Normalized Score and is ranked';
       let targetData = this.props.data[0].data
       arrayName = targetData.name
       let array = targetData.emotion_set.sort(function(a,b) {
@@ -41,7 +41,7 @@ class NLPComprehensiveTable extends Component {
       } else {
         switch (arrayName) {
           case 'big_6':
-            primaryAlert = 'Paul Ekman\'s "Big Six" emotions are normalized and ranked';
+            primaryAlert = 'Paul Ekman\'s "Big Six" emotion words are scored, normalized, and ranked';
             secondaryAlert = null;
             for (var i = 0; i < 6; i++) {
               primaryArea.push(
@@ -50,7 +50,7 @@ class NLPComprehensiveTable extends Component {
             }
             break;
           case 'dimensions':
-            primaryAlert = 'Dimensional emotions are normalized and ranked';
+            primaryAlert = 'Dimensional emotion words are scored, normalized, and ranked';
             secondaryAlert = null;
             for (var i = 0; i < 7; i++) {
               primaryArea.push(
@@ -80,22 +80,11 @@ class NLPComprehensiveTable extends Component {
     }
     return (
       <div>
-        <p>
-          Each word is an affect of the natural language passage you decided to analyze.
-          The five words with the greatest emotional signal are displayed for each facet,
-          but each facet could be influenced by more than five words. Each emotion is a
-          representation of the overall emotion state of the passage.
-        </p>
-        <p>
-          Good inferences about the passage, with a more comprehensive understanding of
-          the passage, are possible by thinking about the emotional state as a grouping
-          of these emotion representations.
-        </p>
-        <p>
-          Hover your mouse over the form icon in the bottom right corner to begin.
-        </p>
         {isFetching && data.length === 0 &&
-          <Alert bsStyle="success">After filling out the form above, all the results will be displayed here.</Alert>
+          <Alert bsStyle="success">
+            Hover your mouse over the form icon in the bottom right corner to begin exploring!
+            After filling out the form, all the results will be displayed here.
+          </Alert>
         }
         {!isFetching && data.length === 0 &&
           <Alert bsStyle="success">No results.</Alert>

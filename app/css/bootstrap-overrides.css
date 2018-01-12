@@ -6,7 +6,7 @@
 
 /* Panel */
 
-.panel {
+.panel, .jumbotron {
   border-radius: 0px;
   background: rgba(17, 17, 17, .95);
   border: 1px solid #AAA;

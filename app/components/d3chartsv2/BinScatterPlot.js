@@ -26,7 +26,7 @@ export default class BinScatterPlot extends React.Component {
     }
     return (
       <div>
-        <div style={{fontSize: (this.props.titleSize + 'px') || '12px'}} className="radiant--graph-title">{this.props.title}</div>
+        <div style={{fontSize: (this.props.titleSize + 'px') || '12px'}} className="insight--graph-title">{this.props.title}</div>
         <VectorGraphicWrapper graphId={this.props.graphId} svgStyle={svgStyle}>
           <DataSeries
             modulus={this.props.modulus}

@@ -39,7 +39,7 @@ function login(user) {
         localStorage.setItem('token', token);
         localStorage.setItem('userID', userID);
         localStorage.setItem('username', username);
-        window.location.href = '/overview'
+        window.location.href = '/nexus'
       } else {
         dispatch(failure(response));
         console.log('EXCEPTIONAL FAILURE');
@@ -84,7 +84,7 @@ function signup(user) {
         localStorage.setItem('token', token);
         localStorage.setItem('userID', userID);
         localStorage.setItem('username', username);
-        window.location.href = '/overview'
+        window.location.href = '/nexus'
       } else {
         dispatch(failure(response));
         console.log('EXCEPTIONAL FAILURE');

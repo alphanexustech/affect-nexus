@@ -16,10 +16,10 @@ export default class POSCountDivList extends React.Component {
 
           {/* Preposition */}
 
-          <ul className="radiant--key-cell_body-cell_list">
+          <ul className="insight--key-cell_body-cell_list">
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_prep">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_prep">
                   IN
                 </div>
                 <div className="pull-right">
@@ -30,7 +30,7 @@ export default class POSCountDivList extends React.Component {
             </div>
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_prep">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_prep">
                   CC
                 </div>
                 <div className="pull-right">
@@ -41,7 +41,7 @@ export default class POSCountDivList extends React.Component {
             </div>
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_prep">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_prep">
                   RP
                 </div>
                 <div className="pull-right">
@@ -56,10 +56,10 @@ export default class POSCountDivList extends React.Component {
         {/* Noun */}
 
         <td>
-          <ul className="radiant--key-cell_body-cell_list">
+          <ul className="insight--key-cell_body-cell_list">
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_noun">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_noun">
                   PRP
                 </div>
                 <div className="pull-right">
@@ -70,7 +70,7 @@ export default class POSCountDivList extends React.Component {
             </div>
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_noun">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_noun">
                   PRP$
                 </div>
                 <div className="pull-right">
@@ -81,7 +81,7 @@ export default class POSCountDivList extends React.Component {
             </div>
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_noun">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_noun">
                   NN
                 </div>
                 <div className="pull-right">
@@ -92,7 +92,7 @@ export default class POSCountDivList extends React.Component {
             </div>
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_noun">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_noun">
                   NNP
                 </div>
                 <div className="pull-right">
@@ -103,7 +103,7 @@ export default class POSCountDivList extends React.Component {
             </div>
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_noun">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_noun">
                   NNS
                 </div>
                 <div className="pull-right">
@@ -118,10 +118,10 @@ export default class POSCountDivList extends React.Component {
         {/* Adjective */}
 
         <td>
-          <ul className="radiant--key-cell_body-cell_list">
+          <ul className="insight--key-cell_body-cell_list">
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_adj">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_adj">
                   JJ
                 </div>
                 <div className="pull-right">
@@ -132,7 +132,7 @@ export default class POSCountDivList extends React.Component {
             </div>
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_adj">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_adj">
                   JJR
                 </div>
                 <div className="pull-right">
@@ -143,7 +143,7 @@ export default class POSCountDivList extends React.Component {
             </div>
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_adj">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_adj">
                   JJS
                 </div>
                 <div className="pull-right">
@@ -154,7 +154,7 @@ export default class POSCountDivList extends React.Component {
             </div>
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_adj">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_adj">
                   RB
                 </div>
                 <div className="pull-right">
@@ -165,7 +165,7 @@ export default class POSCountDivList extends React.Component {
             </div>
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_adj">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_adj">
                   RBR
                 </div>
                 <div className="pull-right">
@@ -176,7 +176,7 @@ export default class POSCountDivList extends React.Component {
             </div>
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_adj">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_adj">
                   RBS
                 </div>
                 <div className="pull-right">
@@ -191,10 +191,10 @@ export default class POSCountDivList extends React.Component {
         {/* Verb */}
 
         <td>
-          <ul className="radiant--key-cell_body-cell_list">
+          <ul className="insight--key-cell_body-cell_list">
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_verb">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_verb">
                   MD
                 </div>
                 <div className="pull-right">
@@ -204,10 +204,10 @@ export default class POSCountDivList extends React.Component {
               <br></br>
             </div>
           </ul>
-          <ul className="radiant--key-cell_body-cell_list">
+          <ul className="insight--key-cell_body-cell_list">
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_verb">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_verb">
                   VB
                 </div>
                 <div className="pull-right">
@@ -217,10 +217,10 @@ export default class POSCountDivList extends React.Component {
               <br></br>
             </div>
           </ul>
-          <ul className="radiant--key-cell_body-cell_list">
+          <ul className="insight--key-cell_body-cell_list">
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_verb">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_verb">
                   VBD
                 </div>
                 <div className="pull-right">
@@ -230,10 +230,10 @@ export default class POSCountDivList extends React.Component {
               <br></br>
             </div>
           </ul>
-          <ul className="radiant--key-cell_body-cell_list">
+          <ul className="insight--key-cell_body-cell_list">
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_verb">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_verb">
                   VBG
                 </div>
                 <div className="pull-right">
@@ -243,10 +243,10 @@ export default class POSCountDivList extends React.Component {
               <br></br>
             </div>
           </ul>
-          <ul className="radiant--key-cell_body-cell_list">
+          <ul className="insight--key-cell_body-cell_list">
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_verb">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_verb">
                   VBN
                 </div>
                 <div className="pull-right">
@@ -256,10 +256,10 @@ export default class POSCountDivList extends React.Component {
               <br></br>
             </div>
           </ul>
-          <ul className="radiant--key-cell_body-cell_list">
+          <ul className="insight--key-cell_body-cell_list">
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_verb">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_verb">
                   VBP
                 </div>
                 <div className="pull-right">
@@ -269,10 +269,10 @@ export default class POSCountDivList extends React.Component {
               <br></br>
             </div>
           </ul>
-          <ul className="radiant--key-cell_body-cell_list">
+          <ul className="insight--key-cell_body-cell_list">
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_verb">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_verb">
                   VBZ
                 </div>
                 <div className="pull-right">
@@ -287,10 +287,10 @@ export default class POSCountDivList extends React.Component {
         {/* Other */}
 
         <td>
-          <ul className="radiant--key-cell_body-cell_list">
+          <ul className="insight--key-cell_body-cell_list">
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_other">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_other">
                   CD
                 </div>
                 <div className="pull-right">
@@ -301,7 +301,7 @@ export default class POSCountDivList extends React.Component {
             </div>
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_other">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_other">
                   FW
                 </div>
                 <div className="pull-right">
@@ -312,7 +312,7 @@ export default class POSCountDivList extends React.Component {
             </div>
             <div>
               <li>
-                <div className="pull-left radiant--key-cell_color-swatch_text radiant--key-cell_color-swatch_other">
+                <div className="pull-left insight--key-cell_color-swatch_text insight--key-cell_color-swatch_other">
                   DT
                 </div>
                 <div className="pull-right">

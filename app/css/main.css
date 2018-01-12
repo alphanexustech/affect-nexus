@@ -120,11 +120,11 @@ i.fa {
 }
 
 .affect--display_main-area-wrapper,
-.radiant--display_main-area-wrapper,
-.radiant--display_description-area-wrapper,
+.insight--display_main-area-wrapper,
+.insight--display_description-area-wrapper,
 .transparent--module_alt-01,
-.overview--display_main-area-wrapper,
-.radiant--display_main-area-wrapper {
+.nexus--display_main-area-wrapper,
+.insight--display_main-area-wrapper {
   padding: 0px 10px 0px 10px;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#131313+0,222222+100 */
   background: rgb(19,19,19); /* Old browsers */
@@ -336,10 +336,10 @@ h6 {
 }
 
 /*
- * Overview Styles
+ * Nexus Styles
  */
 
- .overview--emotion_set-title {
+ .nexus--emotion_set-title {
    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#131313+0,131313+100&0.8+0,0.2+100 */
    background: -moz-linear-gradient(bottom,  rgba(19,19,19,.8) 0%, rgba(19,19,19,0.2) 100%); /* FF3.6-15 */
    background: -webkit-linear-gradient(bottom,  rgba(19,19,19,.8) 0%,rgba(19,19,19,0.2) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -352,7 +352,7 @@ h6 {
    height: 60px;
  }
 
- .overview--emotion_set-footer {
+ .nexus--emotion_set-footer {
    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#131313+0,131313+100&0.8+0,0.2+100 */
    background: -moz-linear-gradient(top,  rgba(19,19,19,.8) 0%, rgba(19,19,19,0.2) 100%); /* FF3.6-15 */
    background: -webkit-linear-gradient(top,  rgba(19,19,19,.8) 0%,rgba(19,19,19,0.2) 100%); /* Chrome10-25,Safari5.1-6 */

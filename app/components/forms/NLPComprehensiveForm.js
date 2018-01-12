@@ -2,12 +2,28 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
-import { Button, Row, Col} from 'react-bootstrap';
+import { Button, Row, Col, Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 import submit from './submit'
 
 const NLPComprehensiveForm = (props) => {
   const { handleSubmit, pristine, reset, submitting } = props
+
+  const e_tooltip = (
+  	<Tooltip id="tooltip">
+      Exact matches are with words where each character is the same.
+  	</Tooltip>
+  );
+  const p_tooltip = (
+  	<Tooltip id="tooltip">
+      A Partial match (aka Stemming) happens when a consecutive and meaningful subset of characters in a word you provide match a word the process uses.
+  	</Tooltip>
+  );
+  const bf_tooltip = (
+  	<Tooltip id="tooltip">
+      A Base Form match (aka Lemmatizing) happens when the contextual changes in the Part-of-speech of a word you provide match a word the process uses.
+  	</Tooltip>
+  );
 
   return (
     <form onSubmit={handleSubmit(submit)}>
@@ -72,12 +88,17 @@ const NLPComprehensiveForm = (props) => {
               Constrain the how the document is scored.
               <br></br>
               <h6 style={{color: "#AAA"}}>
-                (Stemming and lammatizing words will score based on the alteration of the root word.)
+                (Partial and Base Form matching changes your words as the process runs.)
               </h6>
             </div>
             <Row style={{textAlign: 'center'}}>
               <Col md={4} lg={4}>
-                <label>Unprocessed</label>
+                <label>
+                  <i className="fa fa-pull-left fa-check-circle affect--emotion_fa-icon-adjustment" aria-hidden="true"></i> Exact
+                  <OverlayTrigger placement="top" overlay={e_tooltip}>
+                    <i style={{color: '#AAA'}} className="fa fa-question-circle-o" aria-hidden="true"></i>
+                  </OverlayTrigger>
+                </label>
                 <div style={{textAlign: 'left'}}>
                   <label><Field name="natural" component="input" type="radio" value="1" required/> Included</label>
                   <br></br>
@@ -85,7 +106,12 @@ const NLPComprehensiveForm = (props) => {
                 </div>
               </Col>
               <Col md={4} lg={4}>
-                <label>Stemmed</label>
+                <label>
+                  <i className="fa fa-pull-left fa-cut affect--emotion_fa-icon-adjustment" aria-hidden="true"></i> Partial
+                  <OverlayTrigger placement="top" overlay={p_tooltip}>
+                    <i style={{color: '#AAA'}} className="fa fa-question-circle-o" aria-hidden="true"></i>
+                  </OverlayTrigger>
+                </label>
                 <div style={{textAlign: 'left'}}>
                   <label><Field name="stemmer" component="input" type="radio" value="1" required/> Included</label>
                   <br></br>
@@ -93,7 +119,12 @@ const NLPComprehensiveForm = (props) => {
                 </div>
               </Col>
               <Col md={4} lg={4}>
-                <label>Lemmatized</label>
+                <label>
+                  <i className="fa fa-pull-left fa-cubes affect--emotion_fa-icon-adjustment" aria-hidden="true"></i> Base Form
+                  <OverlayTrigger placement="top" overlay={bf_tooltip}>
+                    <i style={{color: '#AAA'}} className="fa fa-question-circle-o" aria-hidden="true"></i>
+                  </OverlayTrigger>
+                </label>
                 <div style={{textAlign: 'left'}}>
                   <label><Field name="lemma" component="input" type="radio" value="1" required/> Included</label>
                   <br></br>

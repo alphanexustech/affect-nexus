@@ -15,7 +15,7 @@ export default class AffectCorpusLengthRowTableGroup extends React.Component {
       <tr>
         <td>
           <div className="affect--display_row-title">
-            <i className="fa fa-pull-left fa-file affect--emotion_fa-icon-adjustment" aria-hidden="true"></i> Corpus Length
+            <i className="fa fa-pull-left fa-sort-numeric-asc affect--emotion_fa-icon-adjustment" aria-hidden="true"></i> Corpus Length
           </div>
         </td>
         <td>

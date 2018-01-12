@@ -3,7 +3,7 @@ import React from 'react';
 import DivListGroup from '../groups/DivListGroup'
 import DivList from '../lists/DivList'
 import StatisticGroup from '../groups/StatisticGroup'
-import AffectUnprocessedRowTableGroup from '../groups/AffectUnprocessedRowTableGroup'
+import AffectExactRowTableGroup from '../groups/AffectExactRowTableGroup'
 import AffectStemmedRowTableGroup from '../groups/AffectStemmedRowTableGroup'
 import AffectLemmatizedRowTableGroup from '../groups/AffectLemmatizedRowTableGroup'
 import AffectCorpusLengthRowTableGroup from '../groups/AffectCorpusLengthRowTableGroup'
@@ -42,20 +42,17 @@ export default class NLPComprehensiveTableModule extends React.Component {
           </div>
           <div className="affect--display_scores">
             <span key={i + '-normal-scores'}>
-              {array[i] ? array[i].normalized_r_score.toFixed(4) : 'Error'}
-            </span>
-            <span style={{marginLeft: '2px', color: '#AAA'}}>
-              (<i>{array[i] ? array[i].normalized_r_score.toFixed(4) : 'Error'}</i>)
+              <i className="fa fa-star" aria-hidden="true"></i> {array[i] ? array[i].normalized_r_score.toFixed(4) : 'Error'}
             </span>
           </div>
           <div>
             <Link
-              to="/nlp-radiant"
+              to="/insight"
               className="btn btn-xs btn-primary"
               onClick={this.handleClick.bind(this, array[i])}
               >
               <i className="fa fa-bolt" aria-hidden="true"></i>
-              Radiant
+              Insight
             </Link>
           </div>
         </div>
@@ -80,7 +77,7 @@ export default class NLPComprehensiveTableModule extends React.Component {
           </thead>
 
           <tbody>
-              <AffectUnprocessedRowTableGroup data={array[i]} limitList={1}></AffectUnprocessedRowTableGroup>
+              <AffectExactRowTableGroup data={array[i]} limitList={1}></AffectExactRowTableGroup>
               <AffectStemmedRowTableGroup data={array[i]} limitList={1}></AffectStemmedRowTableGroup>
               <AffectLemmatizedRowTableGroup data={array[i]} limitList={1}></AffectLemmatizedRowTableGroup>
               <AffectCorpusLengthRowTableGroup data={array[i]}></AffectCorpusLengthRowTableGroup>
