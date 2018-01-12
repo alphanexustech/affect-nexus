@@ -85,7 +85,7 @@ const NLPComprehensiveForm = (props) => {
             </div>
             <br></br>
             <div>
-              Constrain the how the document is scored.
+              Constrain how the document is scored.
               <br></br>
               <h6 style={{color: "#AAA"}}>
                 (Partial and Base Form matching changes your words as the process runs.)

@@ -32,12 +32,12 @@ module.exports = {
         include: path.join(__dirname, 'app')
       },
       {
-        test: /.*\.(gif|png|jpeg|svg)$/i,
+        test: /.*\.(gif|png|jpeg|svg|mp4)$/i,
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: 'images/[name]_[hash:7].[ext]',
+              name: 'assets/[name]_[hash:7].[ext]',
             }
           },
         ]

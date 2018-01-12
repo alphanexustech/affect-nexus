@@ -13,6 +13,8 @@ import { Button, Nav, Navbar, NavBrand, NavItem, MenuItem, NavDropdown } from 'r
 
 import { userActions } from '../actions/userActions';
 
+import hex_video from '../assets/hex_video-full.mp4';
+
 class AsyncApp extends Component {
   constructor(props) {
     super(props)
@@ -25,7 +27,18 @@ class AsyncApp extends Component {
   }
 
   render () {
-    let loginButtons, navOptions;
+    let loginButtons, navOptions, bkgd;
+    if (window.location.pathname == '/') { // Check to see if on main page
+      bkgd = (
+        <video poster="" id="bgvid" playsInline autoPlay muted loop>
+           <source src={hex_video} type="video/mp4" />
+        </video>
+      )
+    } else {
+      bkgd = (
+        <div className="bkgd" />
+      )
+    }
     if (localStorage.getItem('token') != null) {
       navOptions = (
         <div>
@@ -95,6 +108,7 @@ class AsyncApp extends Component {
          <Route path="/process" component={NLPComprehensiveDisplay}/>
          <Route path="/insight" component={NLPInsightDisplay}/>
        </div>
+       {bkgd}
      </div>
    );
   }
