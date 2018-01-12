@@ -15,19 +15,19 @@ export default class DivListGroup extends React.Component {
       return (
         <div>
           <div>
-            <span><strong>Unprocessed</strong></span>
+            <span><strong>Exact</strong></span>
           </div>
           <br></br>
           <DivList fdist={data.natural_order_fdist}/>
           <hr></hr>
           <div>
-            <span><strong>Stemmed</strong></span>
+            <span><strong>Partial</strong></span>
           </div>
           <br></br>
           <DivList fdist={data.stemmer_order_fdist}/>
           <hr></hr>
           <div>
-            <span><strong>Lemmatized</strong></span>
+            <span><strong>Base Form</strong></span>
           </div>
           <br></br>
           <DivList fdist={data.lemma_order_fdist}/>

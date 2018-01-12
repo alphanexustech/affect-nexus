@@ -10,8 +10,8 @@ export default class VectorGraphicWrapper extends React.Component {
     let svgStyle = this.props.svgStyle || {}
     return (
       <svg
-        id={"radiant--graphic_background-" + this.props.graphId}
-        className="radiant--graphic_background"
+        id={"insight--graphic_background-" + this.props.graphId}
+        className="insight--graphic_background"
         style={svgStyle}>
         {this.props.children}
       </svg>

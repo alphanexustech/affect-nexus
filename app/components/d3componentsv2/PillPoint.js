@@ -44,7 +44,7 @@ export default class PillPoint extends React.Component {
       document.getElementById("tooltip-" + d.graphId).style.visibility = ""
     }
       // Show Tooltip and 'dim' graph background
-      document.getElementById("radiant--graphic_background-" + d.graphId).className.baseVal += " active"
+      document.getElementById("insight--graphic_background-" + d.graphId).className.baseVal += " active"
   }
 
   _handleOut(d) {
@@ -55,13 +55,13 @@ export default class PillPoint extends React.Component {
       document.getElementById("tooltip-" + d.graphId).style.visibility = "hidden"
     }
 
-      document.getElementById("radiant--graphic_background-" + d.graphId).className.baseVal = "radiant--graphic_background"
+      document.getElementById("insight--graphic_background-" + d.graphId).className.baseVal = "insight--graphic_background"
   }
 
   render () {
     return (
       <rect
-        className={"radiant--pill_point " + this.props.className + " " + this.state.success.toString()}
+        className={"insight--pill_point " + this.props.className + " " + this.state.success.toString()}
         rx="5px"
         ry="5px"
         width={this.props.rw}

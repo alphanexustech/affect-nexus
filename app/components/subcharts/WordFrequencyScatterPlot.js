@@ -90,11 +90,11 @@ class WordFrequencyScatterPlot extends Component {
     let large_graph_height = 8*50 - 4
     return (
       <div>
-        <div className="radiant--graph-wrapper">
+        <div className="insight--graph-wrapper">
           <div style={{width: "100px"}}>
             <BinScatterPlot
                 graphId={0}
-                title={'Unprocessed Freq. Dist.'}
+                title={'Exact Freq. Dist.'}
                 distinctColors={false}
                 modulus={1}
                 fillColors={['none']}
@@ -107,7 +107,7 @@ class WordFrequencyScatterPlot extends Component {
                 pointRadius={'3'}/>
             <BinScatterPlot
                 graphId={1}
-                title={'Stemmed Freq. Dist.'}
+                title={'Partial Freq. Dist.'}
                 distinctColors={false}
                 modulus={1}
                 fillColors={['none']}
@@ -120,7 +120,7 @@ class WordFrequencyScatterPlot extends Component {
                 pointRadius={'3'}/>
             <BinScatterPlot
                 graphId={2}
-                title={'Lemmatized Freq. Dist.'}
+                title={'Base Form Freq. Dist.'}
                 distinctColors={false}
                 modulus={1}
                 fillColors={['none']}
@@ -151,33 +151,9 @@ class WordFrequencyScatterPlot extends Component {
             </div>
           </div>
         </div>
-        {/*
-        <div className="radiant--graph-wrapper">
-          <div className="radiant--key-cell">
-            <div className="radiant--key-cell_color-swatch here radiant--key-cell_color-swatch_prep"></div>
-            Preposition
-          </div>
-          <div className="radiant--key-cell">
-            <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_noun"></div>
-            Noun
-          </div>
-          <div className="radiant--key-cell">
-            <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_adj"></div>
-            Adjective
-          </div>
-          <div className="radiant--key-cell">
-            <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_verb"></div>
-            Verb
-          </div>
-          <div className="radiant--key-cell">
-            <div className="radiant--key-cell_color-swatch radiant--key-cell_color-swatch_other"></div>
-            Other
-          </div>
-        </div>
-        */}
-        <div className="radiant--key-text radiant--graph-wrapper">
+        <div className="insight--key-text insight--graph-wrapper">
           Each of the columns represents a particular set of synonyms. The first column
-          represents the synonyms of the {this.props.emotionName}. The second column
+          represents the synonyms of {this.props.emotionName}. The second column
           represents the synonyms of the first columns synonyms. The pattern continues.
           'I-II Words' are words that exist in both the 'I Words' and 'II Words' groups.
           Similarly, 'II-III Words','II-III Words', and 'I-II--III Words' are groups
@@ -186,7 +162,7 @@ class WordFrequencyScatterPlot extends Component {
           <br></br>
           The graph depicts a frequency distribution of the words associated with {this.props.emotionName}.
           Multiple words with the same frequency are represented as a more opaque cell.
-          By contrast, a single word with a frequency is represented by a transparent cell.
+          By contrast, a single word with some frequency is represented by a transparent cell.
           Color represents the part of speech.
           Cells representing words with more than one part of speech are the average color value.
         </div>

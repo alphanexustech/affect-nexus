@@ -9,7 +9,7 @@ import { Row, Col, Table, Alert, Panel, ListGroup, Pagination } from 'react-boot
 
 import { fetchDataIfNeeded } from '../../actions/actions';
 
-class NLPOverviewList extends Component {
+class NLPNexusList extends Component {
   constructor(props) {
     super(props);
     this.handleSelect = this.handleSelect.bind(this);
@@ -61,10 +61,10 @@ class NLPOverviewList extends Component {
             dispatch(fetchDataIfNeeded('nlp-analyses-stats', '3000'));
 
         */}
-        <div className="overview--emotion_set-title">
+        <div className="nexus--emotion_set-title">
           Most recent processes
         </div>
-        <div className="overview--display_main-area-wrapper">
+        <div className="nexus--display_main-area-wrapper">
           {isFetching && data.length === 0 &&
             <div style={{padding: "10px"}}>Loading...</div>
           }
@@ -117,7 +117,7 @@ class NLPOverviewList extends Component {
             </div>
           }
         </div>
-        <div className="overview--emotion_set-footer" style={{fontSize: "12px", textAlign: "right"}}>
+        <div className="nexus--emotion_set-footer" style={{fontSize: "12px", textAlign: "right"}}>
           Currently showing five processes
         </div>
       </div>
@@ -125,7 +125,7 @@ class NLPOverviewList extends Component {
   }
 }
 
-NLPOverviewList.propTypes = {
+NLPNexusList.propTypes = {
   data: PropTypes.array.isRequired,
   metadata: PropTypes.object.isRequired,
   isFetching: PropTypes.bool.isRequired,
@@ -154,4 +154,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(NLPOverviewList);
+export default connect(mapStateToProps)(NLPNexusList);

@@ -2,7 +2,7 @@ import React from 'react';
 
 import DivList from '../lists/DivList'
 
-export default class AffectUnprocessedRowTableGroup extends React.Component {
+export default class AffectExactRowTableGroup extends React.Component {
   constructor (props) {
     super(props);
   }
@@ -16,7 +16,7 @@ export default class AffectUnprocessedRowTableGroup extends React.Component {
       <tr>
         <td>
           <div className="affect--display_row-title">
-            <i className="fa fa-pull-left fa-lemon-o affect--emotion_fa-icon-adjustment" aria-hidden="true"></i> Unprocessed
+            <i className="fa fa-pull-left fa-check-circle affect--emotion_fa-icon-adjustment" aria-hidden="true"></i> Exact
           </div>
         </td>
         <td>

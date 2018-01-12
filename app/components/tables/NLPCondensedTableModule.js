@@ -39,20 +39,17 @@ export default class NLPComprehensiveTableModule extends React.Component {
           </div>
           <div className="affect--display_scores">
             <span key={i + '-normal-scores'}>
-              {array[i].normalized_r_score.toFixed(4)}
-            </span>
-            <span style={{marginLeft: '2px', color: '#AAA'}}>
-              (<i>{array[i].r_affect_score.toFixed(4)}</i>)
+              <i className="fa fa-star" aria-hidden="true"></i> {array[i].normalized_r_score.toFixed(4)}
             </span>
           </div>
           <div>
             <Link
-              to="/nlp-radiant"
+              to="/insight"
               className="btn btn-xs btn-primary"
               onClick={this.handleClick.bind(this, array[i])}
               >
               <i className="fa fa-bolt" aria-hidden="true"></i>
-              Radiant
+              Insight
             </Link>
           </div>
         </div>

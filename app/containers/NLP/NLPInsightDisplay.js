@@ -9,7 +9,7 @@ import { Table, Button, Row, Col, Panel } from 'react-bootstrap';
 import WordFrequencyScatterPlot from '../../components/subcharts/WordFrequencyScatterPlot'
 import WordFrequencyPieChart from '../../components/subcharts/WordFrequencyPieChart'
 
-import AffectUnprocessedRowTableGroup from '../../components/groups/AffectUnprocessedRowTableGroup'
+import AffectExactRowTableGroup from '../../components/groups/AffectExactRowTableGroup'
 import AffectStemmedRowTableGroup from '../../components/groups/AffectStemmedRowTableGroup'
 import AffectLemmatizedRowTableGroup from '../../components/groups/AffectLemmatizedRowTableGroup'
 import AffectCorpusLengthRowTableGroup from '../../components/groups/AffectCorpusLengthRowTableGroup'
@@ -19,7 +19,7 @@ import NLPDetailFreqDistTableModule from '../../components/tables/NLPDetailFreqD
 
 import NLPNLTKPOSTable from '../../components/tables/NLPNLTKPOSTable'
 
-class NLPRadiantDisplay extends Component {
+class NLPInsightDisplay extends Component {
   constructor(props) {
     super(props);
     this.handleRefreshClick = this.handleRefreshClick.bind(this);
@@ -52,38 +52,39 @@ class NLPRadiantDisplay extends Component {
           </div>
         </div>
 
-        <Link className="pull-right btn btn-xs btn-primary" to="/nlp">
-          Return to Emotion Set
+        <Link className="pull-right btn btn-xs btn-primary" to="/process">
+          <i className="fa fa-angle-double-left" aria-hidden="true"></i> Return to Emotion Set
         </Link>
         <div style={{paddingBottom: '100px'}}>
-          <h3><i className="fa fa-bolt" aria-hidden="true"></i> Radiant</h3>
-          <Row>
-            <Col sm={12} md={12} lg={9}
-                  style={{
-                    margin: '10 0 20 0'
-                  }}>
-              A radiant is the sum of emotional aspects of information. Aspects include the part-of-speech of each word
-               in the case of natural language. This page visualizes the aspects for a more insightful discovery process
-               into the aspects of emotion. {emotionName}, the radiant shown, is visualized below.
-            </Col>
-          </Row>
-          <Row>
-            <Col sm={12} md={12} lg={9}>
-              <div style={{fontSize: '10px'}}>Last updated on {lastEmotionCreationDate}.</div>
-            </Col>
-          </Row>
+          <h3><i className="fa fa-bolt" aria-hidden="true"></i> Insight</h3>
+          <p>
+            View something insightful
+          </p>
+          <h6>
+            The page visualizes the emotional aspects of a process you ran.
+            It’s only from the perspective of {emotionName},
+            but hopefully you’ll have an insightful discovery process.
+            It’s all based around the words you processed.</h6>
+          <div style={{
+              fontSize: '10px',
+              marginTop: '32px'
+            }}>
+            Last updated on {lastEmotionCreationDate}.
+          </div>
           <Row>
             <Col sm={12} md={12} lg={4}>
-              <div className="radiant--emotion_set-title radiant--display_rank">
-                <div className="radiant--display_rank-sub_heading">{emotionName}</div>
+              <div className="insight--emotion_set-title insight--display_rank">
+                <div className="insight--display_rank-sub_heading">{emotionName}</div>
               </div>
-              <div className="radiant--display_scores radiant--display_main-area-wrapper">
-                <div className="radiant--display_scores-main_heading">{emotion.normalized_r_score.toFixed(4)}</div>
-                <div className="radiant--display_scores-sub_heading">Normalized Score</div>
+              <div className="insight--display_scores insight--display_main-area-wrapper">
+                <div className="insight--display_scores-main_heading">{emotion.normalized_r_score.toFixed(4)}</div>
+                <div className="insight--display_scores-sub_heading">
+                  <i className="fa fa-star affect--emotion_fa-icon-adjustment" aria-hidden="true"></i> Normalized Score
+                </div>
                 {/*
                 <br></br>
-                <div className="radiant--display_scores-sub_heading">Originally Gernerated from *Everyday Categories*</div>
-                <div className="radiant--display_scores-main_heading">3/12</div>
+                <div className="insight--display_scores-sub_heading">Originally Gernerated from *Everyday Categories*</div>
+                <div className="insight--display_scores-main_heading">3/12</div>
                 */}
               </div>
               <WordFrequencyPieChart emotionName={emotionName}></WordFrequencyPieChart>
@@ -97,7 +98,7 @@ class NLPRadiantDisplay extends Component {
           <br></br>
           <Row>
             <Col lg={12}>
-              <div className="radiant--emotion_set-title radiant--emotion_set-title_table">
+              <div className="insight--emotion_set-title insight--emotion_set-title_table">
                   <Table condensed style={{
                       fontSize: '12px',
                       marginLeft: '5%',
@@ -119,8 +120,8 @@ class NLPRadiantDisplay extends Component {
                     </thead>
                   </Table>
               </div>
-              <div className="radiant--display_main-area-wrapper">
-                <div className="radiant--display_main-area">
+              <div className="insight--display_main-area-wrapper">
+                <div className="insight--display_main-area">
                   <Table condensed style={{
                       fontSize: '12px',
                       marginLeft: '5%',
@@ -130,14 +131,14 @@ class NLPRadiantDisplay extends Component {
                       marginBottom: '0px',
                     }}>
                     <tbody>
-                      <AffectUnprocessedRowTableGroup data={emotion} limitList={0}></AffectUnprocessedRowTableGroup>
+                      <AffectExactRowTableGroup data={emotion} limitList={0}></AffectExactRowTableGroup>
                       <AffectStemmedRowTableGroup data={emotion} limitList={0}></AffectStemmedRowTableGroup>
                       <AffectLemmatizedRowTableGroup data={emotion} limitList={0}></AffectLemmatizedRowTableGroup>
                     </tbody>
                   </Table>
                 </div>
               </div>
-              <div className="radiant--emotion_set-footer radiant--emotion_set-footer_table">
+              <div className="insight--emotion_set-footer insight--emotion_set-footer_table">
                   <Table condensed style={{
                       fontSize: '12px',
                       marginLeft: '5%',
@@ -158,12 +159,12 @@ class NLPRadiantDisplay extends Component {
           <Row>
             {lastEmotionText.length > 0 &&
               <Col lg={6}>
-                <div className="radiant--emotion_set-title">
-                  Text used to generate this Radiant
+                <div className="insight--emotion_set-title">
+                  Text used to generate this Insight
                 </div>
-                <div className="radiant--display_description-area-wrapper">
-                  <div className="radiant--display_description-area">
-                    <div className="radiant--display_description">
+                <div className="insight--display_description-area-wrapper">
+                  <div className="insight--display_description-area">
+                    <div className="insight--display_description">
                     {lastEmotionText}
                     </div>
                   </div>
@@ -171,39 +172,39 @@ class NLPRadiantDisplay extends Component {
               </Col>
             }
             <Col lg={6}>
-              <div className="radiant--emotion_set-title">
+              <div className="insight--emotion_set-title">
                 Methodology
               </div>
-              <div className="radiant--display_description-area-wrapper">
-                <div className="radiant--display_description-area">
-                  <div className="radiant--display_description">
-                    A representation emotion is an abstract concept, but you
-                    might know them simply as emotions. {emotionName} is calculated
-                    and scored based on a process that separates words from a
-                    selection of text into and compares them to groups.
+              <div className="insight--display_description-area-wrapper">
+                <div className="insight--display_description-area">
+                  <div className="insight--display_description">
+                    When you think of a word, it really only represents an idea.
+                    Emotion words are no different because emotion words are not the actual feeling (or mixture of feelings).
+                    {emotionName} the word is not the emotion you might try to describe by using the word.
+                    The word, {emotionName}, is calculated and scored based on the process you ran.
+                    That process takes the words you decided to include, and separates those words from the entire selection.
+                    Those words are then compared after being put into groups.
                   </div>
-                  <div className="radiant--display_description">
-                    The algorithm believes <i>'I Words'</i> are synonyms of {emotionName}
-                    , the <i>'II Words'</i> are synonyms of those synonyms, and
-                    the <i>'III Words'</i> are synonyms of those. The normalized score
-                    is calculated by considering the total length of the group
-                    the word is in. Smaller groups with any words receive more
-                    points. A point is given for every word and weighted based
-                    on which group(s) the word is in. Each group receives its
-                    normalized score and they are combined to create the overall
-                    normalized score for the representational emotion,{emotionName}.
+                  <div className="insight--display_description">
+                    The process found that <i>'I Words'</i> are synonyms of {emotionName},
+                    the <i>'II Words'</i> are synonyms of those synonyms,
+                    and the <i>'III Words'</i> are synonyms of those.
+                    The process stops after finding the third set of synonyms because otherwise it would get even more complex!
+                    The normalized score is calculated by considering the total length of the group which relates to the synonym (the type of synonym matters, too).
+                    Smaller groups with any synonyms receive more points.
+                    A point is given for every synonym and weighted based on which group(s) the synonym is in.
+                    Each group receives its normalized score and they are combined to create the overall normalized score for the emotion word called {emotionName}.
                   </div>
-                  <div className="radiant--display_description">
-                    <i>'I-II Words'</i> are words that exist in both the <i>'I Words'</i>
-                     and <i>'II Words'</i> groups. Similarly, <i>'II-III Words'</i>,
-                    <i>'II-III Words'</i>, and <i>'I-II--III Words'</i> are groups
-                    where a word exists in n-number of groups.
+                  <div className="insight--display_description">
+                    <i>'I-II Words'</i> are synonyms that exist in both the <i>'I Words'</i> and <i>'II Words'</i> groups.
+                    Similarly, <i>'II-III Words'</i>, <i>'II-III Words'</i>,
+                    and <i>'I-II--III Words'</i> are groups where a synonym exists in the respective union of groups.
                   </div>
-                  <div className="radiant--display_description">
-                    A representational emotion is this algorithms cultural lens
-                    of an emotion, and with sets of representational emotions,
-                    the algorithm provides you something of an inference about
-                    a particular selection of text.
+                  <div className="insight--display_description">
+                    An emotion word, like {emotionName},
+                    is the cultural lens the process uses to learn more about an emotion.
+                    With a set of emotion words,
+                    the process allows you to infer the emotional quality about a particular selection of text.
                   </div>
                 </div>
               </div>
@@ -215,7 +216,7 @@ class NLPRadiantDisplay extends Component {
   }
 }
 
-NLPRadiantDisplay.propTypes = {
+NLPInsightDisplay.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
@@ -226,4 +227,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(NLPRadiantDisplay);
+export default connect(mapStateToProps)(NLPInsightDisplay);

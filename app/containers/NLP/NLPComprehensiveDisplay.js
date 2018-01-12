@@ -28,11 +28,28 @@ class NLPDisplay extends Component {
 
     return (
       <div>
-        <Link className="pull-right btn btn-xs btn-primary" to="/overview">
-              Back
+        <Link className="pull-right btn btn-xs btn-primary" to="/nexus">
+          <i className="fa fa-angle-double-left" aria-hidden="true"></i> Back
         </Link>
+        <h3><i className="fa fa-level-down" aria-hidden="true"></i> Process</h3>
+        <p>
+          Start a process
+        </p>
+        <h6>
+          After you start a process, words you provide will likely match words the process uses.
+          Remember, hover your mouse over the form icon in the bottom right corner to begin exploring!
+        </h6>
+        <h6>
+          You might be curious about how this all works,
+          and here’s some information on what’s going on.
+          Exact matches are with words where each character is the same.
+          A Partial match (aka Stemming) happens when a consecutive and meaningful subset of characters in a word you provide match a word the process uses.
+          A Base Form match (aka Lemmatizing) happens when the contextual changes in the Part-of-speech of a word you provide match a word the process uses.
+        </h6>
+        <h6>
+          The process ultimately finds synonyms of emotion words. Try to experiment and see what happens!
+        </h6>
         <div style={{paddingBottom: '100px'}}>
-          <h3><i className="fa fa-tint" aria-hidden="true"></i>  Precise Processing</h3>
 
           {/* These panels get fixed around the edge of the screen */}
           <div className="transparent--module transparent--module_alt-01 transparent--module_module-3">
