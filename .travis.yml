@@ -3,7 +3,7 @@ sudo: false
 services:
 - mongodb
 node_js:
-- '0.10'
+- '8'
 env:
 - NODE_ENV=travis
 deploy:
