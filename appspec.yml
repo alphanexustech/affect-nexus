@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: /
+  - source: /deployment-archive/
     destination: /webapps/affect-nexus
 hooks:
   BeforeInstall:
