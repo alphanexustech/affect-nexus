@@ -4,7 +4,7 @@ files:
   - source: /
     destination: /webapps/affect-nexus
 hooks:
-  AfterInstall:
+  BeforeInstall:
     - location: scripts/install_dependencies.sh
       timeout: 300
   ApplicationStart:

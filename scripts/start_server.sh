@@ -1,7 +1,7 @@
 #!/bin/bash
 run()
 {
-    cd /webapps/ample-affect-exhibit/
+    cd /webapps/affect-nexus/
     nohup npm start >logfile.txt 2>&1 </dev/null &
     return 0
 }
