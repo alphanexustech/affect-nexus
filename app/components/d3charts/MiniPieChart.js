@@ -2,13 +2,6 @@ import React from 'react';
 import d3 from 'd3';
 
 export default class MiniPieChart extends React.Component {
-
-  static defaultProps = {
-    width: 50,
-    height: 50,
-    x: 0,
-    y: 0,
-  }
   constructor (props) {
     super(props);
     this.state = { };
