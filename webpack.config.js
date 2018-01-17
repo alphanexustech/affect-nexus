@@ -1,12 +1,11 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var ip = '127.0.0.1';
+var ip = '0.0.0.0';
 
 module.exports = {
   devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://' + ip + ':2000',
     './app/index',
     './app/css/bootstrap.css',
     './app/css/bootstrap-overrides.css',

@@ -27,6 +27,6 @@ deploy:
   deployment_group: affect-nexus-group
   on: *2
 before_deploy:
-- zip -r latest-lg app/* config/* scripts/* .babelrc .gitignore .jshintrc .travis.yml appspec.yml LICENSE package.json README.md server.js package.json package-lock.json server.js webpack.config.js webpack.production.config.js
+- zip -r latest-lg app/* scripts/* .babelrc .gitignore .jshintrc .travis.yml appspec.yml LICENSE package-lock.json package.json README.md server.js webpack.config.js webpack.production.config.js
 - mkdir -p dpl_cd_upload
 - mv latest-lg.zip dpl_cd_upload/latest-lg.zip
