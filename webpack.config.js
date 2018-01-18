@@ -6,6 +6,9 @@ var ip = '0.0.0.0';
 module.exports = {
   devtool: 'eval',
   entry: [
+    'babel-polyfill', // Load this first
+    'react', // Include this to enforce order
+    'react-dom', // Include this to enforce order
     './app/index',
     './app/css/bootstrap.css',
     './app/css/bootstrap-overrides.css',
@@ -45,5 +48,8 @@ module.exports = {
         ]
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: true,
   }
 };
