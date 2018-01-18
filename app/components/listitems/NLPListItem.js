@@ -90,7 +90,7 @@ class NLPListItem extends React.Component {
                 <Link className="pull-right btn btn-xs btn-primary"
                       to="/process" onClick={()=>{this.loadAnalysis(data._id.$oid)}}
                       style={{marginBottom: '24px'}}>
-                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i> View Insight
+                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i> View Process
                 </Link>
               </div>
             </Col>
