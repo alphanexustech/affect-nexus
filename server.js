@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 
-var ip = '127.0.0.1';
+var ip = '0.0.0.0';
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,

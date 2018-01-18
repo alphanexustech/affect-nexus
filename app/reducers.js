@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import {
-  INVALIDATE_DATASET,
   REQUEST_DATA, RECEIVE_DATA
 } from './actions/actions';
 
@@ -12,10 +11,6 @@ function data(state = {
   metadata: {}
 }, action) {
   switch (action.type) {
-  case INVALIDATE_DATASET:
-    return Object.assign({}, state, {
-      didInvalidate: true
-    });
   case REQUEST_DATA:
     return Object.assign({}, state, {
       isFetching: true,
@@ -36,7 +31,6 @@ function data(state = {
 
 function dataByDataset(state = { }, action) {
   switch (action.type) {
-  case INVALIDATE_DATASET:
   case RECEIVE_DATA:
   case REQUEST_DATA:
     return Object.assign({}, state, {

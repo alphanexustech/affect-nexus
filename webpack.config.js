@@ -1,12 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var ip = '127.0.0.1';
-
 module.exports = {
   devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://' + ip + ':2000',
+    'babel-polyfill', // Load this first
+    'react', // Include this to enforce order
+    'react-dom', // Include this to enforce order
     './app/index',
     './app/css/bootstrap.css',
     './app/css/bootstrap-overrides.css',
@@ -22,9 +22,12 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
-        loaders: ['babel-loader'],
-        include: path.join(__dirname, 'app')
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2017', 'react']
+        }
       },
       {
         test: /\.css$/, // Only .css files

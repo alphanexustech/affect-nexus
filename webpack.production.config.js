@@ -10,7 +10,9 @@ module.exports = {
     // The entry file. All your app roots from here.
     entry: [
         // Polyfills go here too, like babel-polyfill or whatwg-fetch
-        'babel-polyfill',
+        'babel-polyfill', // Load this first
+        'react', // Include this to enforce order
+        'react-dom', // Include this to enforce order
         './app/index',
         './app/css/bootstrap.css',
         './app/css/bootstrap-overrides.css',
@@ -37,13 +39,6 @@ module.exports = {
         // performance and is used in prod environments. Styles load faster on their own .css
         // file as they dont have to wait for the JS to load.
         new ExtractTextPlugin('[name]-[hash].min.css'),
-        // handles uglifying js
-        new webpack.optimize.UglifyJsPlugin({
-            compressor: {
-                warnings: false,
-                screw_ie8: true
-            }
-        }),
         // creates a stats.json
         new StatsPlugin('webpack.stats.json', {
             source: false,
@@ -58,9 +53,12 @@ module.exports = {
     module: {
       loaders: [
         {
-          test: /\.js$/,
-          loaders: ['babel-loader'],
-          include: path.join(__dirname, 'app')
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+          query: {
+            presets: ['es2017', 'react']
+          }
         },
         {
           test: /\.css$/, // Only .css files

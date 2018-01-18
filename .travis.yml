@@ -1,0 +1,32 @@
+language: node_js
+sudo: false
+services:
+- mongodb
+node_js:
+- '8'
+env:
+- NODE_ENV=travis
+deploy:
+- provider: s3
+  access_key_id: AKIAJVBBNDHYSNFIIJVA
+  secret_access_key: &1
+    secure: EfEvJ4BNJSbe/m4Yeem3uj5a+zcIrPJFLh5VyfeIoZ+NgEYOZT1r2X0hLpbe41pe9ZCTs0dV1P+G76TVRBTe8RSob366/c7UEKXlbYBRW6AXAy5aKDUMjAvita7qzLJM3RthP4oJTkNkQt64H0UFy92Ll41toI/1mAF8xCfhy7XviDDy2dXljdc228LVGzftLjeVplBJUCJ1j9dylLuHLTX45OynaN9FxVIBWV4VgkdGI4S6/GHtP1aCCyrzZMBcY5x3MXWAIWKCcq2/GsqnhwUWBbnVyUUkJEgE8VDC7g8sBZ3M1Hw0PkE5OE1JFHPdeBs1z0Xrp0igi7r+IN1L7fyl5EPkQhXdOYFXfCXcuQF4vb1cuOVYoHHyfl7nUp+vS6OjCykJpRoTLLN/Y1/yDtCWPknZpFw+ohKu8qS1au5DAH614ts8GOGjuAdLua4HSBdJuZaxm2yi4dX5a4YM9YvwBOtiP2IXf3udXuDrjwoXB+MtgM8vXHNfF2+MEWWHLGV8GNZ07HuhrQ8gfuH2ivmjNkITPb030VE/g0MYRrbe6uO3Et9+UH/CYkQwseoA0DfEmN8kQHNuLxaxX1twygr1JIH8kawfs+P0v//iJTGDEV7yQcoKfu0Bt49Ygq6aHoxddPwVio59t08PEUCSnoM24Vx7lLxny2Eh5Jei9gs=
+  local_dir: dpl_cd_upload
+  skip_cleanup: true
+  on: &2
+    repo: alphanexustech/affect-nexus
+    branch: develop
+  bucket: affect-nexus-bucket
+- provider: codedeploy
+  access_key_id: AKIAJVBBNDHYSNFIIJVA
+  secret_access_key: *1
+  bucket: affect-nexus-bucket
+  key: latest-lg.zip
+  bundle_type: zip
+  application: affect-nexus
+  deployment_group: affect-nexus-group
+  on: *2
+before_deploy:
+- zip -r latest-lg app/* scripts/* .babelrc .gitignore .jshintrc .travis.yml appspec.yml LICENSE package-lock.json package.json README.md server.js webpack.config.js webpack.production.config.js
+- mkdir -p dpl_cd_upload
+- mv latest-lg.zip dpl_cd_upload/latest-lg.zip

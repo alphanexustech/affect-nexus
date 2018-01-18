@@ -6,11 +6,6 @@ import DataSeries from '../d3components/DataSeries';
 import Wrapper from '../d3components/Wrapper';
 
 export default class ScatterPlot extends React.Component {
-
-  static defaultProps = {
-    width: 500,
-    height: 500
-  }
   constructor (props) {
     super(props);
     this.state = { };

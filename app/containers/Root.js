@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { Route, Router, BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from '../configureStore';
 import AsyncApp from './AsyncApp';
 
-import { Route, Router, BrowserRouter } from 'react-router-dom';
 
 const store = configureStore();
 

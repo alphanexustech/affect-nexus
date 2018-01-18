@@ -5,11 +5,6 @@ import _ from 'underscore';
 import ForceMiddle from '../d3charts/ForceMiddle';
 
 export default class ForceChart extends React.Component {
-
-  static defaultProps = {
-    width: 500,
-    height: 500
-  }
   constructor (props) {
     super(props);
   }

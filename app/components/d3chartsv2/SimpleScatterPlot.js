@@ -6,11 +6,6 @@ import DataSeries from '../d3componentsv2/DataSeries';
 import VectorGraphicWrapper from '../d3componentsv2/VectorGraphicWrapper';
 
 export default class SimpleScatterPlot extends React.Component {
-
-  static defaultProps = {
-    width: 500,
-    height: 500
-  }
   constructor (props) {
     super(props);
     this.state = { };
