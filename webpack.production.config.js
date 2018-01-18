@@ -10,7 +10,9 @@ module.exports = {
     // The entry file. All your app roots from here.
     entry: [
         // Polyfills go here too, like babel-polyfill or whatwg-fetch
-        'babel-polyfill',
+        'babel-polyfill', // Load this first
+        'react', // Include this to enforce order
+        'react-dom', // Include this to enforce order
         './app/index',
         './app/css/bootstrap.css',
         './app/css/bootstrap-overrides.css',
@@ -51,9 +53,12 @@ module.exports = {
     module: {
       loaders: [
         {
-          test: /\.js$/,
-          loaders: ['babel-loader'],
-          include: path.join(__dirname, 'app')
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+          query: {
+            presets: ['es2017', 'react']
+          }
         },
         {
           test: /\.css$/, // Only .css files

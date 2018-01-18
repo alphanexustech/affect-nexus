@@ -1,8 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var ip = '0.0.0.0';
-
 module.exports = {
   devtool: 'eval',
   entry: [
@@ -48,8 +46,5 @@ module.exports = {
         ]
       }
     ]
-  },
-  devServer: {
-    historyApiFallback: true,
   }
 };
