@@ -13,7 +13,7 @@ import { Button, Nav, Navbar, NavBrand, NavItem, MenuItem, NavDropdown } from 'r
 
 import { userActions } from '../actions/userActions';
 
-import hex_video from '../assets/hex_video-full.mp4';
+import hex_video from '../assets/hex_video-full-medium-bitrate.mp4';
 import logo from '../assets/affect-nexus-logo.png';
 
 class AsyncApp extends Component {

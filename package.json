@@ -1,6 +1,6 @@
 {
   "name": "affect-nexus",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Affect Nexus User Interface",
   "scripts": {
     "test": "echo \"Warning: no test specified\" && exit 0",
