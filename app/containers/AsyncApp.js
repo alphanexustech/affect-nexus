@@ -14,6 +14,7 @@ import { Button, Nav, Navbar, NavBrand, NavItem, MenuItem, NavDropdown } from 'r
 import { userActions } from '../actions/userActions';
 
 import hex_video from '../assets/hex_video-full.mp4';
+import logo from '../assets/affect-nexus-logo.png';
 
 class AsyncApp extends Component {
   constructor(props) {
@@ -22,8 +23,7 @@ class AsyncApp extends Component {
   }
 
   handleLogout() {
-    console.log('here');
-    userActions.logout('a')
+    userActions.logout()
   }
 
   render () {
@@ -94,7 +94,10 @@ class AsyncApp extends Component {
        <Navbar className="navbar-inverse">
          <Navbar.Header>
            <Navbar.Brand>
-             <NavLink to="/">Affect Nexus</NavLink>
+             <NavLink to="/">
+               <img style={{"height": "60px"}}
+                    src={logo} />
+             </NavLink>
            </Navbar.Brand>
          </Navbar.Header>
          {navOptions}
