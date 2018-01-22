@@ -7,11 +7,10 @@ class Home extends Component {
     return (
       <div>
         <Jumbotron style={{margin: '0%', padding: '10%'}}>
-          <h2 style={{textAlign: 'right'}}>Affect Nexus</h2>
-          <h4 style={{width: '70%'}}>
-            This affect exploration tool allows you to experiment and explore.<br></br>
-            It is your nexus to process information and gain useful insight!<br></br>
-            Quickly find out what the underlying emotions are in any kind of text!
+          <h4>
+            Experiment and explore emotions with this tool.
+            Process information and gain useful insight!
+            Quickly discover what the underlying emotions are in text!
           </h4>
           <br></br>
           <br></br>
