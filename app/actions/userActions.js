@@ -52,7 +52,12 @@ function login(user) {
     function handleError(error) {
       let uxFriendlyError = '';
       if (error.response) {
-        uxFriendlyError = 'Sorry, there was a server error. We\'ll fix the problem when we find it.'
+        let data = error.response.data
+        if (error.response.status == 401) {
+          uxFriendlyError = data.errors
+        } else {
+          uxFriendlyError = 'Sorry, there was a server error. We\'ll fix the problem when we find it.'
+        }
         dispatch(failure(uxFriendlyError));
       } else {
         uxFriendlyError = 'Sorry, we couldn\'t connect to the server.'
@@ -104,7 +109,16 @@ function signup(user) {
     function handleError(error) {
       let uxFriendlyError = '';
       if (error.response) {
-        uxFriendlyError = 'Sorry, there was a server error. We\'ll fix the problem when we find it.'
+        if (error.response.status == 401) {
+          let data = error.response.data
+          if (data.errors.email) { // Handle the E-mail validation server side
+            uxFriendlyError = data.errors.email.msg
+          } else {
+            uxFriendlyError = data.errors
+          }
+        } else {
+          uxFriendlyError = 'Sorry, there was a server error. We\'ll fix the problem when we find it.'
+        }
         dispatch(failure(uxFriendlyError));
       } else {
         uxFriendlyError = 'Sorry, we couldn\'t connect to the server.'

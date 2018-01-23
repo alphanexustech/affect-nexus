@@ -51,13 +51,17 @@ class Signup extends Component {
         this.setState({
           stateError: 'Your username must be at least 3 characters.'
         })
+      } else if (user.username.length > 63) {
+        this.setState({
+          stateError: 'Whoa dude, that username must be shorter than 64 characters.'
+        })
       } else if (user.password.length < 4) {
         this.setState({
           stateError: 'Your password must be at least 4 characters.'
         })
       } else if (user.password != user.confirmPassword) {
         this.setState({
-          stateError: 'Your password fields did not match. Please reconfirm you password.'
+          stateError: 'Your password fields did not match. Please reconfirm your password.'
         })
       } else {
         dispatch(userActions.signup(user));
@@ -75,10 +79,13 @@ class Signup extends Component {
       <div>
         <Row>
           <Col md={6} mdOffset={3}>
-            {error &&
+            {stateError && !error &&
+              <GeneralErrorComponent error={stateError} />
+            }
+            {error && !stateError &&
               <GeneralErrorComponent error={this.props.error} />
             }
-            {stateError &&
+            {error && stateError &&
               <GeneralErrorComponent error={stateError} />
             }
             <h3>Sign Up</h3>
