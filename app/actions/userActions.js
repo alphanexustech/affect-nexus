@@ -31,6 +31,7 @@ function login(user) {
     }
     axios.post(assistantURL + '/users/login', payload, config)
     .then(function (response) {
+      console.log('got here');
       let token = response.data.accessToken
       let userID = response.data.userID
       let username = response.data.username
@@ -41,18 +42,25 @@ function login(user) {
         localStorage.setItem('username', username);
         window.location.href = '/nexus'
       } else {
-        dispatch(failure(response));
-        console.log('EXCEPTIONAL FAILURE');
+        handleError(response)
       }
     })
     .catch(function (error) {
-      dispatch(failure(error));
-      if (error.response.status == 401) {
-        // IDEA: Handle the error visually to improve UX
-      }
+      handleError(error)
     });
-  };
 
+    function handleError(error) {
+      let uxFriendlyError = '';
+      if (error.response) {
+        uxFriendlyError = 'Sorry, there was a server error. We\'ll fix the problem when we find it.'
+        dispatch(failure(uxFriendlyError));
+      } else {
+        uxFriendlyError = 'Sorry, we couldn\'t connect to the server.'
+        dispatch(failure(uxFriendlyError));
+      }
+    }
+
+  };
   function request(user) { return { type: LOGIN_REQUEST, user } }
   function success(user) { return { type: LOGIN_SUCCESS, user } }
   function failure(error) { return { type: LOGIN_FAILURE, error } }
@@ -86,16 +94,25 @@ function signup(user) {
         localStorage.setItem('username', username);
         window.location.href = '/nexus'
       } else {
-        dispatch(failure(response));
-        console.log('EXCEPTIONAL FAILURE');
+        handleError(response)
       }
     })
     .catch(function (error) {
-      dispatch(failure(error));
-      // IDEA: Handle the error visually to improve UX
+      handleError(error)
     });
-  };
 
+    function handleError(error) {
+      let uxFriendlyError = '';
+      if (error.response) {
+        uxFriendlyError = 'Sorry, there was a server error. We\'ll fix the problem when we find it.'
+        dispatch(failure(uxFriendlyError));
+      } else {
+        uxFriendlyError = 'Sorry, we couldn\'t connect to the server.'
+        dispatch(failure(uxFriendlyError));
+      }
+    }
+
+  };
   function request(user) { return { type: SIGNUP_REQUEST, user } }
   function success(user) { return { type: SIGNUP_SUCCESS, user } }
   function failure(error) { return { type: SIGNUP_FAILURE, error } }

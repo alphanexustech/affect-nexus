@@ -49,6 +49,10 @@ hr {
  * General
  */
 
+ .navbar-nav > li > a {
+   text-align: right;
+ }
+
 .navbar-brand {
   padding: 0px 10px;
 }

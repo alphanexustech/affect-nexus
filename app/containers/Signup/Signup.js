@@ -6,9 +6,13 @@ import { userActions } from '../../actions/userActions';
 
 import { Alert, Col, Row, Grid, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 
+import GeneralErrorComponent from '../../components/errors/GeneralErrorComponent'
+
 class Signup extends Component {
   constructor(props) {
     super(props)
+    // Be certain that login status is reset
+    this.props.dispatch(userActions.logout());
     this.state = {
       user: {
         email: '',
@@ -17,7 +21,7 @@ class Signup extends Component {
         password: ''
       },
       submitted: false,
-      error: null
+      stateError: null
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -45,35 +49,38 @@ class Signup extends Component {
       if (user.username.length < 3) {
         user.confirmPassword != null;
         this.setState({
-          error: 'Your username must be at least 3 characters.'
+          stateError: 'Your username must be at least 3 characters.'
         })
       } else if (user.password.length < 4) {
         this.setState({
-          error: 'Your password must be at least 4 characters.'
+          stateError: 'Your password must be at least 4 characters.'
         })
       } else if (user.password != user.confirmPassword) {
         this.setState({
-          error: 'Your password fields did not match. Please reconfirm you password.'
+          stateError: 'Your password fields did not match. Please reconfirm you password.'
         })
       } else {
         dispatch(userActions.signup(user));
         this.setState({
-          error: null
+          stateError: null
         })
       }
     }
   }
 
   render() {
-    const { registering } = this.props;
-    const { user, submitted, error } = this.state;
+    const { registering, error } = this.props;
+    const { user, submitted, stateError } = this.state;
     return (
       <div>
-        {error &&
-          <Alert bsStyle="danger">{error}</Alert>
-        }
         <Row>
           <Col md={6} mdOffset={3}>
+            {error &&
+              <GeneralErrorComponent error={this.props.error} />
+            }
+            {stateError &&
+              <GeneralErrorComponent error={stateError} />
+            }
             <h3>Sign Up</h3>
             <form className="login-form" onSubmit={this.handleSubmit}>
               <FormGroup>
@@ -130,11 +137,19 @@ class Signup extends Component {
               </FormGroup>
 
               <FormGroup>
-                <Link to="/login" className="pull-left btn btn-link">Cancel</Link>
-                {registering &&
-                  'Loading...'
+                {!registering &&
+                  <div>
+                    <Link to="/login" className="pull-left btn btn-link">Cancel</Link>
+                    <button className="pull-right btn btn-primary">
+                      Sign Up
+                    </button>
+                  </div>
                 }
-                <button className="pull-right btn btn-primary">Sign Up</button>
+                {registering &&
+                  <button className="pull-right btn btn-primary" disabled>
+                    Loading...
+                  </button>
+                }
               </FormGroup>
 
             </form>
@@ -148,9 +163,10 @@ class Signup extends Component {
 
 
 function mapStateToProps(state) {
-  const { registering } = state.registration || false;
+  const { registering, error } = state.signup;
   return {
-      registering
+      registering,
+      error
   };
 }
 

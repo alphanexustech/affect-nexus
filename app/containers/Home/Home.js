@@ -17,7 +17,7 @@ class Home extends Component {
           <h6>
             P.S. Welcome to the Beta-testing of this tool! We're excited you're here!
             Please send feedback to
-            <a className="more_info_link" href="mailto:natebuechler@gmail.com?Subject=Hello%20AffectNexus">
+            <a className="more_info_link" href="mailto:contact@alphanex.us?Subject=Hello%20Affec%20tNexus">
               <i className="fa fa-1x fa-envelope"></i>
               me
             </a>
