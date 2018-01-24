@@ -49,6 +49,14 @@ hr {
  * General
  */
 
+ .navbar-nav > li > a {
+   text-align: right;
+ }
+
+.navbar-brand {
+  padding: 0px 10px;
+}
+
 .panel, .well, .alert, .form-control, .btn, .jumbotron,
 .container .jumbotron,.navbar-inverse {
   border-radius: 0px

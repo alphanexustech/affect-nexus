@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
 
 import { Link } from 'react-router-dom';
 import { Table, Button, Row, Col, Panel, Accordion } from 'react-bootstrap';
@@ -14,18 +11,7 @@ import NLPLaggerTable from '../../components/tables/NLPLaggerTable'
 import NLPNLTKPOSTable from '../../components/tables/NLPNLTKPOSTable'
 
 class NLPDisplay extends Component {
-  constructor(props) {
-    super(props);
-    this.handleRefreshClick = this.handleRefreshClick.bind(this);
-  }
-
-  handleRefreshClick(e) {
-    e.preventDefault();
-  }
-
   render () {
-    const { } = this.props;
-
     return (
       <div>
         <Link className="pull-right btn btn-xs btn-primary" to="/nexus">
@@ -98,15 +84,4 @@ class NLPDisplay extends Component {
   }
 }
 
-NLPDisplay.propTypes = {
-  dispatch: PropTypes.func.isRequired
-};
-
-function mapStateToProps(state) {
-  const { } = state;
-
-  return {
-  };
-}
-
-export default connect(mapStateToProps)(NLPDisplay);
+export default NLPDisplay;

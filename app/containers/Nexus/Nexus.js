@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { Link } from 'react-router-dom';
 import { Table, Button, Panel, Row, Col } from 'react-bootstrap';
-
 
 import NLPNexusList from '../../components/lists/NLPNexusList';
 
@@ -17,6 +17,11 @@ class Nexus extends Component {
     const notImplemented = {textDecoration: "line-through", color: "gray"}
     return (
       <div>
+        <Link className="pull-right btn btn-xs"
+              style={{background: '#EEEEEE', color: '#131313'}} 
+              to="/process">
+          <i className="fa fa-angle-double-right" aria-hidden="true"></i> Run a process
+        </Link>
         <h3><i className="fa fa-bullseye" aria-hidden="true"></i> Nexus</h3>
         <p>
           View recent processes

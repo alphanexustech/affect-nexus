@@ -6,6 +6,8 @@ import { userActions } from '../../actions/userActions';
 
 import { Alert, Col, Row, Grid, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 
+import GeneralErrorComponent from '../../components/errors/GeneralErrorComponent'
+
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -16,8 +18,7 @@ class Login extends Component {
         username: '',
         password: ''
       },
-      submitted: false,
-      error: null
+      submitted: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -47,15 +48,15 @@ class Login extends Component {
   }
 
   render() {
-    const { loggingIn } = this.props;
-    const { user, submitted, error } = this.state;
+    const { loggingIn, loggedIn, error } = this.props;
+    const { user, submitted } = this.state;
     return (
       <div>
-        {error &&
-          <Alert bsStyle="danger">{error}</Alert>
-        }
         <Row>
           <Col md={6} mdOffset={3}>
+            {error &&
+              <GeneralErrorComponent error={this.props.error} />
+            }
             <h3>Log In</h3>
             <form className="login-form" onSubmit={this.handleSubmit}>
               <FormGroup>
@@ -86,11 +87,19 @@ class Login extends Component {
               </FormGroup>
 
               <FormGroup>
-                <Link to="/signup" className="pull-left btn btn-link">New here? Sign Up!</Link>
-                {loggingIn &&
-                  'Loading...'
+                {!loggingIn &&
+                  <div>
+                    <Link to="/signup" className="pull-left btn btn-link">New here? Sign Up!</Link>
+                    <button className="pull-right btn btn-primary">
+                      Log In
+                    </button>
+                  </div>
                 }
-                <button className="pull-right btn btn-primary">Log In</button>
+                {loggingIn &&
+                  <button className="pull-right btn btn-primary" disabled>
+                    Loading...
+                  </button>
+                }
               </FormGroup>
 
             </form>
@@ -104,9 +113,11 @@ class Login extends Component {
 
 
 function mapStateToProps(state) {
-  const { loggingIn } = state.authentication || false;
+  const { loggingIn, loggedIn, error } = state.authentication;
   return {
-      loggingIn
+      loggingIn,
+      loggedIn,
+      error
   };
 }
 

@@ -44,7 +44,7 @@ const NLPComprehensiveForm = (props) => {
               {/* TODO: Get the options via a call to the server!*/}
               <Field className="form-control" name="emotion_set"
                 component="select" required>
-                <option value="all_emotions">All Affects</option>
+                <option value="all_emotions">All Emotions</option>
                 <option value="emotion_ml">Emotion Markup Language</option>
                 <option value="big_6">Big 6</option>
                 <option value="everday_categories">Everyday Categories</option>

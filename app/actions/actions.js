@@ -1,18 +1,30 @@
 import axios from 'axios'
 import { microservices } from '../config/microservices'
+import { userActions } from './userActions';
 
 const assistantURL = 'http://' + microservices.assistantServer + ':' + microservices.assistantPort;
 const collection = microservices.mongoCollection
 
 export const REQUEST_DATA = 'REQUEST_DATA';
 export const RECEIVE_DATA = 'RECEIVE_DATA';
+export const REQUEST_FAILURE = 'REQUEST_FAILURE';
 export const SUBMIT_REQUEST = 'SUBMIT_REQUEST';
+
+export const START_LOAD = 'START_LOAD';
+export const END_LOAD = 'END_LOAD';
 
 function requestData(dataset) {
   return {
     type: REQUEST_DATA,
     dataset
   };
+}
+
+function requestFailure(error) {
+  return {
+    type: REQUEST_FAILURE,
+    error
+  }
 }
 
 function receiveData(dataset, json) {
@@ -67,10 +79,39 @@ function fetchData(dataset, port, metadata) {
       dispatch(receiveData(dataset, json))
     })
     .catch(function (error) {
-      // IDEA: Handle error
-      console.log(error);
+      handleError(error)
     });
+
+    function handleError(error) {
+      let uxFriendlyError = '';
+      if (error.response) {
+        let data = error.response.data
+        if (error.response.status == 401) {
+          if (data.errors) {
+            uxFriendlyError = data.errors
+          } else if (data == 'Unauthorized') {
+            uxFriendlyError = 'It looks like you\'re not logged in. We\'ll help you out.'
+            setTimeout( function() {
+              userActions.logout()
+              window.location.href = '/login' // Redirect
+            }, 3000);
+          } else {
+            console.error(data);
+            uxFriendlyError = 'Sorry, there was a server error. We\'ll fix the problem when we find it.'
+          }
+        } else {
+          console.error(data);
+          uxFriendlyError = 'Sorry, there was a server error. We\'ll fix the problem when we find it.'
+        }
+        dispatch(failure(uxFriendlyError));
+      } else {
+        uxFriendlyError = 'Sorry, we couldn\'t connect to the server.'
+        dispatch(failure(uxFriendlyError));
+      }
+    }
   };
+
+  function failure(error) { return requestFailure(error) }
 }
 
 function shouldFetchData(state, dataset) {
@@ -96,6 +137,20 @@ export function fetchDataIfNeeded(dataset, port, metadata) {
   };
 }
 
+function startLoad(data) {
+  return {
+    type: START_LOAD,
+    data
+  };
+}
+
+function endLoad(data) {
+  return {
+    type: END_LOAD,
+    data
+  };
+}
+
 export function nlpSubmit(data) {
   return dispatch => {
     dispatch(submitRequest(data))
@@ -109,17 +164,48 @@ export function nlpSubmit(data) {
         "Authorization": 'Bearer ' + token // Set authorization header
       }
     }
+    dispatch(startLoad(data));
     axios.post(url, payload, config)
     .then(function (response) {
       let json = response.data.data
       dispatch(receiveData('nlp', json))
+      dispatch(endLoad(data));
     })
     .catch(function (error) {
-      // IDEA: Handle error
-      console.log(error);
+      handleError(error)
+      dispatch(endLoad(data));
     });
 
-  }
+    function handleError(error) {
+      let uxFriendlyError = '';
+      if (error.response) {
+        let data = error.response.data
+        if (error.response.status == 401) {
+          if (data.errors) {
+            uxFriendlyError = data.errors
+          } else if (data == 'Unauthorized') {
+            uxFriendlyError = 'It looks like you\'re not logged in. We\'ll help you out.'
+            setTimeout( function() {
+              userActions.logout()
+              window.location.href = '/login' // Redirect
+            }, 3000);
+          } else {
+            console.error(data);
+            uxFriendlyError = 'Sorry, there was a server error. We\'ll fix the problem when we find it.'
+          }
+        } else {
+          console.error(data);
+          uxFriendlyError = 'Sorry, there was a server error. We\'ll fix the problem when we find it.'
+        }
+        dispatch(failure(uxFriendlyError));
+      } else {
+        uxFriendlyError = 'Sorry, we couldn\'t connect to the server.'
+        dispatch(failure(uxFriendlyError));
+      }
+    }
+  };
+
+  function failure(error) { return requestFailure(error) }
 }
 
 export function loadNLPAnalysis(data) {
@@ -136,14 +222,46 @@ export function loadNLPAnalysis(data) {
         "Authorization": 'Bearer ' + token // Set authorization header
       }
     }
+    dispatch(startLoad(data));
     axios.get(url, config)
     .then(function (response) {
       let json = response.data.data
       dispatch(receiveData('nlp', json))
+      dispatch(endLoad(data));
     })
     .catch(function (error) {
-      // IDEA: Handle error
-      console.log(error);
+      handleError(error)
+      dispatch(endLoad(data));
     });
-  }
+
+    function handleError(error) {
+      let uxFriendlyError = '';
+      if (error.response) {
+        let data = error.response.data
+        if (error.response.status == 401) {
+          if (data.errors) {
+            uxFriendlyError = data.errors
+          } else if (data == 'Unauthorized') {
+            uxFriendlyError = 'It looks like you\'re not logged in. We\'ll help you out.'
+            setTimeout( function() {
+              userActions.logout()
+              window.location.href = '/login' // Redirect
+            }, 3000);
+          } else {
+            console.error(data);
+            uxFriendlyError = 'Sorry, there was a server error. We\'ll fix the problem when we find it.'
+          }
+        } else {
+          console.error(data);
+          uxFriendlyError = 'Sorry, there was a server error. We\'ll fix the problem when we find it.'
+        }
+        dispatch(failure(uxFriendlyError));
+      } else {
+        uxFriendlyError = 'Sorry, we couldn\'t connect to the server.'
+        dispatch(failure(uxFriendlyError));
+      }
+    }
+  };
+
+  function failure(error) { return requestFailure(error) }
 }
