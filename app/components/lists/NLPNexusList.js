@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import DivListGroup from '../groups/DivListGroup'
 import NLPListItem from '../listitems/NLPListItem'
+import GeneralErrorComponent from '../errors/GeneralErrorComponent'
 
 import { Row, Col, Table, Alert, Panel, ListGroup, Pagination } from 'react-bootstrap';
 
@@ -55,71 +56,73 @@ class NLPNexusList extends Component {
 
     return (
       <div>
-        {/*
-            TODO: Create a stats Component here that makes use of this endpoint:
+        {isFetching && this.props.error &&
+          <GeneralErrorComponent error={this.props.error} />
+        }
+        { !this.props.error &&
+          <div>
 
-            dispatch(fetchDataIfNeeded('nlp-analyses-stats', '3000'));
-
-        */}
-        <div className="nexus--emotion_set-title">
-          Most recent processes
-        </div>
-        <div className="nexus--display_main-area-wrapper">
-          {isFetching && data.length === 0 &&
-            <div style={{padding: "10px"}}>Loading...</div>
-          }
-          {!isFetching && data.length === 0 &&
-            <div style={{padding: "10px"}}>{nlplistitems}Your most recent processes are shown here. Right now you don't have any! Why not run one?</div>
-          }
-          {data.length > 0 &&
-            <div>
-              <Row>
-                <Col lg={12}>
-                  <div className="pull-right">
-                    <Pagination
-                      prev
-                      next
-                      first
-                      last
-                      ellipsis
-                      boundaryLinks
-                      items={parseInt(this.props.metadata.totalPages)}
-                      maxButtons={5}
-                      activePage={this.state.activePage}
-                      onSelect={this.handleSelect} />
-                  </div>
-                </Col>
-              </Row>
-              <Row>
-                <Col lg={12}>
-                  <ListGroup>
-                    {nlplistitems}
-                  </ListGroup>
-                </Col>
-              </Row>
-              <Row>
-                <Col lg={12}>
-                  <div className="pull-right">
-                    <Pagination
-                      prev
-                      next
-                      first
-                      last
-                      ellipsis
-                      boundaryLinks
-                      items={parseInt(this.props.metadata.totalPages)}
-                      maxButtons={5}
-                      activePage={this.state.activePage}
-                      onSelect={this.handleSelect} />
-                  </div>
-                </Col>
-              </Row>
+            <div className="nexus--emotion_set-title">
+              Most recent processes
             </div>
-          }
-        </div>
-        <div className="nexus--emotion_set-footer" style={{fontSize: "12px", textAlign: "right"}}>
-          Currently showing five processes
-        </div>
+            <div className="nexus--display_main-area-wrapper">
+              {isFetching && data.length === 0 && !this.props.error &&
+                <div style={{padding: "10px"}}>Loading...</div>
+              }
+              {!isFetching && data.length === 0 && !this.props.error &&
+                <div style={{padding: "10px"}}>{nlplistitems}Your most recent processes are shown here. Right now you don't have any! Why not run one?</div>
+              }
+              {data.length > 0 &&
+                <div>
+                  <Row>
+                    <Col lg={12}>
+                      <div className="pull-right">
+                        <Pagination
+                          prev
+                          next
+                          first
+                          last
+                          ellipsis
+                          boundaryLinks
+                          items={parseInt(this.props.metadata.totalPages)}
+                          maxButtons={5}
+                          activePage={this.state.activePage}
+                          onSelect={this.handleSelect} />
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col lg={12}>
+                      <ListGroup>
+                        {nlplistitems}
+                      </ListGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col lg={12}>
+                      <div className="pull-right">
+                        <Pagination
+                          prev
+                          next
+                          first
+                          last
+                          ellipsis
+                          boundaryLinks
+                          items={parseInt(this.props.metadata.totalPages)}
+                          maxButtons={5}
+                          activePage={this.state.activePage}
+                          onSelect={this.handleSelect} />
+                      </div>
+                    </Col>
+                  </Row>
+                </div>
+              }
+            </div>
+            <div className="nexus--emotion_set-footer" style={{fontSize: "12px", textAlign: "right"}}>
+              Currently showing five processes
+            </div>
+          </div>
+        }
       </div>
     );
   }
@@ -135,23 +138,28 @@ NLPNexusList.propTypes = {
 
 function mapStateToProps(state) {
   const { dataByDataset } = state;
-  const {
-    isFetching,
-    lastUpdated,
-    items: data,
-    metadata: metadata
-  } = dataByDataset['nlp-analyses'] || {
-    isFetching: true,
-    items: [],
-    metadata: {}
-  };
+  if (dataByDataset['error']) {
+    return {
+      error: dataByDataset['error'],
+      lastUpdated: null,
+      isFetching: true,
+      data: [],
+      metadata: {}
+    }
+  } else {
+    const { isFetching, lastUpdated,
+            items: data, metadata: metadata
+          } = dataByDataset['nlp-analyses'] || {
+            isFetching: true, items: [], metadata: {}
+          };
 
-  return {
-    data,
-    metadata,
-    isFetching,
-    lastUpdated
-  };
+    return {
+      data,
+      metadata,
+      isFetching,
+      lastUpdated
+    };
+  }
 }
 
 export default connect(mapStateToProps)(NLPNexusList);

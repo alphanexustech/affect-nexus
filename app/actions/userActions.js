@@ -97,7 +97,7 @@ function signup(user) {
         localStorage.setItem('token', token);
         localStorage.setItem('userID', userID);
         localStorage.setItem('username', username);
-        window.location.href = '/nexus'
+        window.location.href = '/nexus' // Redirect
       } else {
         handleError(response)
       }

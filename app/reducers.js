@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import {
-  REQUEST_DATA, RECEIVE_DATA
+  REQUEST_DATA, RECEIVE_DATA, REQUEST_FAILURE,
+  START_LOAD, END_LOAD
 } from './actions/actions';
 
 import {
@@ -47,12 +48,31 @@ function dataByDataset(state = { }, action) {
       return Object.assign({}, state, {
         [action.dataset]: data(state[action.dataset], action)
       });
+    case REQUEST_FAILURE:
+      return {
+        error: action.error
+      };
     default:
       return state;
   }
 }
 
-export function signup(state = {}, action) {
+function load(state = {}, action) {
+  switch (action.type) {
+    case START_LOAD:
+      return {
+        loading: true
+      }
+    case END_LOAD:
+      return {
+        loading: false
+      }
+    default:
+      return state
+  }
+}
+
+function signup(state = {}, action) {
   switch (action.type) {
     case SIGNUP_REQUEST:
       return {
@@ -99,6 +119,7 @@ const rootReducer = combineReducers({
   signup,
   authentication,
   dataByDataset,
+  load,
   form: formReducer     // <---- Mounted at 'form'
 });
 

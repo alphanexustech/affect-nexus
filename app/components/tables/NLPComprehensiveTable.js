@@ -6,6 +6,7 @@ import { Table, Alert } from 'react-bootstrap';
 
 import NLPComprehensiveTableModule from '../tables/NLPComprehensiveTableModule'
 import NLPCondensedTableModule from '../tables/NLPCondensedTableModule'
+import GeneralErrorComponent from '../errors/GeneralErrorComponent'
 
 class NLPComprehensiveTable extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class NLPComprehensiveTable extends Component {
   }
 
   render () {
-    const { data, isFetching, lastUpdated } = this.props;
+    const { data, isFetching, lastUpdated, loading } = this.props;
 
     var primaryArea = '',
         secondaryArea = '',
@@ -80,54 +81,68 @@ class NLPComprehensiveTable extends Component {
     }
     return (
       <div>
-        {isFetching && data.length === 0 &&
-          <Alert bsStyle="success">
-            Hover your mouse over the form icon in the bottom right corner to begin exploring!
-            After filling out the form, all the results will be displayed here.
-          </Alert>
+        {isFetching && this.props.error &&
+          <GeneralErrorComponent error={this.props.error} />
         }
-        {!isFetching && data.length === 0 &&
-          <Alert bsStyle="success">No results.</Alert>
-        }
-        {data.length > 0 && arrayName != 'big_6' && arrayName != 'dimensions' &&
-          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <div>
-              <div className="affect--emotion_set-title">{primaryAlert}</div>
-              <div className="affect--display_main-area-wrapper">
-                <div className="affect--display_main-area">
-                  {primaryArea}
+        { !this.props.error &&
+          <div>
+            {loading &&
+              <Alert bsStyle="success">Loading...</Alert>
+            }
+            {!loading &&
+              <div>
+                {!isFetching && data.length === 0 &&
+                  <Alert bsStyle="success">
+                    Hover your mouse over the form icon in the bottom right corner to begin exploring!
+                    After filling out the form, all the results will be displayed here.
+                  </Alert>
+                }
+                {!isFetching && lastUpdated && data.length === 0 &&
+                  <Alert bsStyle="success">No results.</Alert>
+                }
+                {data.length > 0 && arrayName != 'big_6' && arrayName != 'dimensions' &&
+                  <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+                    <div>
+                      <div className="affect--emotion_set-title">{primaryAlert}</div>
+                      <div className="affect--display_main-area-wrapper">
+                        <div className="affect--display_main-area">
+                          {primaryArea}
+                        </div>
+                      </div>
+                      <br></br>
+                      <div className="affect--emotion_set-title">{secondaryAlert}</div>
+                      <div className="affect--display_main-area-wrapper">
+                        <div className="affect--display_main-area">
+                          {secondaryArea}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
+                {data.length > 0 && ( arrayName == 'big_6' || arrayName == 'dimensions') &&
+                  <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+                    <div>
+                      <div className="affect--emotion_set-title">{primaryAlert}</div>
+                      <div className="affect--display_main-area-wrapper">
+                        <div className="affect--display_main-area">
+                          {primaryArea}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
+                <div style={{fontSize: '10px'}}>
+                  {lastUpdated &&
+                    <span>
+                      Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
+                      {' '}
+                    </span>
+                  }
                 </div>
               </div>
-              <br></br>
-              <div className="affect--emotion_set-title">{secondaryAlert}</div>
-              <div className="affect--display_main-area-wrapper">
-                <div className="affect--display_main-area">
-                  {secondaryArea}
-                </div>
-              </div>
-            </div>
+            }
           </div>
         }
-        {data.length > 0 && ( arrayName == 'big_6' || arrayName == 'dimensions') &&
-          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <div>
-              <div className="affect--emotion_set-title">{primaryAlert}</div>
-              <div className="affect--display_main-area-wrapper">
-                <div className="affect--display_main-area">
-                  {primaryArea}
-                </div>
-              </div>
-            </div>
-          </div>
-        }
-        <div style={{fontSize: '10px'}}>
-          {lastUpdated &&
-            <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-              {' '}
-            </span>
-          }
-        </div>
       </div>
     );
   }
@@ -141,21 +156,33 @@ NLPComprehensiveTable.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { dataByDataset } = state;
-  const {
-    isFetching,
-    lastUpdated,
-    items: data
-  } = dataByDataset['nlp'] || {
-    isFetching: true,
-    items: []
-  };
+  const { dataByDataset, load } = state;
+  console.log(state);
+  if (dataByDataset['error']) {
+    return {
+      error: dataByDataset['error'],
+      lastUpdated: null,
+      isFetching: true,
+      data: [],
+      loading: load['loading']
+    }
+  } else {
+    const {
+      isFetching,
+      lastUpdated,
+      items: data
+    } = dataByDataset['nlp'] || {
+      isFetching: false,
+      items: []
+    };
 
-  return {
-    data,
-    isFetching,
-    lastUpdated
-  };
+    return {
+      data,
+      isFetching,
+      lastUpdated,
+      loading: load['loading']
+    };
+  }
 }
 
 export default connect(mapStateToProps)(NLPComprehensiveTable);
