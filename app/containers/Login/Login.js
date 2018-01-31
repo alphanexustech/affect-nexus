@@ -66,7 +66,7 @@ class Login extends Component {
                   name="username"
                   value={user.username}
                   onChange={this.handleChange}
-                  placeholder="Please enter your username"
+                  placeholder="Username"
                 />
               {submitted && !user.username &&
                   <HelpBlock>Username is required</HelpBlock>
@@ -79,7 +79,7 @@ class Login extends Component {
                   name="password"
                   value={user.password}
                   onChange={this.handleChange}
-                  placeholder="Please enter your password"
+                  placeholder="Password"
                 />
                 {submitted && !user.password &&
                   <HelpBlock>Password is required</HelpBlock>
