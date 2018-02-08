@@ -17,7 +17,7 @@ class NLPDisplay extends Component {
         <Link className="pull-right btn btn-xs btn-primary" to="/nexus">
           <i className="fa fa-angle-double-left" aria-hidden="true"></i> Back
         </Link>
-        <h3><i className="fa fa-level-down" aria-hidden="true"></i> Process</h3>
+        <h3><i className="fa fa-long-arrow-right" aria-hidden="true"></i> Process</h3>
         <p>
           Start a process
         </p>

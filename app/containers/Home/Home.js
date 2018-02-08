@@ -2,27 +2,29 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Jumbotron } from 'react-bootstrap';
 
+import logo from '../../assets/affect-nexus-logo.png';
+
 class Home extends Component {
   render() {
     return (
       <div>
-        <Jumbotron style={{margin: '0%', padding: '10%'}}>
-          <h4>
-            Experiment and explore emotions with this tool.
-            Process information and gain useful insight!
-            Quickly discover what the underlying emotions are in text!
-          </h4>
-          <br></br>
-          <br></br>
-          <h6>
-            P.S. Welcome to the Beta-testing of this tool! We're excited you're here!
-            Please send feedback to
-            <a className="more_info_link" href="mailto:contact@alphanex.us?Subject=Hello%20Affec%20tNexus">
-              <i className="fa fa-1x fa-envelope"></i>
-              me
-            </a>
-            , and have fun!
-          </h6>
+        <Jumbotron style={{
+            margin: '0%',
+            padding: '5%',
+            textAlign: 'center'
+          }}>
+          <img style={{
+              "height": "160px",
+              "margin": "40px",
+              marginBottom: "80px"
+            }}
+               src={logo} />
+          <h2>
+            Find emotions in text!
+          </h2>
+          <h5>
+            This tool processes textual information like a short post or parts of a conversation.
+          </h5>
         </Jumbotron>
       </div>
     );

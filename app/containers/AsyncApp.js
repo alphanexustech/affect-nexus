@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Home from './Home/Home';
 import Signup from './Signup/Signup';
 import Login from './Login/Login';
+import Settings from './Settings/Settings';
 import Nexus from './Nexus/Nexus';
 import NLPComprehensiveDisplay from './NLP/NLPComprehensiveDisplay';
 import NLPInsightDisplay from './NLP/NLPInsightDisplay';
@@ -47,7 +48,7 @@ class AsyncApp extends Component {
               <NavLink to="/nexus"><i className="fa fa-bullseye" aria-hidden="true"></i> Nexus</NavLink>
             </li>
             <li>
-              <NavLink to="/process"><i className="fa fa-level-down" aria-hidden="true"></i> Process</NavLink>
+              <NavLink to="/process"><i className="fa fa-long-arrow-right" aria-hidden="true"></i> Process</NavLink>
             </li>
             <li>
               <NavLink to="/insight"><i className="fa fa-bolt" aria-hidden="true"></i> Insight</NavLink>
@@ -58,13 +59,20 @@ class AsyncApp extends Component {
       loginButtons = (
         <div>
           <nav className="nav navbar-nav navbar-right">
-            <li>
-              <NavLink to="/nexus">
-                {localStorage.getItem('username')}
-              </NavLink>
+            <li style={{
+                paddingTop: "19.5px",
+                paddingBottom: "19.5px",
+                paddingRight: "19.5px",
+                color: "#CCC",
+                textAlign: "right"
+              }}>
+              Hi, {localStorage.getItem('username')}
             </li>
             <li>
-              <NavLink to="/login" onClick={this.handleLogout}>Log Out</NavLink>
+              <NavLink to="/settings"><i className="fa fa-cogs" aria-hidden="true"></i> Settings</NavLink>
+            </li>
+            <li>
+              <NavLink to="/login" onClick={this.handleLogout}><i className="fa fa-sign-out" aria-hidden="true"></i> Log Out</NavLink>
             </li>
           </nav>
         </div>
@@ -75,10 +83,10 @@ class AsyncApp extends Component {
         <div>
           <nav className="nav navbar-nav navbar-right">
             <li>
-              <NavLink to="/signup">Sign Up</NavLink>
+              <NavLink to="/signup"><i className="fa fa-user-plus" aria-hidden="true"></i> Sign Up</NavLink>
             </li>
             <li>
-              <NavLink to="/login">Log In</NavLink>
+              <NavLink to="/login"><i className="fa fa-sign-in" aria-hidden="true"></i> Log In</NavLink>
             </li>
           </nav>
         </div>
@@ -107,6 +115,7 @@ class AsyncApp extends Component {
          <Route path="/" exact component={Home}/>
          <Route path="/signup" component={Signup}/>
          <Route path="/login" component={Login}/>
+         <Route path="/settings" component={Settings}/>
          <Route path="/nexus" component={Nexus}/>
          <Route path="/process" component={NLPComprehensiveDisplay}/>
          <Route path="/insight" component={NLPInsightDisplay}/>

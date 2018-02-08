@@ -57,7 +57,7 @@ class Login extends Component {
             {error &&
               <GeneralErrorComponent error={this.props.error} />
             }
-            <h3>Log In</h3>
+            <h3><i className="fa fa-sign-in" aria-hidden="true"></i> Log In</h3>
             <form className="login-form" onSubmit={this.handleSubmit}>
               <FormGroup>
                 <ControlLabel>Username</ControlLabel>

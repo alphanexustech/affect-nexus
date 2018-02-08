@@ -88,7 +88,7 @@ class Signup extends Component {
             {error && stateError &&
               <GeneralErrorComponent error={stateError} />
             }
-            <h3>Sign Up</h3>
+            <h3><i className="fa fa-user-plus" aria-hidden="true"></i> Sign Up</h3>
             <form className="login-form" onSubmit={this.handleSubmit}>
               <FormGroup>
                 <ControlLabel>Email</ControlLabel>
