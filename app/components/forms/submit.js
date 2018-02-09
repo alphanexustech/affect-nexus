@@ -16,6 +16,10 @@ function submit(values, dispatch) {
   if(values.lemma == null){
     values.lemma = '1'
   }
+  if (values.doc.length > 300) {
+    // IDEA: Prevent large docs from being sent
+    console.log('Woah, that document was large!');
+  }
   dispatch(nlpSubmit(values));
 }
 

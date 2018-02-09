@@ -96,7 +96,7 @@ const NLPComprehensiveForm = (props) => {
                 <label>
                   <i className="fa fa-pull-left fa-check-circle affect--emotion_fa-icon-adjustment" aria-hidden="true"></i> Exact
                   <OverlayTrigger placement="top" overlay={e_tooltip}>
-                    <i style={{color: '#AAA'}} className="fa fa-question-circle-o" aria-hidden="true"></i>
+                    <i style={{color: '#AAA'}} className="fa fa-question-circle" aria-hidden="true"></i>
                   </OverlayTrigger>
                 </label>
                 <div style={{textAlign: 'left'}}>
@@ -109,7 +109,7 @@ const NLPComprehensiveForm = (props) => {
                 <label>
                   <i className="fa fa-pull-left fa-cut affect--emotion_fa-icon-adjustment" aria-hidden="true"></i> Partial
                   <OverlayTrigger placement="top" overlay={p_tooltip}>
-                    <i style={{color: '#AAA'}} className="fa fa-question-circle-o" aria-hidden="true"></i>
+                    <i style={{color: '#AAA'}} className="fa fa-question-circle" aria-hidden="true"></i>
                   </OverlayTrigger>
                 </label>
                 <div style={{textAlign: 'left'}}>
@@ -122,7 +122,7 @@ const NLPComprehensiveForm = (props) => {
                 <label>
                   <i className="fa fa-pull-left fa-cubes affect--emotion_fa-icon-adjustment" aria-hidden="true"></i> Base Form
                   <OverlayTrigger placement="top" overlay={bf_tooltip}>
-                    <i style={{color: '#AAA'}} className="fa fa-question-circle-o" aria-hidden="true"></i>
+                    <i style={{color: '#AAA'}} className="fa fa-question-circle" aria-hidden="true"></i>
                   </OverlayTrigger>
                 </label>
                 <div style={{textAlign: 'left'}}>
