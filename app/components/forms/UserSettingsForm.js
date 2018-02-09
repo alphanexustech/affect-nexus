@@ -172,10 +172,23 @@ const UserSettingsForm = (props) => {
                 color: "#AAA"
               }}>
               About Alpha Nexus
+              <div style={{
+                padding: '16px',
+                float: 'right'
+              }}>
+                <a href="http://alphanex.us/tos.pdf">Terms of Service</a>
+              </div>
+              <div style={{
+                padding: '16px',
+                float: 'right'
+              }}>
+                <a href="http://alphanex.us/privacy.pdf">Privacy Policy</a>
+              </div>
             </h6>
+            <br></br>
             <h6 style={{marginTop: '32px'}}>
               Alpha Nexus Web Version <span style={{color: "#AAA"}}>(Desktop and Browser)</span>
-            <div style={{padding: '16px'}}>
+              <div style={{padding: '16px'}}>
                 GPLv3 2017-2018 Alpha Nexus Technologies
                 <br></br>
                 <span style={{color: "AAA"}}>
@@ -185,7 +198,7 @@ const UserSettingsForm = (props) => {
             </h6>
             <h6 style={{marginTop: '32px'}}>
               Alpha Nexus Mobile <span style={{color: "#AAA"}}>(Android)</span>
-            <div style={{padding: '16px'}}>
+              <div style={{padding: '16px'}}>
                 © 2017-2018 Alpha Nexus Technologies LLC
                 <br></br>
                 <span style={{color: "AAA"}}>
