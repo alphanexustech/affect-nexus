@@ -40,7 +40,7 @@ class AsyncApp extends Component {
         <div className="bkgd" />
       )
     }
-    if (localStorage.getItem('token') != null) {
+    if (sessionStorage.getItem('token') != null) {
       navOptions = (
         <div>
           <nav className="nav navbar-nav">
@@ -66,7 +66,7 @@ class AsyncApp extends Component {
                 color: "#CCC",
                 textAlign: "right"
               }}>
-              Hi, {localStorage.getItem('username')}
+              Hi, {sessionStorage.getItem('username')}
             </li>
             <li>
               <NavLink to="/settings"><i className="fa fa-cogs" aria-hidden="true"></i> Settings</NavLink>

@@ -36,13 +36,13 @@ class WordFrequencyScatterPlot extends Component {
       } else {
         key_prefix = graph + '_';
       }
-      result.push(JSON.parse(localStorage.getItem('lastEmotion'))['order-1'][key_prefix + 'order_fdist'])
-      result.push(JSON.parse(localStorage.getItem('lastEmotion'))['order-2'][key_prefix + 'order_fdist'])
-      result.push(JSON.parse(localStorage.getItem('lastEmotion'))['order-3'][key_prefix + 'order_fdist'])
-      result.push(JSON.parse(localStorage.getItem('lastEmotion'))['order_1_and_2'][key_prefix + 'order_fdist'])
-      result.push(JSON.parse(localStorage.getItem('lastEmotion'))['order_1_and_3'][key_prefix + 'order_fdist'])
-      result.push(JSON.parse(localStorage.getItem('lastEmotion'))['order_2_and_3'][key_prefix + 'order_fdist'])
-      result.push(JSON.parse(localStorage.getItem('lastEmotion'))['all_orders'][key_prefix + 'order_fdist'])
+      result.push(JSON.parse(sessionStorage.getItem('lastEmotion'))['order-1'][key_prefix + 'order_fdist'])
+      result.push(JSON.parse(sessionStorage.getItem('lastEmotion'))['order-2'][key_prefix + 'order_fdist'])
+      result.push(JSON.parse(sessionStorage.getItem('lastEmotion'))['order-3'][key_prefix + 'order_fdist'])
+      result.push(JSON.parse(sessionStorage.getItem('lastEmotion'))['order_1_and_2'][key_prefix + 'order_fdist'])
+      result.push(JSON.parse(sessionStorage.getItem('lastEmotion'))['order_1_and_3'][key_prefix + 'order_fdist'])
+      result.push(JSON.parse(sessionStorage.getItem('lastEmotion'))['order_2_and_3'][key_prefix + 'order_fdist'])
+      result.push(JSON.parse(sessionStorage.getItem('lastEmotion'))['all_orders'][key_prefix + 'order_fdist'])
       return result;
     }
 

@@ -33,6 +33,14 @@ video {
 }
 
 /*
+ * Facebook Icon
+ */
+
+#facebookLink:hover {
+  color: #92b3f3;
+}
+
+/*
  * Font overrides
  */
 
@@ -371,6 +379,59 @@ i.fa {
    font-family: 'Exo', sans-serif;
    padding: 18px;
  }
+
+/*
+ * Settings Page
+ */
+
+.settings--settings_group-buttons {
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.settings--preferences_toggle-group {
+  display: inline-flex;
+  text-align: left;
+  padding-bottom: 24px;
+}
+
+.settings--preferences_toggle-group_label-margin {
+  margin-left: 16px;
+  min-width: 150px;
+}
+
+.settings--preference_bottom-right-corner_status-loading {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: #222222;
+  padding: 12px;
+  border: 1px solid white;
+}
+
+.settings--preference_bottom-right-corner_status-error {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: #ffd7d7;
+  color: #222222;
+  padding: 12px;
+  border: 1px solid #222222;
+}
+
+.settings--preference_bottom-right-corner_status-success {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: #dfffd7;
+  color: #222222;
+  padding: 12px;
+  border: 1px solid #222222;
+}
 
 /*
  * Scrollbars

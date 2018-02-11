@@ -268,17 +268,17 @@ export default class DataSeries extends React.Component {
         var nowMonth;
         var nowYear;
 
-        if(parseInt(localStorage.getItem('focusedMonth')) != null){
-          nowMonth = parseInt(localStorage.getItem('focusedMonth'));
+        if(parseInt(sessionStorage.getItem('focusedMonth')) != null){
+          nowMonth = parseInt(sessionStorage.getItem('focusedMonth'));
         } else {
           nowMonth = now.getMonth();
-          localStorage.setItem('focusedMonth', now.getMonth());
+          sessionStorage.setItem('focusedMonth', now.getMonth());
         }
-        if(parseInt(localStorage.getItem('focusedYear')) != null){
-          nowYear = parseInt(localStorage.getItem('focusedYear'));
+        if(parseInt(sessionStorage.getItem('focusedYear')) != null){
+          nowYear = parseInt(sessionStorage.getItem('focusedYear'));
         } else {
           now.getMonth()
-          localStorage.setItem('focusedYear', now.getYear());
+          sessionStorage.setItem('focusedYear', now.getYear());
         }
         var cSun = new Calendar(0); // weeks starts on Sunday
         var mdc = cSun.monthDays(nowYear + 1900, nowMonth);

@@ -19,7 +19,7 @@ import NLPNLTKPOSTable from '../../components/tables/NLPNLTKPOSTable'
 class NLPInsightDisplay extends Component {
   render () {
     const { } = this.props;
-    let emptyLocal = false, // Assume localStorage isn't empty
+    let emptyLocal = false, // Assume sessionStorage isn't empty
         emotion,
         emotionName,
         lastEmotionCreationDate,
@@ -29,13 +29,13 @@ class NLPInsightDisplay extends Component {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    if (localStorage.getItem('lastEmotion')) {
-      emotion = JSON.parse(localStorage.getItem('lastEmotion'));
+    if (sessionStorage.getItem('lastEmotion')) {
+      emotion = JSON.parse(sessionStorage.getItem('lastEmotion'));
       emotionName = capitalizeFirstLetter(emotion.emotion);
-      lastEmotionCreationDate = localStorage.getItem('lastEmotionCreationDate');
-      lastEmotionText = localStorage.getItem('lastEmotionText');
+      lastEmotionCreationDate = sessionStorage.getItem('lastEmotionCreationDate');
+      lastEmotionText = sessionStorage.getItem('lastEmotionText');
     } else {
-      // There isn't anything in localStorage. We assumed wrong.
+      // There isn't anything in sessionStorage. We assumed wrong.
       emptyLocal = true
     }
 

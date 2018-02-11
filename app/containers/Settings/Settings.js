@@ -2,21 +2,33 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Table, Button, Panel, Row, Col, Modal } from 'react-bootstrap';
 
+import GeneralErrorComponent from '../../components/errors/GeneralErrorComponent'
+
 import UserSettingsForm from '../../components/forms/UserSettingsForm';
+import { receiveSettingsData, deleteProfile } from '../../actions/userActions';
 
 class Settings extends Component {
   constructor(props, context) {
     super(props, context)
+    // load settings information for the user
+    this.props.dispatch(receiveSettingsData());
 
+    // Modal behavior
     this.handleShowModal = this.handleShowModal.bind(this)
     this.handleCloseModal = this.handleCloseModal.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
 
     this.state = {
       showModal: false
     }
+  }
+
+  handleDelete() {
+    const { dispatch } = this.props;
+    dispatch(deleteProfile())
   }
 
   handleShowModal() {
@@ -28,7 +40,11 @@ class Settings extends Component {
   }
 
   render () {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, settings, loading, error, successfullyUpdated, user } = this.props;
+    const confirmationErrorMsg = 'The confirmation password must match the password.';
+    const trivialError = this.props.error == confirmationErrorMsg;
+    const criticalError = !trivialError && this.props.error;
+    
     return (
       <div>
         <Link className="pull-right btn btn-xs btn-primary" to="/nexus">
@@ -42,42 +58,63 @@ class Settings extends Component {
           Modify your Profile, Password, and Preferences
         </h6>
         <hr></hr>
-        <Row>
-          <Col md={10} mdOffset={1} style={{textAlign: "right"}}>
-            Please send feedback to our <a style={{marginLeft: "4px"}} className="more_info_link" href="mailto:contact@alphanex.us?Subject=Affect%20Nexus">
-              <i className="fa fa-1x fa-envelope"></i>
-              User Experience Expert
-            </a>
-          </Col>
-        </Row>
-        <br></br>
-        <Row>
-          <Col md={10} mdOffset={1}>
-            <UserSettingsForm />
-          </Col>
-        </Row>
-        <Row>
-          <Col md={10} mdOffset={1}>
-            <div style={{margin: "10px 0px", padding: "10px 10px", background: "#ffd7d7"}}>
-              <div style={{color: "#222"}}>
-                <i className="fa fa-trash" aria-hidden="true"></i> Delete Profile
-                <h6 style={{color: "#454545"}}>
-                  If you would like to ensure that we no longer collect, disclose,
-                  or contact you, then you may delete your account.
-                  You may also get in touch with us
-                  at <a style={{color: '#010101'}} href="mailto:contact@alphanex.us?Subject=Affect%20Nexus">
-                    contact@alphanex.us
-                  </a> for
-                  more information.
-                </h6>
-                <br></br>
-              </div>
-              <div style={{textAlign: 'right'}}>
-                <Button bsSize="xsmall" className="btn-danger" type="button"onClick={this.handleShowModal}>Delete Profile</Button>
-              </div>
-            </div>
-          </Col>
-        </Row>
+        { criticalError &&
+          <GeneralErrorComponent error={error}></GeneralErrorComponent>
+        }
+        { this.props.loading && !criticalError &&
+          <div className="settings--preference_bottom-right-corner_status-loading">Loading...</div>
+        }
+        { !this.props.loading && !criticalError && successfullyUpdated &&
+          <div className="settings--preference_bottom-right-corner_status-success">Update Success!</div>
+        }
+        { !this.props.loading && trivialError &&
+          <div className="settings--preference_bottom-right-corner_status-error">{error}</div>
+        }
+        { !this.props.loading && trivialError &&
+          <div className="settings--preference_bottom-right-corner_status-error">{error}</div>
+        }
+        { !this.props.error && !criticalError &&
+          <Row>
+            <Col md={6} mdOffset={3} style={{textAlign: "right"}}>
+              Please send us your <a style={{marginLeft: "4px"}} className="more_info_link" href="mailto:contact@alphanex.us?Subject=Affect%20Nexus">
+                <i className="fa fa-1x fa-envelope"></i>
+                Feedback
+              </a>
+            </Col>
+          </Row>
+        }
+        { !criticalError &&
+          <div>
+            <br></br>
+            <Row>
+              <Col md={6} mdOffset={3}>
+                <UserSettingsForm />
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6} mdOffset={3}>
+                <div style={{margin: "10px 0px", padding: "10px 10px", background: "#ffd7d7"}}>
+                  <div style={{color: "#222"}}>
+                    <i className="fa fa-trash" aria-hidden="true"></i> Delete Profile
+                    <h6 style={{color: "#454545"}}>
+                      If you would like to ensure that we no longer collect, disclose,
+                      or contact you, then you may delete your account.
+                      You may also get in touch with us
+                      at <a style={{color: '#010101'}} href="mailto:contact@alphanex.us?Subject=Affect%20Nexus">
+                        contact@alphanex.us
+                      </a> for
+                      more information.
+                    </h6>
+                    <br></br>
+                  </div>
+                  <div style={{textAlign: 'right'}}>
+                    <Button bsSize="xsmall" className="btn-danger" type="button"onClick={this.handleShowModal}>Delete Profile</Button>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        }
 
         <div>
           <Modal show={this.state.showModal} onHide={this.handleCloseModal}>
@@ -101,7 +138,7 @@ class Settings extends Component {
 
             <Modal.Footer>
               <Button className="btn-link pull-left" onClick={this.handleCloseModal}>Nevermind</Button>
-              <Button className="btn-danger pull-right">Yes, delete my profile.</Button>
+              <Button to="/" className="btn btn-danger pull-right" onClick={this.handleDelete}>Yes, delete my profile.</Button>
             </Modal.Footer>
           </Modal>
         </div>
@@ -110,4 +147,19 @@ class Settings extends Component {
   }
 }
 
-export default Settings
+Settings.propTypes = {
+  dispatch: PropTypes.func.isRequired
+};
+
+function mapStateToProps(state) {
+  const { settings, loading, error, successfullyUpdated, user } = state.settingsUpdates;
+  return {
+    settings,
+    loading,
+    error,
+    successfullyUpdated,
+    user
+  }
+}
+
+export default connect(mapStateToProps)(Settings);

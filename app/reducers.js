@@ -8,12 +8,14 @@ import {
 import {
   SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE,
   LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT,
+  SETTINGS_REQUEST, SETTINGS_SUCCESS, SETTINGS_FAILURE,
+  UPDATE_REQUEST, UPDATE_SUCCESS, UPDATE_FAILURE, DELETE_PROFILE,
 } from './actions/userActions';
 
 /*
  * Authentication defintions
  */
-let user = JSON.parse(localStorage.getItem('user'));
+let user = JSON.parse(sessionStorage.getItem('user'));
 const initialAuthState = user ? { loggedIn: true, user } : {};
 
 function data(state = {
@@ -104,11 +106,54 @@ function authentication(state = initialAuthState, action) {
         user: action.user
       };
     case LOGIN_FAILURE:
-    console.log(action);
       return {
         error: action.error
       };
     case LOGOUT:
+      return {};
+    default:
+      return state
+  }
+}
+
+function settings(state = {}, action) {
+  switch (action.type) {
+    case SETTINGS_REQUEST:
+      return {
+        loading: true,
+        status: action.status
+      };
+    case SETTINGS_SUCCESS:
+      return {
+        user: action.user
+      };
+    case SETTINGS_FAILURE:
+      return {
+        error: action.error
+      };
+    default:
+      return state
+  }
+}
+
+function settingsUpdates(state = {}, action) {
+  switch (action.type) {
+    case UPDATE_REQUEST:
+      return {
+        updating: true,
+        status: action.status
+      };
+    case UPDATE_SUCCESS:
+    console.log(action.user);
+      return {
+        user: action.user,
+        successfullyUpdated: true
+      };
+    case UPDATE_FAILURE:
+      return {
+        error: action.error
+      };
+    case DELETE_PROFILE:
       return {};
     default:
       return state
@@ -120,6 +165,8 @@ const rootReducer = combineReducers({
   authentication,
   dataByDataset,
   load,
+  settings,
+  settingsUpdates,
   form: formReducer     // <---- Mounted at 'form'
 });
 

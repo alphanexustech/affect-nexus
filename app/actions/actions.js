@@ -61,7 +61,7 @@ function submitRequest(values) {
 function fetchData(dataset, port, metadata) {
   return dispatch => {
     dispatch(requestData(dataset));
-    let token = localStorage.getItem('token')
+    let token = sessionStorage.getItem('token')
 
     let url = assistantURL + `/scorer/analyses`
         url += `/` + collection
@@ -90,7 +90,7 @@ function fetchData(dataset, port, metadata) {
           if (data.errors) {
             uxFriendlyError = data.errors
           } else if (data == 'Unauthorized') {
-            uxFriendlyError = 'It looks like you\'re not logged in. We\'ll help you out.'
+            uxFriendlyError = 'Your log in credentials are old. Please log in. We\'ll help you out.'
             setTimeout( function() {
               userActions.logout()
               window.location.href = '/login' // Redirect
@@ -151,67 +151,10 @@ function endLoad(data) {
   };
 }
 
-export function userSettingsSubmit(data) {
-  return dispatch => {
-    dispatch(submitRequest(data))
-    let token = localStorage.getItem('token')
-
-    let url = assistantURL + `/user/<settings????>`
-    let payload = data
-    let config = {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        "Authorization": 'Bearer ' + token // Set authorization header
-      }
-    }
-    dispatch(startLoad(data));
-    axios.post(url, payload, config)
-    .then(function (response) {
-      let json = response.data.data
-      dispatch(receiveData('nlp', json))
-      dispatch(endLoad(data));
-    })
-    .catch(function (error) {
-      handleError(error)
-      dispatch(endLoad(data));
-    });
-
-    function handleError(error) {
-      let uxFriendlyError = '';
-      if (error.response) {
-        let data = error.response.data
-        if (error.response.status == 401) {
-          if (data.errors) {
-            uxFriendlyError = data.errors
-          } else if (data == 'Unauthorized') {
-            uxFriendlyError = 'It looks like you\'re not logged in. We\'ll help you out.'
-            setTimeout( function() {
-              userActions.logout()
-              window.location.href = '/login' // Redirect
-            }, 3000);
-          } else {
-            console.error(data);
-            uxFriendlyError = 'Sorry, there was a server error. We\'ll fix the problem when we find it.'
-          }
-        } else {
-          console.error(data);
-          uxFriendlyError = 'Sorry, there was a server error. We\'ll fix the problem when we find it.'
-        }
-        dispatch(failure(uxFriendlyError));
-      } else {
-        uxFriendlyError = 'Sorry, we couldn\'t connect to the server.'
-        dispatch(failure(uxFriendlyError));
-      }
-    }
-  };
-
-  function failure(error) { return requestFailure(error) }
-}
-
 export function nlpSubmit(data) {
   return dispatch => {
     dispatch(submitRequest(data))
-    let token = localStorage.getItem('token')
+    let token = sessionStorage.getItem('token')
 
     let url = assistantURL + `/scorer/analyze_emotion_set`
     let payload = data
@@ -241,7 +184,7 @@ export function nlpSubmit(data) {
           if (data.errors) {
             uxFriendlyError = data.errors
           } else if (data == 'Unauthorized') {
-            uxFriendlyError = 'It looks like you\'re not logged in. We\'ll help you out.'
+            uxFriendlyError = 'Your log in credentials are old. Please log in. We\'ll help you out.'
             setTimeout( function() {
               userActions.logout()
               window.location.href = '/login' // Redirect
@@ -268,7 +211,7 @@ export function nlpSubmit(data) {
 export function loadNLPAnalysis(data) {
   return dispatch => {
     dispatch(submitRequest(data))
-    let token = localStorage.getItem('token')
+    let token = sessionStorage.getItem('token')
 
     let url = assistantURL + `/scorer/analyses`
     url += `/` + collection
@@ -299,7 +242,7 @@ export function loadNLPAnalysis(data) {
           if (data.errors) {
             uxFriendlyError = data.errors
           } else if (data == 'Unauthorized') {
-            uxFriendlyError = 'It looks like you\'re not logged in. We\'ll help you out.'
+            uxFriendlyError = 'Your log in credentials are old. Please log in. We\'ll help you out.'
             setTimeout( function() {
               userActions.logout()
               window.location.href = '/login' // Redirect
