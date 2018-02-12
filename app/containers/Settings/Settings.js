@@ -44,7 +44,7 @@ class Settings extends Component {
     const confirmationErrorMsg = 'The confirmation password must match the password.';
     const trivialError = this.props.error == confirmationErrorMsg;
     const criticalError = !trivialError && this.props.error;
-    
+
     return (
       <div>
         <Link className="pull-right btn btn-xs btn-primary" to="/nexus">
@@ -65,7 +65,7 @@ class Settings extends Component {
           <div className="settings--preference_bottom-right-corner_status-loading">Loading...</div>
         }
         { !this.props.loading && !criticalError && successfullyUpdated &&
-          <div className="settings--preference_bottom-right-corner_status-success">Update Success!</div>
+          <div className="settings--preference_bottom-right-corner_status-success">Updated Successfully!</div>
         }
         { !this.props.loading && trivialError &&
           <div className="settings--preference_bottom-right-corner_status-error">{error}</div>
@@ -129,7 +129,7 @@ class Settings extends Component {
               <h6>
                 This action will <b><i>NOT</i></b> remove any data you have already provided us.
                 <br></br>
-                This action will <b><i>NOT</i></b> refund any purchases you have already provided us.
+                This action will <b><i>NOT</i></b> refund any purchases you have already made.
               </h6>
               <h6>
                 Are you sure you want to delete your profile?
@@ -137,7 +137,7 @@ class Settings extends Component {
             </Modal.Body>
 
             <Modal.Footer>
-              <Button className="btn-link pull-left" onClick={this.handleCloseModal}>Nevermind</Button>
+              <Button className="btn-link pull-left" onClick={this.handleCloseModal}>Never mind</Button>
               <Button to="/" className="btn btn-danger pull-right" onClick={this.handleDelete}>Yes, delete my profile.</Button>
             </Modal.Footer>
           </Modal>
