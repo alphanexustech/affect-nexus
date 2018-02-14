@@ -7,6 +7,7 @@ import Login from './Login/Login';
 import Settings from './Settings/Settings';
 import Nexus from './Nexus/Nexus';
 import NLPComprehensiveDisplay from './NLP/NLPComprehensiveDisplay';
+import NLPSimpleDisplay from './NLP/NLPSimpleDisplay';
 import NLPInsightDisplay from './NLP/NLPInsightDisplay';
 
 import { Link, NavLink, Route } from 'react-router-dom';
@@ -47,9 +48,16 @@ class AsyncApp extends Component {
             <li className={ window.location.pathname == '/nexus' ? 'active_page-heading' : '' }>
               <NavLink to="/nexus"><i className="fa fa-bullseye" aria-hidden="true"></i> Nexus</NavLink>
             </li>
-            <li className={ window.location.pathname == '/process' ? 'active_page-heading' : '' }>
-              <NavLink to="/process"><i className="fa fa-long-arrow-right" aria-hidden="true"></i> Process</NavLink>
-            </li>
+            { sessionStorage.getItem('interfaceComplexity') == "0" && // Only show if advanced complexity selected
+              <li className={ window.location.pathname == '/process' ? 'active_page-heading' : '' }>
+                <NavLink to="/process"><i className="fa fa-long-arrow-right" aria-hidden="true"></i> Process</NavLink>
+              </li>
+            }
+            { sessionStorage.getItem('interfaceComplexity') == "1" && // Only show if advanced complexity selected
+              <li className={ window.location.pathname == '/process' ? 'active_page-heading' : '' }>
+                <NavLink to="/advanced-process"><i className="fa fa-long-arrow-right" aria-hidden="true"></i> Process</NavLink>
+              </li>
+            }
             { sessionStorage.getItem('interfaceComplexity') == "1" && // Only show if advanced complexity selected
               <li className={ window.location.pathname == '/insight' ? 'active_page-heading' : '' }>
                 <NavLink to="/insight"><i className="fa fa-bolt" aria-hidden="true"></i> Insight</NavLink>
@@ -119,7 +127,8 @@ class AsyncApp extends Component {
          <Route path="/login" component={Login}/>
          <Route path="/settings" component={Settings}/>
          <Route path="/nexus" component={Nexus}/>
-         <Route path="/process" component={NLPComprehensiveDisplay}/>
+         <Route path="/process" component={NLPSimpleDisplay}/>
+         <Route path="/advanced-process" component={NLPComprehensiveDisplay}/>
          <Route path="/insight" component={NLPInsightDisplay}/>
        </div>
        {bkgd}
