@@ -9,19 +9,11 @@ import NLPMinRankTable from '../tables/NLPMinRankTable';
 
 import { loadNLPAnalysis } from '../../actions/actions';
 
+import moment from 'moment';
 
 class NLPListItem extends React.Component {
   constructor (props) {
     super(props);
-    this.loadAnalysis = this.loadAnalysis.bind(this);
-  }
-
-  loadAnalysis(id) {
-    const { dispatch } = this.props;
-    let data = {
-      'analysis_id': id
-    }
-    dispatch(loadNLPAnalysis(data))
   }
 
   render () {
@@ -62,57 +54,44 @@ class NLPListItem extends React.Component {
 
     return (
       <ListGroupItem>
-        <div style={{fontSize: "12px"}}>
-          <Row style={{paddingBottom: "10px"}}>
-            <Col md={6} lg={6}>
-              <div className="pull-left">
-                <div style={{display: "inline-flex"}}>
-                  <div style={{margin: "4px 4px 4px 0px"}}>
-                    Emotion Set:
-                  </div>
-                  <div className="affect--display_corpus-set_name">
-                    {titleCase(data.name)}
-                  </div>
+        <div style={{fontSize: "14px"}}>
+          <Row style={{
+              paddingBottom: "12px",
+              paddingTop: "12px"
+            }}>
+            <Col sm={4} md={4} lg={4}>
+              <div>
+                <div className="">
+                  <NLPMinRankTable data={array}/>
                 </div>
               </div>
             </Col>
-            <Col md={6} lg={6}>
-              <div className="pull-right">
-                <div>
-                  Date: {data.date[0]}
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={12} lg={12}>
-              <div style={{textAlign: "right"}}>
-                <Link className="pull-right btn btn-xs btn-primary"
-                      to="/process" onClick={()=>{this.loadAnalysis(data._id.$oid)}}
-                      style={{marginBottom: '24px'}}>
-                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i> View Process
-                </Link>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={3} lg={3}>
-              <div className="opaque--module opaque--module_alt-01">
-                <NLPMinRankTable data={array}/>
-              </div>
-            </Col>
-            <Col md={6} lg={6}>
+            <Col sm={8} md={8} lg={8}>
               <div style={{
-                     display: 'flex',
-                     alignItems: 'center',
-                     height: '128px'
-                   }}>
-                <div>
-                  <div className="affect--display_general-purpose-label">Document</div>
-                  <div>
-                    {data.doc}
-                  </div>
-                </div>
+                   padding: "24px",
+                   display: "flex",
+                   flexDirection: "column",
+                   justifyContent: "space-between"
+                 }}>
+                 <div style={{color: '#CCCCCC', textAlign: 'right'}}>
+                   {moment(moment(data.date[0], "YYYY-MM-DD HH:mm:ss.SSS"), "YYYY").format("ddd, MMM DD, YYYY hh:mm A") + " (GMT)"}
+                 </div>
+                 <div>
+                   <div style={{
+                      alignItems: 'center',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      minHeight: '240px',
+                      maxHeight: '320px'
+                     }}>
+                     {data.doc}
+                   </div>
+                 </div>
+              </div>
+            </Col>
+            <Col sm={12} md={12} lg={12}>
+              <div style={{textAlign: "center", color: "#CCCCCC"}}>
+                Including only the five strongest emotions, here are their relative strengths.
               </div>
             </Col>
           </Row>

@@ -13,63 +13,70 @@ export default class NLPMinRankTable extends Component {
 
   render () {
     let array = this.props.data;
+    let totalScore = 0;
+    let topFiveEmotions = []
+    for (var i = 0; i < 5; i++) {
+        // Get the total score for calculating percentages
+        totalScore += array[i].normalized_r_score;
+    }
+
+    for (var i = 0; i < 5; i++) {
+        if (array[i].normalized_r_score > 0) {
+          topFiveEmotions.push(
+            <tr key={i + 'emotionRank'}>
+              <td style={{width: '70%'}}>
+                <div className="affect--display_name">
+                    {array[i] ? array[i].emotion : 'Error'}
+                </div>
+              </td>
+              <td style={{width: '30%'}}>
+                <div className="affect--display_rank">
+                    {array[i] ? Math.round(array[i].normalized_r_score / totalScore * 100) + '%': 'Error'}
+                </div>
+              </td>
+            </tr>
+          )
+        } else if (i == 0) {
+          topFiveEmotions.push(
+            <tr key={i + 'emotionRank'}>
+              <td style={{width: '70%'}}>
+                <div className="affect--display_name">
+                    {array[i] ? 'No emotions' : 'Error'}
+                </div>
+              </td>
+              <td style={{width: '30%'}}>
+                <div className="affect--display_rank">
+                    --
+                </div>
+              </td>
+            </tr>
+          )
+        } else {
+          topFiveEmotions.push(
+            <tr key={i + 'emotionRank'}>
+              <td style={{width: '70%'}}>
+                <div className="affect--display_name">
+                    {array[i] ? '--' : 'Error'}
+                </div>
+              </td>
+              <td style={{width: '30%'}}>
+                <div className="affect--display_rank">
+                    --
+                </div>
+              </td>
+            </tr>
+          )
+        }
+    }
     return (
       <div>
-        <Table style={{fontSize: '12px', margin: 'auto', textAlign: 'center'}} condensed>
+        <div style={{color: '#CCCCCC', textAlign: 'center'}}>(Strongest)</div>
+        <Table style={{fontSize: '14px', margin: 'auto'}} condensed>
           <tbody>
-            <tr>
-              <td style={{width: '80%'}}>
-                <div className="affect--display_name">
-                    {array[0] ? array[0].emotion : 'Error'}
-                </div>
-              </td>
-              <td style={{width: '10%'}}>
-                <div className="affect--display_rank">
-                    1
-                </div>
-              </td>
-              <td style={{width: '10%'}}>
-                <div className="affect--display_scores">
-                    {array[0] ? array[0].normalized_r_score.toFixed(4) : 'Error'}
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className="affect--display_name">
-                    {array[1] ? array[1].emotion : 'Error'}
-                </div>
-              </td>
-              <td>
-                <div className="affect--display_rank">
-                    2
-                </div>
-              </td>
-              <td>
-                <div className="affect--display_scores">
-                    {array[1] ? array[1].normalized_r_score.toFixed(4) : 'Error'}
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className="affect--display_name">
-                    {array[2] ? array[2].emotion : 'Error'}
-                </div>
-              </td>
-              <td>
-                <div className="affect--display_rank">
-                    3
-                </div>
-              </td>
-              <td>
-                <div className="affect--display_scores">
-                    {array[2] ? array[2].normalized_r_score.toFixed(4) : 'Error'}
-                </div>
-              </td>
-            </tr>
+            {topFiveEmotions}
           </tbody>
         </Table>
+        <div style={{color: '#CCCCCC', textAlign: 'center'}}>(Weaker)</div>
       </div>
     );
   }

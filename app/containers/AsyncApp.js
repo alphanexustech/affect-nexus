@@ -44,15 +44,17 @@ class AsyncApp extends Component {
       navOptions = (
         <div>
           <nav className="nav navbar-nav">
-            <li>
+            <li className={ window.location.pathname == '/nexus' ? 'active_page-heading' : '' }>
               <NavLink to="/nexus"><i className="fa fa-bullseye" aria-hidden="true"></i> Nexus</NavLink>
             </li>
-            <li>
+            <li className={ window.location.pathname == '/process' ? 'active_page-heading' : '' }>
               <NavLink to="/process"><i className="fa fa-long-arrow-right" aria-hidden="true"></i> Process</NavLink>
             </li>
-            <li>
-              <NavLink to="/insight"><i className="fa fa-bolt" aria-hidden="true"></i> Insight</NavLink>
-            </li>
+            { sessionStorage.getItem('interfaceComplexity') == "1" && // Only show if advanced complexity selected
+              <li className={ window.location.pathname == '/insight' ? 'active_page-heading' : '' }>
+                <NavLink to="/insight"><i className="fa fa-bolt" aria-hidden="true"></i> Insight</NavLink>
+              </li>
+            }
           </nav>
         </div>
       )
@@ -68,10 +70,10 @@ class AsyncApp extends Component {
               }}>
               Hi, {sessionStorage.getItem('username')}
             </li>
-            <li>
+            <li className={ window.location.pathname == '/settings' ? 'active_page-heading' : '' }>
               <NavLink to="/settings"><i className="fa fa-cogs" aria-hidden="true"></i> Settings</NavLink>
             </li>
-            <li>
+            <li className={ window.location.pathname == '/login' ? 'active_page-heading' : '' }>
               <NavLink to="/login" onClick={this.handleLogout}><i className="fa fa-sign-out" aria-hidden="true"></i> Log Out</NavLink>
             </li>
           </nav>

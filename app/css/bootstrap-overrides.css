@@ -83,6 +83,13 @@ p {
    text-align: right;
  }
 
+ .navbar-inverse .navbar-nav > li > a:hover,
+ .navbar-inverse .navbar-nav > li > a:focus,
+ .active_page-heading {
+   background: #454545;
+   color: #CCCCCC;
+ }
+
 .navbar-brand {
   padding: 0px 10px;
 }

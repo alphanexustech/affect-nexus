@@ -6,6 +6,8 @@ import DivListGroup from '../groups/DivListGroup'
 import NLPListItem from '../listitems/NLPListItem'
 import GeneralErrorComponent from '../errors/GeneralErrorComponent'
 
+import { NavLink } from 'react-router-dom';
+
 import { Row, Col, Table, Alert, Panel, ListGroup, Pagination } from 'react-bootstrap';
 
 import { fetchDataIfNeeded } from '../../actions/actions';
@@ -13,10 +15,10 @@ import { fetchDataIfNeeded } from '../../actions/actions';
 class NLPNexusList extends Component {
   constructor(props) {
     super(props);
-    this.handleSelect = this.handleSelect.bind(this);
-    this.state = {
-      "activePage": 1
-    }
+    // this.handleSelect = this.handleSelect.bind(this);
+    // this.state = {
+    //   "activePage": 1
+    // }
   }
 
   componentDidMount() {
@@ -28,17 +30,17 @@ class NLPNexusList extends Component {
     dispatch(fetchDataIfNeeded('nlp-analyses', '3000', metadata));
   }
 
-  handleSelect(eventKey) {
-    const { dispatch } = this.props;
-    this.setState({
-      activePage: eventKey
-    });
-    let metadata = {
-      'page': eventKey,
-      'countPerPage': 5,
-    }
-    dispatch(fetchDataIfNeeded('nlp-analyses', '3000', metadata));
-  }
+  // handleSelect(eventKey) {
+  //   const { dispatch } = this.props;
+  //   this.setState({
+  //     activePage: eventKey
+  //   });
+  //   let metadata = {
+  //     'page': eventKey,
+  //     'countPerPage': 5,
+  //   }
+  //   dispatch(fetchDataIfNeeded('nlp-analyses', '3000', metadata));
+  // }
 
   render () {
     const { data, metadata, isFetching, lastUpdated } = this.props;
@@ -70,10 +72,12 @@ class NLPNexusList extends Component {
                 <div style={{padding: "10px"}}>Loading...</div>
               }
               {!isFetching && data.length === 0 && !this.props.error &&
-                <div style={{padding: "10px"}}>{nlplistitems}Your most recent processes are shown here. Right now you don't have any! Why not run one?</div>
+                <div style={{padding: "10px"}}>{nlplistitems}Your most recent processes are shown here. Right now you don't have any, why not <NavLink to="/process">
+                  run one</NavLink> now?</div>
               }
               {data.length > 0 &&
                 <div>
+                  {/*
                   <Row>
                     <Col lg={12}>
                       <div className="pull-right">
@@ -91,6 +95,8 @@ class NLPNexusList extends Component {
                       </div>
                     </Col>
                   </Row>
+                  <hr></hr>
+                  */}
                   <Row>
                     <Col lg={12}>
                       <ListGroup>
@@ -98,6 +104,8 @@ class NLPNexusList extends Component {
                       </ListGroup>
                     </Col>
                   </Row>
+                  {/*
+                  <hr></hr>
                   <Row>
                     <Col lg={12}>
                       <div className="pull-right">
@@ -115,11 +123,12 @@ class NLPNexusList extends Component {
                       </div>
                     </Col>
                   </Row>
+                  */}
                 </div>
               }
             </div>
             <div className="nexus--emotion_set-footer" style={{fontSize: "12px", textAlign: "right"}}>
-              Currently showing five processes
+
             </div>
           </div>
         }

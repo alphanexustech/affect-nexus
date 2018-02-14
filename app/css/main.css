@@ -177,9 +177,12 @@ i.fa {
 
 .affect--display_name {
   background: #010101;
-  padding: 4px;
+  padding: 8px;
+  width: fit-content;
   color: #CCC;
   vertical-align: middle;
+  text-transform: capitalize;
+  float: left;
 }
 
 .affect--display_scores {
@@ -190,10 +193,11 @@ i.fa {
 
 .affect--display_rank {
   background: #CCC;
-  padding: 4px;
+  padding: 8px;
+  width: fit-content;
   color: #131313;
-  margin-left: 4px;
   vertical-align: middle;
+  float: right;
 }
 
 .affect--display_row-title {

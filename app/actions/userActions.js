@@ -87,6 +87,7 @@ function logout() {
   sessionStorage.removeItem('token');
   sessionStorage.removeItem('userID');
   sessionStorage.removeItem('username');
+  sessionStorage.removeItem('interfaceComplexity');
   return { type: LOGOUT };
 }
 
@@ -109,6 +110,7 @@ function signup(user) {
         sessionStorage.setItem('token', token);
         sessionStorage.setItem('userID', userID);
         sessionStorage.setItem('username', username);
+        sessionStorage.setItem('interfaceComplexity', "0"); // Simple UI for starters
         window.location.href = '/nexus' // Redirect
       } else {
         handleError(response)
@@ -159,8 +161,9 @@ export function receiveSettingsData() {
     axios.get(url, config)
     .then(function (response) {
       let user = response.data.user
-      // console.log(user);
       dispatch(success(user))
+      // Update interfaceComplexity settings in sessionStorage
+      sessionStorage.setItem('interfaceComplexity', user.interfaceComplexity);
     })
     .catch(function (error) {
       handleError(error)
@@ -219,6 +222,7 @@ export function userSettingsUpdate(user) {
       let user = response.data.user
       dispatch(success(user))
       dispatch(receiveSettingsData())
+
     })
     .catch(function (error) {
       handleError(error)

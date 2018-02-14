@@ -40,7 +40,7 @@ class Settings extends Component {
   }
 
   render () {
-    const { handleSubmit, settings, loading, error, successfullyUpdated, user } = this.props;
+    const { handleSubmit, settings, updating, error, successfullyUpdated, user } = this.props;
     const confirmationErrorMsg = 'The confirmation password must match the password.';
     const trivialError = this.props.error == confirmationErrorMsg;
     const criticalError = !trivialError && this.props.error;
@@ -61,16 +61,16 @@ class Settings extends Component {
         { criticalError &&
           <GeneralErrorComponent error={error}></GeneralErrorComponent>
         }
-        { this.props.loading && !criticalError &&
+        { this.props.updating && !criticalError &&
           <div className="settings--preference_bottom-right-corner_status-loading">Loading...</div>
         }
-        { !this.props.loading && !criticalError && successfullyUpdated &&
+        { !this.props.updating && !criticalError && successfullyUpdated &&
           <div className="settings--preference_bottom-right-corner_status-success">Updated Successfully!</div>
         }
-        { !this.props.loading && trivialError &&
+        { !this.props.updating && trivialError &&
           <div className="settings--preference_bottom-right-corner_status-error">{error}</div>
         }
-        { !this.props.loading && trivialError &&
+        { !this.props.updating && trivialError &&
           <div className="settings--preference_bottom-right-corner_status-error">{error}</div>
         }
         { !this.props.error && !criticalError &&
@@ -152,10 +152,10 @@ Settings.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { settings, loading, error, successfullyUpdated, user } = state.settingsUpdates;
+  const { settings, updating, error, successfullyUpdated, user } = state.settingsUpdates;
   return {
     settings,
-    loading,
+    updating,
     error,
     successfullyUpdated,
     user

@@ -18,7 +18,7 @@ class Nexus extends Component {
     return (
       <div>
         <Link className="pull-right btn btn-xs"
-              style={{background: '#EEEEEE', color: '#131313'}} 
+              style={{background: '#EEEEEE', color: '#131313'}}
               to="/process">
           <i className="fa fa-angle-double-right" aria-hidden="true"></i> Run a process
         </Link>
@@ -26,12 +26,15 @@ class Nexus extends Component {
         <p>
           View recent processes
         </p>
-        <h6>
-          Your nexus is your place to start exploring.
-          As you begin exploring, your most recent processes will always be displayed on this page.
-          Good luck!
-        </h6>
-        <br></br>
+        { sessionStorage.getItem('interfaceComplexity') == "1" && // Only show if advanced complexity selected
+          <div>
+            <h6>
+                Your most recent processes will always be displayed on this page.
+                Good luck!
+            </h6>
+            <br></br>
+          </div>
+        }
         <Row>
           <Col lg={12}>
             <NLPNexusList/>
