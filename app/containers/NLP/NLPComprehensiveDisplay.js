@@ -62,6 +62,7 @@ class NLPDisplay extends Component {
               <i className="fa fa-2x fa-table" aria-hidden="true"></i>
             </div>
           </div>
+          {/*
           <div className="transparent--module transparent--module_alt-01 transparent--module_module-2">
             <div className="transparent--module_module-content">
               <NLPLaggerTable/>
@@ -70,6 +71,7 @@ class NLPDisplay extends Component {
               <i className="fa fa-2x fa-table" aria-hidden="true"></i>
             </div>
           </div>
+          */}
 
           <Row>
             <Col lg={12}>

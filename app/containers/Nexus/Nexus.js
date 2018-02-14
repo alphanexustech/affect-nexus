@@ -17,11 +17,20 @@ class Nexus extends Component {
     const notImplemented = {textDecoration: "line-through", color: "gray"}
     return (
       <div>
-        <Link className="pull-right btn btn-xs"
-              style={{background: '#EEEEEE', color: '#131313'}}
-              to="/process">
-          <i className="fa fa-angle-double-right" aria-hidden="true"></i> Run a process
-        </Link>
+        { sessionStorage.getItem('interfaceComplexity') == "0" && // Only show if advanced complexity selected
+          <Link className="pull-right btn btn-xs"
+                style={{background: '#EEEEEE', color: '#131313'}}
+                to="/process">
+            <i className="fa fa-angle-double-right" aria-hidden="true"></i> Run a process
+          </Link>
+        }
+        { sessionStorage.getItem('interfaceComplexity') == "1" && // Only show if advanced complexity selected
+          <Link className="pull-right btn btn-xs"
+                style={{background: '#EEEEEE', color: '#131313'}}
+                to="/advanced-process">
+            <i className="fa fa-angle-double-right" aria-hidden="true"></i> Run a process
+          </Link>
+        }
         <h3><i className="fa fa-bullseye" aria-hidden="true"></i> Nexus</h3>
         <p>
           View recent processes

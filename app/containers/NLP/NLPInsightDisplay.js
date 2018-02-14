@@ -24,7 +24,7 @@ class NLPInsightDisplay extends Component {
         emotionName,
         lastEmotionCreationDate,
         lastEmotionText;
-        
+
     function capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
@@ -67,7 +67,7 @@ class NLPInsightDisplay extends Component {
               </div>
             </div>
 
-            <Link className="pull-right btn btn-xs btn-primary" to="/process">
+            <Link className="pull-right btn btn-xs btn-primary" to="/advanced-process">
               <i className="fa fa-angle-double-left" aria-hidden="true"></i> Run another process
             </Link>
             <div style={{paddingBottom: '100px'}}>

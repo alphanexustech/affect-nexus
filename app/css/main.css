@@ -334,7 +334,7 @@ i.fa {
 .transparent--module_form--nlp:hover {
   -webkit-transition: height .5s, width .5s, opacity .5s;
   transition: height .5s, width .5s, opacity .5s;
-  height: 740px;
+  height: 760px;
   width: 570px;
 }
 
@@ -342,7 +342,7 @@ i.fa {
 .transparent--module_module-2:hover {
   -webkit-transition: height .5s, width .5s, opacity .5s;
   transition: height .5s, width .5s, opacity .5s;
-  height: 500px;
+  height: 540px;
   width: 250px;
   z-index: 1000;
 }

@@ -24,7 +24,8 @@ class NLPRankTable extends Component {
     if (this.props.data.length > 0) {
       primaryArea = [];
       secondaryArea = [];
-      primaryAlert = 'Ranking Summary of the Emotion Set\'s Top 10';
+      primaryAlert = 'Ranking Summary of the Emotion Set\'s Top 10'; // Old message
+      primaryAlert = 'Including only the ten strongest emotions, here are their relative strengths.';
       let targetData = this.props.data[0].data
       arrayName = targetData.name
       let array = targetData.emotion_set.sort(function(a,b) {
@@ -37,20 +38,35 @@ class NLPRankTable extends Component {
         return 0;
       }
 
+      let totalScoreSIX = 0;
+      let totalScoreTEN = 0;
+
+      for (var i = 0; i < 6; i++) {
+          // Get the total score for calculating percentages
+          totalScoreSIX += array[i].normalized_r_score;
+      }
+
+      if (array.length > 9) {
+        for (var i = 0; i < 10; i++) {
+            // Get the total score for calculating percentages
+            totalScoreTEN += array[i].normalized_r_score;
+        }
+      }
+
       switch (arrayName) {
         case 'big_6':
-          primaryAlert = 'Ranking Summary of Paul Ekman\'s "Big Six"';
+          primaryAlert = 'Relative Strengths of Emotions based on Paul Ekman\'s "Big Six"';
           for (var i = 0; i < 6; i++) {
             primaryArea.push(
-              <AffectSummaryRankRowTableGroup key={i + '-affect-lagger-row'} data={array} iterator={i}></AffectSummaryRankRowTableGroup>
+              <AffectSummaryRankRowTableGroup key={i + '-affect-lagger-row'} data={array} iterator={i} totalScore={totalScoreSIX}></AffectSummaryRankRowTableGroup>
             )
           }
           break;
         case 'dimensions':
-          primaryAlert = 'Ranking Summary of Dimensions';
+          primaryAlert = 'Relative Strengths of Emotions based on Dimensions';
           for (var i = 0; i < 6; i++) {
             primaryArea.push(
-              <AffectSummaryRankRowTableGroup key={i + '-affect-lagger-row'} data={array} iterator={i}></AffectSummaryRankRowTableGroup>
+              <AffectSummaryRankRowTableGroup key={i + '-affect-lagger-row'} data={array} iterator={i} totalScore={totalScoreSIX}></AffectSummaryRankRowTableGroup>
             )
           }
           break;
@@ -61,7 +77,7 @@ class NLPRankTable extends Component {
           */
           for (var i = 0; i < 10; i++) {
             primaryArea.push(
-              <AffectSummaryRankRowTableGroup key={i + '-affect-lagger-row'} data={array} iterator={i}></AffectSummaryRankRowTableGroup>
+              <AffectSummaryRankRowTableGroup key={i + '-affect-lagger-row'} data={array} iterator={i} totalScore={totalScoreTEN}></AffectSummaryRankRowTableGroup>
             )
           }
           break;

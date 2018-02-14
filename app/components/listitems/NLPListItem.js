@@ -91,7 +91,11 @@ class NLPListItem extends React.Component {
             </Col>
             <Col sm={12} md={12} lg={12}>
               <div style={{textAlign: "center", color: "#CCCCCC"}}>
-                Including only the five strongest emotions, here are their relative strengths.
+                Including only the five strongest emotions
+                { sessionStorage.getItem('interfaceComplexity') == "1" && // Only show if advanced complexity selected
+                  <span style={{color: '#696969'}}> (in the set {titleCase(data.name)}) </span>
+                }
+                , here are their relative strengths.
               </div>
             </Col>
           </Row>
