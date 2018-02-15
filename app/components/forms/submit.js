@@ -20,7 +20,7 @@ function submit(values, dispatch) {
     // IDEA: Prevent large docs from being sent
     console.log('Woah, that document was large!');
   }
-  dispatch(nlpSubmit(values));
+  dispatch(nlpSubmit(values, 'advanced'));
 }
 
 export default submit

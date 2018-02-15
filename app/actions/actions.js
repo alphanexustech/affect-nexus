@@ -151,7 +151,7 @@ function endLoad(data) {
   };
 }
 
-export function nlpSubmit(data) {
+export function nlpSubmit(data, simpleOrAdvanced) {
   return dispatch => {
     dispatch(submitRequest(data))
     let token = sessionStorage.getItem('token')
@@ -169,7 +169,15 @@ export function nlpSubmit(data) {
     .then(function (response) {
       let json = response.data.data
       dispatch(receiveData('nlp', json))
-      dispatch(endLoad(data));
+      // Redirect if it is the simple page
+      if (simpleOrAdvanced == 'simple') {
+        window.location.href = '/nexus'
+        setTimeout(function () {
+          dispatch(endLoad(data));
+        }, 1000);
+      } else {
+        dispatch(endLoad(data));
+      }
     })
     .catch(function (error) {
       handleError(error)

@@ -1,38 +1,66 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 
 import { Button, Row, Col, Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 import simpleSubmit from './simpleSubmit'
 
-const NLPSimpleForm = (props) => {
-  const { handleSubmit, pristine, reset, submitting } = props
 
-  const e_tooltip = (
-  	<Tooltip id="tooltip">
-      Exact matches are with words where each character is the same.
-  	</Tooltip>
-  );
-  const p_tooltip = (
-  	<Tooltip id="tooltip">
-      A Partial match (aka Stemming) happens when a consecutive and meaningful subset of characters in a word you provide match a word the process uses.
-  	</Tooltip>
-  );
-  const bf_tooltip = (
-  	<Tooltip id="tooltip">
-      A Base Form match (aka Lemmatizing) happens when the contextual changes in the Part-of-speech of a word you provide match a word the process uses.
-  	</Tooltip>
-  );
+  const required = value => (value ? undefined : 'Required')
+  const maxLength = max => value =>
+  value && value.length > max ? `Your text must be ${max} characters or less` : undefined
+  const maxLength300 = maxLength(300)
+
+  const renderField = ({
+    input,
+    type,
+    rows,
+    style,
+    placeholder,
+    id,
+    meta: { touched, error, warning }
+  }) => (
+    <div>
+      <div>
+      <textarea id={id} className="form-control" rows={rows} style={style}
+      {...input} placeholder={placeholder} type={type} />
+      {touched &&
+        (error && <span className="help-block">{error}</span>)}
+      </div>
+    </div>
+    )
+
+let NLPSimpleForm = (props) => {
+
+  const { docValue, handleSubmit, pristine, reset, submitting } = props
 
   return (
     <form onSubmit={handleSubmit(simpleSubmit)}>
       <Row>
         <Col lg={12}>
+          <div className="pull-right">
+            { !docValue &&
+              300
+            }
+            { docValue && 300 - docValue.length > 0 &&
+              300 - docValue.length
+            }
+            { docValue && 300 - docValue.length < 0 &&
+              <span style={{color: '#ffd7d7'}}>{300 - docValue.length}</span>
+            }
+          </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col lg={12}>
           <div>
-            <Field className="form-control" style={{minHeight: "200px", width: "100%"}} rows="4" name="doc"
-              component="textarea" type="text" placeholder="Try writing about an important idea or something else you might find interesting."
-              id="analyze-form_text-area" required/>
+            <Field className="form-control" style={{resize: "none", minHeight: "200px", width: "100%"}}
+              name="doc" component={renderField} type="text"
+              placeholder="Try writing about an important idea or something else you might find interesting."
+              id="analyze-form_text-area"
+              validate={[required, maxLength300]}/>
           </div>
         </Col>
       </Row>
@@ -43,7 +71,23 @@ const NLPSimpleForm = (props) => {
   );
 }
 
-// Decorate the form component
-export default reduxForm({
-  form: 'nlp' // a unique name for this form
-})(NLPSimpleForm);
+// The order of the decoration does not matter.
+
+// Decorate with redux-form
+NLPSimpleForm = reduxForm({
+  form: 'nlp'  // a unique identifier for this form
+})(NLPSimpleForm)
+
+// Decorate with connect to read form values
+const selector = formValueSelector('nlp') // <-- same as form name
+NLPSimpleForm = connect(
+  state => {
+    // can select values individually
+    let docValue = selector(state, 'doc')
+    return {
+      docValue
+    }
+  }
+)(NLPSimpleForm)
+
+export default NLPSimpleForm

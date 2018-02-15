@@ -1,13 +1,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 
 import { Button, Row, Col, Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 import submit from './submit'
 
-const NLPComprehensiveForm = (props) => {
-  const { handleSubmit, pristine, reset, submitting } = props
+
+const required = value => (value ? undefined : 'Required')
+const maxLength = max => value =>
+value && value.length > max ? `Your text must be ${max} characters or less` : undefined
+const maxLength300 = maxLength(300)
+
+const renderField = ({
+  input,
+  type,
+  rows,
+  style,
+  placeholder,
+  id,
+  meta: { touched, error, warning }
+}) => (
+  <div>
+    <div>
+    <textarea id={id} className="form-control" rows={rows} style={style}
+    {...input} placeholder={placeholder} type={type} />
+    {touched &&
+      (error && <span className="help-block">{error}</span>)}
+    </div>
+  </div>
+  )
+
+let NLPComprehensiveForm = (props) => {
+  const { docValue, handleSubmit, pristine, reset, submitting } = props
 
   const e_tooltip = (
   	<Tooltip id="tooltip">
@@ -57,10 +83,25 @@ const NLPComprehensiveForm = (props) => {
           </div>
           <br></br>
           <div>
-            <label>Document</label><br></br>
-            <Field className="form-control" style={{width: "100%"}} rows="4" name="doc"
-              component="textarea" type="text" placeholder="Write something!"
-              id="analyze-form_text-area" required/>
+            <label>
+              Write up to 300 characters of text and click the button in the bottom right corner to find emotions.
+            </label>
+            <div className="pull-right">
+              { !docValue &&
+                300
+              }
+              { docValue && 300 - docValue.length > 0 &&
+                300 - docValue.length
+              }
+              { docValue && 300 - docValue.length < 0 &&
+                <span style={{color: '#ffd7d7'}}>{300 - docValue.length}</span>
+              }
+            </div>
+            <Field className="form-control" style={{resize: "none", minHeight: "64px", width: "100%"}}
+              name="doc" component={renderField} type="text"
+              placeholder="Try writing about an important idea or something else you might find interesting."
+              id="analyze-form_text-area"
+              validate={[required, maxLength300]}/>
           </div>
           <div style={{margin: "10px 0px", padding: "10px 10px", background: "#454545"}}>
             <div>
@@ -141,7 +182,23 @@ const NLPComprehensiveForm = (props) => {
   );
 }
 
-// Decorate the form component
-export default reduxForm({
-  form: 'nlp' // a unique name for this form
-})(NLPComprehensiveForm);
+// The order of the decoration does not matter.
+
+// Decorate with redux-form
+NLPComprehensiveForm = reduxForm({
+  form: 'nlp'  // a unique identifier for this form
+})(NLPComprehensiveForm)
+
+// Decorate with connect to read form values
+const selector = formValueSelector('nlp') // <-- same as form name
+NLPComprehensiveForm = connect(
+  state => {
+    // can select values individually
+    let docValue = selector(state, 'doc')
+    return {
+      docValue
+    }
+  }
+)(NLPComprehensiveForm)
+
+export default NLPComprehensiveForm

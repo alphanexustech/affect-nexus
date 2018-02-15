@@ -25,11 +25,7 @@ function simpleSubmit(values, dispatch) {
   if(values.lb == null){
     values.lb = '2'
   }
-  if (values.doc.length > 300) {
-    // IDEA: Prevent large docs from being sent
-    console.log('Woah, that document was large!');
-  }
-  dispatch(nlpSubmit(values));
+  dispatch(nlpSubmit(values, 'simple'));
 }
 
 export default simpleSubmit
