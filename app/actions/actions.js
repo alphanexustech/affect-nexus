@@ -2,7 +2,7 @@ import axios from 'axios'
 import { microservices } from '../config/microservices'
 import { userActions } from './userActions';
 
-const assistantURL = 'http://' + microservices.assistantServer + ':' + microservices.assistantPort;
+const assistantURL = microservices.protocol + '://' + microservices.assistantServer + ':' + microservices.assistantPort;
 const collection = microservices.mongoCollection
 
 export const REQUEST_DATA = 'REQUEST_DATA';

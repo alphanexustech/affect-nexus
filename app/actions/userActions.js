@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { microservices } from '../config/microservices'
 
-const assistantURL = 'http://' + microservices.assistantServer + ':' + microservices.assistantPort;
+const assistantURL = microservices.protocol + '://' + microservices.assistantServer + ':' + microservices.assistantPort;
 
 export const SIGNUP_REQUEST = 'USERS_SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'USERS_SIGNUP_SUCCESS';

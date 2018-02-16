@@ -47,6 +47,9 @@ let NLPSimpleForm = (props) => {
             { docValue && 300 - docValue.length > 0 &&
               300 - docValue.length
             }
+            { docValue && (300 - docValue.length) == 0 &&
+              0
+            }
             { docValue && 300 - docValue.length < 0 &&
               <span style={{color: '#ffd7d7'}}>{300 - docValue.length}</span>
             }

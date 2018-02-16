@@ -1,9 +1,10 @@
 /**
- * IP Addresses for microservices
+ * Configuration for microservices
  */
 
 export const microservices = {
+  "protocol": 'http',
   "assistantServer": '127.0.0.1',
   "assistantPort": '3000',
-  "mongoCollection": 'beta_records-07jan2018',
+  "mongoCollection": 'records-16feb2018',
 }
