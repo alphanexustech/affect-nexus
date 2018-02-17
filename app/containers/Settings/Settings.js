@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { Link, NavLink } from 'react-router-dom';
-import { Table, Button, Panel, Row, Col, Modal } from 'react-bootstrap';
+import { Table, Button, Panel, Row, Col, Modal, Alert } from 'react-bootstrap';
 
 import GeneralErrorComponent from '../../components/errors/GeneralErrorComponent'
 
@@ -27,7 +27,7 @@ class Settings extends Component {
   }
 
   handleDelete() {
-    const { dispatch } = this.props;
+    const { dispatch, loading } = this.props;
     dispatch(deleteProfile())
   }
 
@@ -40,7 +40,7 @@ class Settings extends Component {
   }
 
   render () {
-    const { handleSubmit, settings, updating, error, successfullyUpdated, user } = this.props;
+    const { handleSubmit, settings, updating, error, successfullyUpdated, user, loading } = this.props;
     const confirmationErrorMsg = 'The confirmation password must match the password.';
     const trivialError = this.props.error == confirmationErrorMsg;
     const criticalError = !trivialError && this.props.error;
@@ -88,7 +88,12 @@ class Settings extends Component {
             <br></br>
             <Row>
               <Col md={6} mdOffset={3}>
-                <UserSettingsForm />
+                { loading && !successfullyUpdated &&
+                  <Alert bsStyle="success">Loading...</Alert>
+                }
+                { (!loading || successfullyUpdated) &&
+                  <UserSettingsForm />
+                }
               </Col>
             </Row>
             <Row>
@@ -153,12 +158,14 @@ Settings.propTypes = {
 
 function mapStateToProps(state) {
   const { settings, updating, error, successfullyUpdated, user } = state.settingsUpdates;
+  const { loading } = state.settings;
   return {
     settings,
     updating,
     error,
     successfullyUpdated,
-    user
+    user,
+    loading
   }
 }
 

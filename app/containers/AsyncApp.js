@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Home from './Home/Home';
 import Signup from './Signup/Signup';
+import Optin from './Optin/Optin';
 import Login from './Login/Login';
 import Settings from './Settings/Settings';
 import Nexus from './Nexus/Nexus';
@@ -76,7 +77,7 @@ class AsyncApp extends Component {
                 color: "#CCC",
                 textAlign: "right"
               }}>
-              Hi, {sessionStorage.getItem('username')}
+              Hi, {sessionStorage.getItem('displayName') ? sessionStorage.getItem('displayName') : sessionStorage.getItem('username')}
             </li>
             <li className={ window.location.pathname == '/settings' ? 'active_page-heading' : '' }>
               <NavLink to="/settings"><i className="fa fa-cogs" aria-hidden="true"></i> Settings</NavLink>
@@ -124,6 +125,7 @@ class AsyncApp extends Component {
        <div className="container" style={{marginTop: '5vh', marginBottom: '5vh', maxWidth: '1600px'}}>
          <Route path="/" exact component={Home}/>
          <Route path="/signup" component={Signup}/>
+         <Route path="/optin" component={Optin}/>
          <Route path="/login" component={Login}/>
          <Route path="/settings" component={Settings}/>
          <Route path="/nexus" component={Nexus}/>

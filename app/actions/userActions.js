@@ -41,16 +41,17 @@ function login(user) {
     }
     axios.post(assistantURL + '/users/login', payload, config)
     .then(function (response) {
-      console.log('got here');
       let token = response.data.accessToken
       let userID = response.data.userID
       let username = response.data.username
+      let displayName = response.data.displayName
       let interfaceComplexity = response.data.interfaceComplexity
       if (token) {
         dispatch(success(user));
         sessionStorage.setItem('token', token);
         sessionStorage.setItem('userID', userID);
         sessionStorage.setItem('username', username);
+        sessionStorage.setItem('displayName', displayName);
         sessionStorage.setItem('interfaceComplexity', interfaceComplexity);
         window.location.href = '/nexus'
       } else {
@@ -111,7 +112,7 @@ function signup(user) {
         sessionStorage.setItem('userID', userID);
         sessionStorage.setItem('username', username);
         sessionStorage.setItem('interfaceComplexity', "0"); // Simple UI for starters
-        window.location.href = '/nexus' // Redirect
+        window.location.href = '/optin' // Redirect
       } else {
         handleError(response)
       }

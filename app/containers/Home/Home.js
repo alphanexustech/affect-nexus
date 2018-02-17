@@ -13,12 +13,7 @@ class Home extends Component {
             padding: '5%',
             textAlign: 'center'
           }}>
-          <img style={{
-              "height": "160px",
-              "margin": "40px",
-              marginBottom: "80px"
-            }}
-               src={logo} />
+          <img id="affect_nexus_logo" src={logo} />
           <h2>
             Find emotions in text!
           </h2>

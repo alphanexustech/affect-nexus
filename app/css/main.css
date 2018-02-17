@@ -32,6 +32,28 @@ video {
   opacity: .2;
 }
 
+#affect_nexus_logo {
+  height: 160px;
+  margin: 40px;
+  margin-bottom: 80px;
+}
+
+@media (max-width: 540px) {
+  #affect_nexus_logo {
+    height: 100px;
+    margin: 0px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 300px) {
+  #affect_nexus_logo {
+    height: 80px;
+    margin: 0px;
+    margin-bottom: 10px;
+  }
+}
+
 /*
  * Facebook Icon
  */
