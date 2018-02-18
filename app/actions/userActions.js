@@ -51,7 +51,9 @@ function login(user) {
         sessionStorage.setItem('token', token);
         sessionStorage.setItem('userID', userID);
         sessionStorage.setItem('username', username);
-        sessionStorage.setItem('displayName', displayName);
+        if (displayName) {
+          sessionStorage.setItem('displayName', displayName);
+        }
         sessionStorage.setItem('interfaceComplexity', interfaceComplexity);
         window.location.href = '/nexus'
       } else {
@@ -88,6 +90,7 @@ function logout() {
   sessionStorage.removeItem('token');
   sessionStorage.removeItem('userID');
   sessionStorage.removeItem('username');
+  sessionStorage.removeItem('displayName');
   sessionStorage.removeItem('interfaceComplexity');
   return { type: LOGOUT };
 }
@@ -165,6 +168,7 @@ export function receiveSettingsData() {
       dispatch(success(user))
       // Update interfaceComplexity settings in sessionStorage
       sessionStorage.setItem('interfaceComplexity', user.interfaceComplexity);
+      sessionStorage.setItem('displayName', user.displayName);
     })
     .catch(function (error) {
       handleError(error)
@@ -287,6 +291,8 @@ export function deleteProfile() {
       sessionStorage.removeItem('token');
       sessionStorage.removeItem('userID');
       sessionStorage.removeItem('username');
+      sessionStorage.removeItem('displayName');
+      sessionStorage.removeItem('interfaceComplexity');
       window.location.href = '/'
       dispatch(success(user))
     })

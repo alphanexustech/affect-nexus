@@ -90,6 +90,9 @@ class Login extends Component {
                 {!loggingIn &&
                   <div>
                     <Link to="/signup" className="pull-left btn btn-link">New here? Sign Up!</Link>
+                    <a style={{marginLeft: "4px"}} className="pull-left btn btn-link" href="mailto:support@alphanex.us?Subject=Help.%20I%20Forgot%20My%20Password.">
+                    Forgot Password?
+                    </a>
                     <button className="pull-right btn btn-primary">
                       Log In
                     </button>
