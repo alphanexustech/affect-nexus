@@ -19,9 +19,9 @@ export default class NLPComprehensiveTableModule extends React.Component {
   }
 
   handleClick(d) {
-    localStorage.setItem('lastEmotion', JSON.stringify(d));
-    localStorage.setItem('lastEmotionText', this.props.doc);
-    localStorage.setItem('lastEmotionCreationDate', new Date());
+    sessionStorage.setItem('lastEmotion', JSON.stringify(d));
+    sessionStorage.setItem('lastEmotionText', this.props.doc);
+    sessionStorage.setItem('lastEmotionCreationDate', new Date());
   }
 
   render () {

@@ -2,7 +2,7 @@ import axios from 'axios'
 import { microservices } from '../config/microservices'
 import { userActions } from './userActions';
 
-const assistantURL = 'http://' + microservices.assistantServer + ':' + microservices.assistantPort;
+const assistantURL = microservices.protocol + '://' + microservices.assistantServer + ':' + microservices.assistantPort;
 const collection = microservices.mongoCollection
 
 export const REQUEST_DATA = 'REQUEST_DATA';
@@ -61,7 +61,7 @@ function submitRequest(values) {
 function fetchData(dataset, port, metadata) {
   return dispatch => {
     dispatch(requestData(dataset));
-    let token = localStorage.getItem('token')
+    let token = sessionStorage.getItem('token')
 
     let url = assistantURL + `/scorer/analyses`
         url += `/` + collection
@@ -90,7 +90,7 @@ function fetchData(dataset, port, metadata) {
           if (data.errors) {
             uxFriendlyError = data.errors
           } else if (data == 'Unauthorized') {
-            uxFriendlyError = 'It looks like you\'re not logged in. We\'ll help you out.'
+            uxFriendlyError = 'Your log in credentials are old. Please log in. We\'ll help you out.'
             setTimeout( function() {
               userActions.logout()
               window.location.href = '/login' // Redirect
@@ -151,10 +151,10 @@ function endLoad(data) {
   };
 }
 
-export function nlpSubmit(data) {
+export function nlpSubmit(data, simpleOrAdvanced) {
   return dispatch => {
     dispatch(submitRequest(data))
-    let token = localStorage.getItem('token')
+    let token = sessionStorage.getItem('token')
 
     let url = assistantURL + `/scorer/analyze_emotion_set`
     let payload = data
@@ -169,7 +169,15 @@ export function nlpSubmit(data) {
     .then(function (response) {
       let json = response.data.data
       dispatch(receiveData('nlp', json))
-      dispatch(endLoad(data));
+      // Redirect if it is the simple page
+      if (simpleOrAdvanced == 'simple') {
+        window.location.href = '/nexus'
+        setTimeout(function () {
+          dispatch(endLoad(data));
+        }, 1000);
+      } else {
+        dispatch(endLoad(data));
+      }
     })
     .catch(function (error) {
       handleError(error)
@@ -184,7 +192,7 @@ export function nlpSubmit(data) {
           if (data.errors) {
             uxFriendlyError = data.errors
           } else if (data == 'Unauthorized') {
-            uxFriendlyError = 'It looks like you\'re not logged in. We\'ll help you out.'
+            uxFriendlyError = 'Your log in credentials are old. Please log in. We\'ll help you out.'
             setTimeout( function() {
               userActions.logout()
               window.location.href = '/login' // Redirect
@@ -211,7 +219,7 @@ export function nlpSubmit(data) {
 export function loadNLPAnalysis(data) {
   return dispatch => {
     dispatch(submitRequest(data))
-    let token = localStorage.getItem('token')
+    let token = sessionStorage.getItem('token')
 
     let url = assistantURL + `/scorer/analyses`
     url += `/` + collection
@@ -242,7 +250,7 @@ export function loadNLPAnalysis(data) {
           if (data.errors) {
             uxFriendlyError = data.errors
           } else if (data == 'Unauthorized') {
-            uxFriendlyError = 'It looks like you\'re not logged in. We\'ll help you out.'
+            uxFriendlyError = 'Your log in credentials are old. Please log in. We\'ll help you out.'
             setTimeout( function() {
               userActions.logout()
               window.location.href = '/login' // Redirect

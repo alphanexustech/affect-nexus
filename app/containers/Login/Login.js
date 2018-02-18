@@ -57,7 +57,7 @@ class Login extends Component {
             {error &&
               <GeneralErrorComponent error={this.props.error} />
             }
-            <h3>Log In</h3>
+            <h3><i className="fa fa-sign-in" aria-hidden="true"></i> Log In</h3>
             <form className="login-form" onSubmit={this.handleSubmit}>
               <FormGroup>
                 <ControlLabel>Username</ControlLabel>
@@ -66,7 +66,7 @@ class Login extends Component {
                   name="username"
                   value={user.username}
                   onChange={this.handleChange}
-                  placeholder="Please enter your username"
+                  placeholder="Username"
                 />
               {submitted && !user.username &&
                   <HelpBlock>Username is required</HelpBlock>
@@ -79,7 +79,7 @@ class Login extends Component {
                   name="password"
                   value={user.password}
                   onChange={this.handleChange}
-                  placeholder="Please enter your password"
+                  placeholder="Password"
                 />
                 {submitted && !user.password &&
                   <HelpBlock>Password is required</HelpBlock>
@@ -90,6 +90,9 @@ class Login extends Component {
                 {!loggingIn &&
                   <div>
                     <Link to="/signup" className="pull-left btn btn-link">New here? Sign Up!</Link>
+                    <a style={{marginLeft: "4px"}} className="pull-left btn btn-link" href="mailto:support@alphanex.us?Subject=Help.%20I%20Forgot%20My%20Password.">
+                    Forgot Password?
+                    </a>
                     <button className="pull-right btn btn-primary">
                       Log In
                     </button>

@@ -157,7 +157,6 @@ NLPComprehensiveTable.propTypes = {
 
 function mapStateToProps(state) {
   const { dataByDataset, load } = state;
-  console.log(state);
   if (dataByDataset['error']) {
     return {
       error: dataByDataset['error'],

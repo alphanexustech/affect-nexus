@@ -17,7 +17,7 @@ class NLPDisplay extends Component {
         <Link className="pull-right btn btn-xs btn-primary" to="/nexus">
           <i className="fa fa-angle-double-left" aria-hidden="true"></i> Back
         </Link>
-        <h3><i className="fa fa-level-down" aria-hidden="true"></i> Process</h3>
+        <h3><i className="fa fa-long-arrow-right" aria-hidden="true"></i> Process</h3>
         <p>
           Start a process
         </p>
@@ -62,6 +62,7 @@ class NLPDisplay extends Component {
               <i className="fa fa-2x fa-table" aria-hidden="true"></i>
             </div>
           </div>
+          {/*
           <div className="transparent--module transparent--module_alt-01 transparent--module_module-2">
             <div className="transparent--module_module-content">
               <NLPLaggerTable/>
@@ -70,6 +71,7 @@ class NLPDisplay extends Component {
               <i className="fa fa-2x fa-table" aria-hidden="true"></i>
             </div>
           </div>
+          */}
 
           <Row>
             <Col lg={12}>

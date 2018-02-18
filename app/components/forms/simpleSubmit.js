@@ -1,6 +1,6 @@
 import { nlpSubmit } from '../../actions/actions'
 
-function submit(values, dispatch) {
+function simpleSubmit(values, dispatch) {
   if(values.lang == null){
     values.lang = 'english'
   }
@@ -16,11 +16,16 @@ function submit(values, dispatch) {
   if(values.lemma == null){
     values.lemma = '1'
   }
-  if (values.doc.length > 300) {
-    // IDEA: Prevent large docs from being sent
-    console.log('Woah, that document was large!');
+  if(values.lemma == null){
+    values.lemma = '1'
   }
-  dispatch(nlpSubmit(values, 'advanced'));
+  if(values.ub == null){
+    values.ub = '2'
+  }
+  if(values.lb == null){
+    values.lb = '2'
+  }
+  dispatch(nlpSubmit(values, 'simple'));
 }
 
-export default submit
+export default simpleSubmit

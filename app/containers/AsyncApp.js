@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 
 import Home from './Home/Home';
 import Signup from './Signup/Signup';
+import Optin from './Optin/Optin';
 import Login from './Login/Login';
+import Settings from './Settings/Settings';
 import Nexus from './Nexus/Nexus';
 import NLPComprehensiveDisplay from './NLP/NLPComprehensiveDisplay';
+import NLPSimpleDisplay from './NLP/NLPSimpleDisplay';
 import NLPInsightDisplay from './NLP/NLPInsightDisplay';
 
 import { Link, NavLink, Route } from 'react-router-dom';
@@ -39,32 +42,48 @@ class AsyncApp extends Component {
         <div className="bkgd" />
       )
     }
-    if (localStorage.getItem('token') != null) {
+    if (sessionStorage.getItem('token') != null) {
       navOptions = (
         <div>
           <nav className="nav navbar-nav">
-            <li>
+            <li className={ window.location.pathname == '/nexus' ? 'active_page-heading' : '' }>
               <NavLink to="/nexus"><i className="fa fa-bullseye" aria-hidden="true"></i> Nexus</NavLink>
             </li>
-            <li>
-              <NavLink to="/process"><i className="fa fa-level-down" aria-hidden="true"></i> Process</NavLink>
-            </li>
-            <li>
-              <NavLink to="/insight"><i className="fa fa-bolt" aria-hidden="true"></i> Insight</NavLink>
-            </li>
+            { sessionStorage.getItem('interfaceComplexity') == "0" && // Only show if advanced complexity selected
+              <li className={ window.location.pathname == '/process' ? 'active_page-heading' : '' }>
+                <NavLink to="/process"><i className="fa fa-long-arrow-right" aria-hidden="true"></i> Process</NavLink>
+              </li>
+            }
+            { sessionStorage.getItem('interfaceComplexity') == "1" && // Only show if advanced complexity selected
+              <li className={ window.location.pathname == '/process' ? 'active_page-heading' : '' }>
+                <NavLink to="/advanced-process"><i className="fa fa-long-arrow-right" aria-hidden="true"></i> Process</NavLink>
+              </li>
+            }
+            { sessionStorage.getItem('interfaceComplexity') == "1" && // Only show if advanced complexity selected
+              <li className={ window.location.pathname == '/insight' ? 'active_page-heading' : '' }>
+                <NavLink to="/insight"><i className="fa fa-bolt" aria-hidden="true"></i> Insight</NavLink>
+              </li>
+            }
           </nav>
         </div>
       )
       loginButtons = (
         <div>
           <nav className="nav navbar-nav navbar-right">
-            <li>
-              <NavLink to="/nexus">
-                {localStorage.getItem('username')}
-              </NavLink>
+            <li style={{
+                paddingTop: "19.5px",
+                paddingBottom: "19.5px",
+                paddingRight: "19.5px",
+                color: "#CCC",
+                textAlign: "right"
+              }}>
+              Hi, {sessionStorage.getItem('displayName') ? sessionStorage.getItem('displayName') : sessionStorage.getItem('username')}
             </li>
-            <li>
-              <NavLink to="/login" onClick={this.handleLogout}>Log Out</NavLink>
+            <li className={ window.location.pathname == '/settings' ? 'active_page-heading' : '' }>
+              <NavLink to="/settings"><i className="fa fa-cogs" aria-hidden="true"></i> Settings</NavLink>
+            </li>
+            <li className={ window.location.pathname == '/login' ? 'active_page-heading' : '' }>
+              <NavLink to="/login" onClick={this.handleLogout}><i className="fa fa-sign-out" aria-hidden="true"></i> Log Out</NavLink>
             </li>
           </nav>
         </div>
@@ -75,10 +94,10 @@ class AsyncApp extends Component {
         <div>
           <nav className="nav navbar-nav navbar-right">
             <li>
-              <NavLink to="/signup">Sign Up</NavLink>
+              <NavLink to="/signup"><i className="fa fa-user-plus" aria-hidden="true"></i> Sign Up</NavLink>
             </li>
             <li>
-              <NavLink to="/login">Log In</NavLink>
+              <NavLink to="/login"><i className="fa fa-sign-in" aria-hidden="true"></i> Log In</NavLink>
             </li>
           </nav>
         </div>
@@ -106,9 +125,12 @@ class AsyncApp extends Component {
        <div className="container" style={{marginTop: '5vh', marginBottom: '5vh', maxWidth: '1600px'}}>
          <Route path="/" exact component={Home}/>
          <Route path="/signup" component={Signup}/>
+         <Route path="/optin" component={Optin}/>
          <Route path="/login" component={Login}/>
+         <Route path="/settings" component={Settings}/>
          <Route path="/nexus" component={Nexus}/>
-         <Route path="/process" component={NLPComprehensiveDisplay}/>
+         <Route path="/process" component={NLPSimpleDisplay}/>
+         <Route path="/advanced-process" component={NLPComprehensiveDisplay}/>
          <Route path="/insight" component={NLPInsightDisplay}/>
        </div>
        {bkgd}

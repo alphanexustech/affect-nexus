@@ -32,6 +32,36 @@ video {
   opacity: .2;
 }
 
+#affect_nexus_logo {
+  height: 160px;
+  margin: 40px;
+  margin-bottom: 80px;
+}
+
+@media (max-width: 540px) {
+  #affect_nexus_logo {
+    height: 100px;
+    margin: 0px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 300px) {
+  #affect_nexus_logo {
+    height: 80px;
+    margin: 0px;
+    margin-bottom: 10px;
+  }
+}
+
+/*
+ * Facebook Icon
+ */
+
+#facebookLink:hover {
+  color: #92b3f3;
+}
+
 /*
  * Font overrides
  */
@@ -169,9 +199,12 @@ i.fa {
 
 .affect--display_name {
   background: #010101;
-  padding: 4px;
+  padding: 8px;
+  width: fit-content;
   color: #CCC;
   vertical-align: middle;
+  text-transform: capitalize;
+  float: left;
 }
 
 .affect--display_scores {
@@ -182,10 +215,11 @@ i.fa {
 
 .affect--display_rank {
   background: #CCC;
-  padding: 4px;
+  padding: 8px;
+  width: fit-content;
   color: #131313;
-  margin-left: 4px;
   vertical-align: middle;
+  float: right;
 }
 
 .affect--display_row-title {
@@ -322,7 +356,7 @@ i.fa {
 .transparent--module_form--nlp:hover {
   -webkit-transition: height .5s, width .5s, opacity .5s;
   transition: height .5s, width .5s, opacity .5s;
-  height: 740px;
+  height: 760px;
   width: 570px;
 }
 
@@ -330,7 +364,7 @@ i.fa {
 .transparent--module_module-2:hover {
   -webkit-transition: height .5s, width .5s, opacity .5s;
   transition: height .5s, width .5s, opacity .5s;
-  height: 500px;
+  height: 540px;
   width: 250px;
   z-index: 1000;
 }
@@ -341,14 +375,6 @@ i.fa {
   height: 350px;
   width: 700px;
   z-index: 1000;
-}
-
-/*
- * Heading overrides
- */
-
-h6 {
-   font-size: 12px;
 }
 
 /*
@@ -379,6 +405,59 @@ h6 {
    font-family: 'Exo', sans-serif;
    padding: 18px;
  }
+
+/*
+ * Settings Page
+ */
+
+.settings--settings_group-buttons {
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.settings--preferences_toggle-group {
+  display: inline-flex;
+  text-align: left;
+  padding-bottom: 24px;
+}
+
+.settings--preferences_toggle-group_label-margin {
+  margin-left: 16px;
+  min-width: 150px;
+}
+
+.settings--preference_bottom-right-corner_status-loading {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: #222222;
+  padding: 12px;
+  border: 1px solid white;
+}
+
+.settings--preference_bottom-right-corner_status-error {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: #ffd7d7;
+  color: #222222;
+  padding: 12px;
+  border: 1px solid #222222;
+}
+
+.settings--preference_bottom-right-corner_status-success {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: #dfffd7;
+  color: #222222;
+  padding: 12px;
+  border: 1px solid #222222;
+}
 
 /*
  * Scrollbars

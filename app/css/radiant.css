@@ -67,7 +67,7 @@
  .insight--display_main-area {
    overflow-y: scroll;
    max-height: 30vh;
-   padding: 10px;
+   padding: 16px;
    padding-right: 30px;
 }
 
@@ -97,7 +97,7 @@
 }
 
 .insight--display_description {
-  font-size: 12px;
+  font-size: 14px;
   margin: 10px;
 }
 
@@ -108,13 +108,13 @@
 
 .insight--key-cell, .insight--key-text {
   display: inline-flex;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .insight--key-cell_heading {
   display: inline-flex;
   text-align: center;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .insight--key-cell_body-cell_list {
@@ -122,7 +122,7 @@
   list-style-position: inside;
   margin: 0;
   padding: 0 35;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .insight--key-cell_body-cell_list-legend_list {
@@ -212,7 +212,7 @@
 
 .insight--axis_label {
   fill: white;
-  font-size: 10px;
+  font-size: 16px;
 }
 
 /*

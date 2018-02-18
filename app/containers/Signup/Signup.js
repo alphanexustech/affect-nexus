@@ -88,7 +88,7 @@ class Signup extends Component {
             {error && stateError &&
               <GeneralErrorComponent error={stateError} />
             }
-            <h3>Sign Up</h3>
+            <h3><i className="fa fa-user-plus" aria-hidden="true"></i> Sign Up</h3>
             <form className="login-form" onSubmit={this.handleSubmit}>
               <FormGroup>
                 <ControlLabel>Email</ControlLabel>
@@ -97,7 +97,7 @@ class Signup extends Component {
                   name="email"
                   value={user.email}
                   onChange={this.handleChange}
-                  placeholder="Please enter your username"
+                  placeholder="E-mail"
                 />
               {submitted && !user.email &&
                   <HelpBlock>Email is required</HelpBlock>
@@ -110,7 +110,7 @@ class Signup extends Component {
                   name="username"
                   value={user.username}
                   onChange={this.handleChange}
-                  placeholder="Please enter your username"
+                  placeholder="Username"
                 />
               {submitted && !user.username &&
                   <HelpBlock>Username is required</HelpBlock>
@@ -123,7 +123,7 @@ class Signup extends Component {
                   name="password"
                   value={user.password}
                   onChange={this.handleChange}
-                  placeholder="Please enter your password"
+                  placeholder="Password"
                 />
                 {submitted && !user.password &&
                   <HelpBlock>Password is required</HelpBlock>
@@ -136,7 +136,7 @@ class Signup extends Component {
                   name="confirmPassword"
                   value={user.confirmPassword}
                   onChange={this.handleChange}
-                  placeholder="Please enter your confirm your password"
+                  placeholder="Confirm password"
                 />
                 {submitted && !user.confirmPassword &&
                   <HelpBlock>Confirming the password is required</HelpBlock>
