@@ -70,7 +70,7 @@ export default class PillPoint extends React.Component {
         x={(this.props.rangeBandTarget * this.props.rangeBand) + this.props.rangeBand/2 + '%'}
         y={this.props.availableHeight - this.props.cy}
         stroke={this.props.stroke}
-        style={{strokeWidth: '1px', transform: "translate(-50%, -50%)"}}
+        style={{strokeWidth: '1px'}}
         onMouseOver={this._handleOver.bind(this, this.props)}
         onMouseOut={this._handleOut.bind(this, this.props)}
         />
